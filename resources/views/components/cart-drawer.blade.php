@@ -55,8 +55,8 @@
             Taxes and shipping calculated at checkout.
         </p>
         <button type="button" 
-                onclick="window.livaApp.showToast(document.documentElement.lang === 'km' ? 'កំពុងបន្តទៅកាន់ទំព័រទូទាត់ប្រាក់...' : 'Proceeding to secure checkout...')"
-                class="w-full py-3.5 px-4 bg-liva-dark hover:bg-liva-olive text-white text-xs tracking-wider uppercase font-semibold rounded-full shadow-lg transition-colors flex items-center justify-center gap-2"
+                onclick="window.livaApp.openCheckoutModal()"
+                class="w-full py-3.5 px-4 bg-liva-dark hover:bg-liva-olive text-white text-xs tracking-wider uppercase font-semibold rounded-full shadow-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 data-i18n="checkout">
             <span>Proceed to Checkout</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>

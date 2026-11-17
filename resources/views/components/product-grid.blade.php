@@ -1,5 +1,88 @@
-<section id="collection" class="py-16 md:py-24 bg-[#FAF7F2] border-t border-liva-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-24">
+<section id="collection" class="py-12 md:py-20 bg-[#FAF7F2] border-t border-liva-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-20">
+        
+        <!-- ============================================================== -->
+        <!-- TOP BUTTON: SHOW ALL PRODUCT (Centered as marked in screenshot) -->
+        <!-- ============================================================== -->
+        <div class="flex flex-col items-center justify-center text-center -mb-6">
+            <button type="button" 
+                    id="show-all-products-btn"
+                    onclick="window.livaApp.openAllProductsModal('all')"
+                    class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-white hover:bg-liva-dark text-liva-charcoal hover:text-white border-2 border-liva-border hover:border-liva-dark shadow-sm hover:shadow-lg transition-all duration-300 text-xs sm:text-sm font-semibold tracking-wide cursor-pointer group">
+                <svg class="w-4 h-4 text-liva-olive group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                </svg>
+                <span id="show-all-btn-text" data-i18n="showAllProduct">{{ __('skincare.show_all_product') ?? 'Show all product' }}</span>
+                <span class="text-[11px] px-2 py-0.5 rounded-full bg-liva-stone group-hover:bg-white/20 text-liva-muted group-hover:text-white font-bold transition-colors">10</span>
+            </button>
+        </div>
+
+        <!-- Inline All Products Grid (Revealed when "Show all product" is clicked) -->
+        <div id="inline-all-products-section" class="hidden transition-all duration-500 pb-10 border-b border-liva-border/80 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-liva-olive mb-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-liva-olive"></span>
+                        <span data-i18n="allProductsTag">{{ __('skincare.all_products_tag') ?? 'COMPLETE CATALOG' }}</span>
+                        <span class="text-liva-muted">·</span>
+                        <span id="inline-product-count" class="text-liva-muted font-semibold">10 Products</span>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-bold text-liva-dark tracking-tight" data-i18n="allProductsTitle">
+                        {{ __('skincare.all_products_title') ?? 'All Botanical Products' }}
+                    </h3>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="inline-flex flex-wrap items-center p-1 bg-[#F4EFE6] rounded-2xl sm:rounded-full text-xs font-medium self-start sm:self-auto gap-1" id="inline-category-filters">
+                    <button type="button" 
+                            onclick="window.livaApp.filterInlineProducts('all', this)"
+                            class="inline-filter-btn px-3.5 py-1.5 rounded-full bg-liva-dark text-white font-semibold shadow-xs transition-all cursor-pointer"
+                            data-i18n="filterAll">
+                        All (10)
+                    </button>
+                    <button type="button" 
+                            onclick="window.livaApp.filterInlineProducts('single', this)"
+                            class="inline-filter-btn px-3.5 py-1.5 rounded-full text-liva-charcoal hover:text-liva-dark transition-all cursor-pointer"
+                            data-i18n="navSingleProduct">
+                        Single Products (6)
+                    </button>
+                    <button type="button" 
+                            onclick="window.livaApp.filterInlineProducts('sets', this)"
+                            class="inline-filter-btn px-3.5 py-1.5 rounded-full text-liva-charcoal hover:text-liva-dark transition-all cursor-pointer inline-flex items-center gap-1"
+                            data-i18n="navSetProduct">
+                        <span>Set Products (2+) (4)</span>
+                    </button>
+
+                    <!-- Category Dropdown -->
+                    <div class="relative inline-block text-left" id="inline-category-dropdown">
+                        <button type="button" 
+                                onclick="document.getElementById('inline-category-dropdown-menu').classList.toggle('hidden')"
+                                class="inline-filter-btn px-3.5 py-1.5 rounded-full text-liva-charcoal hover:text-liva-dark transition-all cursor-pointer flex items-center gap-1.5">
+                            <span id="inline-category-label">Category: All</span>
+                            <svg class="w-3 h-3 text-liva-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="inline-category-dropdown-menu" class="hidden absolute right-0 mt-1.5 w-44 bg-white rounded-2xl shadow-xl border border-liva-border py-1.5 z-30">
+                            <button type="button" onclick="window.livaApp.filterInlineByCategory('all', 'Category: All')" class="w-full text-left px-3.5 py-2 text-xs text-liva-dark hover:bg-liva-stone/70 flex items-center justify-between font-medium cursor-pointer">
+                                <span>All Categories</span>
+                                <span class="text-[10px] text-liva-muted font-bold">10</span>
+                            </button>
+                            <button type="button" onclick="window.livaApp.filterInlineByCategory('body', 'Body Care')" class="w-full text-left px-3.5 py-2 text-xs text-liva-dark hover:bg-liva-stone/70 flex items-center justify-between font-medium cursor-pointer">
+                                <span>Body Care</span>
+                                <span class="text-[10px] text-liva-muted font-bold">3</span>
+                            </button>
+                            <button type="button" onclick="window.livaApp.filterInlineByCategory('hair', 'Hair Care')" class="w-full text-left px-3.5 py-2 text-xs text-liva-dark hover:bg-liva-stone/70 flex items-center justify-between font-medium cursor-pointer">
+                                <span>Hair Care</span>
+                                <span class="text-[10px] text-liva-muted font-bold">3</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="inline-all-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+                <!-- Rendered dynamically by window.livaApp -->
+            </div>
+        </div>
         
         <!-- ============================================================== -->
         <!-- SLIDER ROW 1: NEW ARRIVALS (1 Title, 1 Row Slider with Arrows) -->
@@ -22,10 +105,13 @@
 
                 <!-- Right Controls: View More Link + Arrow Buttons (< and >) -->
                 <div class="flex items-center gap-3 sm:gap-4 shrink-0 self-end sm:self-auto">
-                    <a href="#collection" class="text-xs sm:text-sm font-semibold text-liva-olive hover:text-liva-dark transition-colors inline-flex items-center gap-1 group" data-i18n="viewMore">
+                    <button type="button" 
+                            onclick="window.livaApp.openAllProductsModal('new-arrivals')"
+                            class="text-xs sm:text-sm font-semibold text-liva-olive hover:text-liva-dark transition-colors inline-flex items-center gap-1 group cursor-pointer" 
+                            data-i18n="viewMore">
                         <span>{{ __('skincare.view_more') }}</span>
                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
+                    </button>
 
                     <!-- Navigation Arrows -->
                     <div class="flex items-center gap-1.5">
@@ -92,10 +178,13 @@
 
                 <!-- Right Controls: View More Link + Arrow Buttons (< and >) -->
                 <div class="flex items-center gap-3 sm:gap-4 shrink-0 self-end sm:self-auto">
-                    <a href="#collection" class="text-xs sm:text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors inline-flex items-center gap-1 group" data-i18n="viewMore">
+                    <button type="button" 
+                            onclick="window.livaApp.openAllProductsModal('promotions')"
+                            class="text-xs sm:text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors inline-flex items-center gap-1 group cursor-pointer" 
+                            data-i18n="viewMore">
                         <span>{{ __('skincare.view_more') }}</span>
                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
+                    </button>
 
                     <!-- Navigation Arrows -->
                     <div class="flex items-center gap-1.5">
@@ -162,10 +251,13 @@
 
                 <!-- Right Controls: View More Link + Arrow Buttons (< and >) -->
                 <div class="flex items-center gap-3 sm:gap-4 shrink-0 self-end sm:self-auto">
-                    <a href="#collection" class="text-xs sm:text-sm font-semibold text-liva-dark hover:text-liva-olive transition-colors inline-flex items-center gap-1 group" data-i18n="viewMore">
+                    <button type="button" 
+                            onclick="window.livaApp.openAllProductsModal('top-products')"
+                            class="text-xs sm:text-sm font-semibold text-liva-dark hover:text-liva-olive transition-colors inline-flex items-center gap-1 group cursor-pointer" 
+                            data-i18n="viewMore">
                         <span>{{ __('skincare.view_more') }}</span>
                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
+                    </button>
 
                     <!-- Navigation Arrows -->
                     <div class="flex items-center gap-1.5">
@@ -210,5 +302,20 @@
             </div>
         </div>
 
+        <!-- ============================================================== -->
+        <!-- BOTTOM CALLOUT: VIEW ALL 8 PRODUCTS BUTTON                     -->
+        <!-- ============================================================== -->
+        <div class="pt-2 pb-6 text-center">
+            <button type="button"
+                    onclick="window.livaApp.openAllProductsModal('all')"
+                    class="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-liva-dark hover:bg-liva-olive text-white text-xs sm:text-sm font-semibold uppercase tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer group">
+                <span data-i18n="allProductsTitle">{{ __('skincare.all_products_title') ?? 'View All Products (8 Formulations)' }}</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+        </div>
+
     </div>
+
+    <!-- All Products Modal Window -->
+    <x-all-products-modal />
 </section>

@@ -27,13 +27,14 @@
 
                 <!-- Two CTA Buttons (from Wireframe) -->
                 <div class="pt-2 flex flex-wrap items-center gap-4">
-                    <!-- Primary CTA Button -->
-                    <a href="#collection" 
-                       class="px-7 py-3.5 bg-liva-dark hover:bg-liva-olive text-white text-xs sm:text-sm tracking-wider uppercase font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2.5"
+                    <!-- Primary CTA Button (Opens Complete Catalog Modal) -->
+                    <button type="button" 
+                       onclick="window.livaApp.openAllProductsModal('all')"
+                       class="px-7 py-3.5 bg-liva-dark hover:bg-liva-olive text-white text-xs sm:text-sm tracking-wider uppercase font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2.5 cursor-pointer"
                        data-i18n="exploreCollection">
                         <span>{{ __('skincare.explore_collection') }}</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </a>
+                    </button>
 
                     <!-- Secondary CTA Button -->
                     <a href="#spotlight" 

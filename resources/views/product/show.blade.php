@@ -8,6 +8,8 @@
         $benefitsText = $isKm ? $product['benefits_km'] : $product['benefits_en'];
         $ingredientsText = $isKm ? $product['ingredients_km'] : $product['ingredients_en'];
         $returnText = $isKm ? $product['return_policy_km'] : $product['return_policy_en'];
+        $isSet = ($product['category'] ?? '') === 'sets';
+        $defaultItems = $product['default_items'] ?? ['liva-shampoo', 'liva-conditioner'];
         $initialSize = $product['sizes'][0] ?? ['label' => $product['size'], 'volume' => $product['size'], 'price' => $product['price'], 'stock' => $product['stock']];
         $initialPrice = $initialSize['price'];
         $initialSubPrice = number_format($initialPrice * 0.85, 2);
@@ -123,33 +125,166 @@
                     <!-- Selection and Add to Bag Section (Matching UX Reference) -->
                     <div class="space-y-6 pt-2">
                         
-                        <!-- SELECT SIZE Row -->
+                        @if($isSet)
+                        <!-- ============================================================== -->
+                        <!-- SET PRODUCT SELECTION: IMG + TITLE + PRICE + MULTIPLE SELECT   -->
+                        <!-- ============================================================== -->
+                        <div class="space-y-3.5">
+                            <!-- Header & Counter -->
+                            <div class="flex items-center justify-between text-xs tracking-wider uppercase font-semibold">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-liva-dark font-bold">{{ $isKm ? 'ជ្រើសរើសមុខទំនិញក្នុងឈុត' : 'CHOOSE SET ITEMS' }}</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">
+                                        {{ $isKm ? 'ជ្រើសរើសបានច្រើនមុខ (២+)' : 'MULTIPLE CHOICES (2+)' }}
+                                    </span>
+                                </div>
+                                <span id="set-items-count-badge" class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                                    2 Items Selected
+                                </span>
+                            </div>
+
+                            <p class="text-xs text-liva-muted">
+                                {{ $isKm ? '១ ឈុតអាចជ្រើសរើសបានចាប់ពី ២ មុខឡើងទៅ។ ចុចលើរូប ឬប្រអប់ដើម្បីជ្រើសរើស (បញ្ចុះតម្លៃ ១៥% ដោយស្វ័យប្រវត្តិ)៖' : '1 Set can be 2+ items. Select multiple products to customize your set with an automatic 15% discount:' }}
+                            </p>
+
+                            <!-- Quick Preset Pills (Duo, Trio, All) -->
+                            <div class="flex flex-wrap items-center gap-2 pt-0.5 pb-1">
+                                <span class="text-[11px] text-liva-muted font-medium mr-1">{{ $isKm ? 'ឈុតរហ័ស៖' : 'Quick Presets:' }}</span>
+                                <button type="button" 
+                                        id="preset-btn-duo"
+                                        onclick="applySetPreset('duo')"
+                                        class="set-preset-btn px-3 py-1 rounded-full text-xs font-semibold border border-liva-dark bg-liva-dark text-white transition-all shadow-2xs hover:scale-102 cursor-pointer">
+                                    {{ $isKm ? 'ឈុត ២ មុខ (Duo)' : '2-Piece Duo' }}
+                                </button>
+                                <button type="button" 
+                                        id="preset-btn-trio"
+                                        onclick="applySetPreset('trio')"
+                                        class="set-preset-btn px-3 py-1 rounded-full text-xs font-medium border border-liva-border bg-white text-liva-charcoal hover:bg-liva-stone/70 transition-all shadow-2xs hover:scale-102 cursor-pointer">
+                                    {{ $isKm ? 'ឈុត ៣ មុខ (Trio)' : '3-Piece Trio' }}
+                                </button>
+                                <button type="button" 
+                                        id="preset-btn-all"
+                                        onclick="applySetPreset('all')"
+                                        class="set-preset-btn px-3 py-1 rounded-full text-xs font-medium border border-liva-border bg-white text-liva-charcoal hover:bg-liva-stone/70 transition-all shadow-2xs hover:scale-102 cursor-pointer">
+                                    {{ $isKm ? 'ឈុតទាំងអស់ (៥ មុខ)' : 'All 5 Products' }}
+                                </button>
+                            </div>
+
+                            <!-- Choice Cards List: Each has img, title, price, and can select multiple -->
+                            <div class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1 no-scrollbar" id="set-multi-choice-container">
+                                @foreach($availableItems as $item)
+                                    @php
+                                        $itemTitle = $isKm ? $item['name_km'] : $item['name_en'];
+                                        $itemBenefit = $isKm ? $item['benefit_km'] : $item['benefit_en'];
+                                        $isPreselected = in_array($item['id'], $defaultItems);
+                                    @endphp
+                                    <div class="set-choice-card group relative flex items-center gap-3.5 p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none {{ $isPreselected ? 'border-liva-dark bg-white shadow-sm ring-1 ring-liva-dark/10' : 'border-liva-border/90 bg-white/80 hover:bg-white hover:border-liva-olive/60 shadow-2xs' }}"
+                                         id="set-card-{{ $item['id'] }}"
+                                         data-id="{{ $item['id'] }}"
+                                         data-price="{{ $item['price'] }}"
+                                         data-name-en="{{ $item['name_en'] }}"
+                                         data-name-km="{{ $item['name_km'] }}"
+                                         data-image="{{ $item['image'] }}"
+                                         data-size="{{ $item['size'] }}"
+                                         onclick="toggleSetItem('{{ $item['id'] }}')">
+                                        
+                                        <!-- Multi-Select Checkbox (can select multiple) -->
+                                        <div class="set-card-checkbox w-6 h-6 rounded-lg border-2 {{ $isPreselected ? 'border-liva-dark bg-liva-dark text-white' : 'border-liva-border bg-white' }} flex items-center justify-center shrink-0 transition-all shadow-2xs group-hover:scale-105">
+                                            <svg class="set-card-check-icon w-3.5 h-3.5 text-white {{ $isPreselected ? 'opacity-100' : 'opacity-0' }} transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+
+                                        <!-- Image (img) -->
+                                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-[#F7F4EE] p-1.5 shrink-0 border border-liva-border/60 overflow-hidden flex items-center justify-center">
+                                            <img src="{{ $item['image'] }}" 
+                                                 alt="{{ $itemTitle }}" 
+                                                 class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-200" 
+                                                 loading="lazy" />
+                                        </div>
+
+                                        <!-- Title & Info (title) -->
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-1.5 mb-0.5">
+                                                <span class="text-[10px] font-bold text-liva-muted uppercase tracking-wider">{{ $item['size'] }}</span>
+                                                <span class="text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                                                    Stock: {{ $item['stock'] }}
+                                                </span>
+                                            </div>
+                                            <h4 class="text-xs sm:text-sm font-semibold text-liva-dark truncate group-hover:text-liva-olive transition-colors">
+                                                {{ $itemTitle }}
+                                            </h4>
+                                            <p class="text-[11px] text-liva-muted truncate">
+                                                {{ $itemBenefit }}
+                                            </p>
+                                        </div>
+
+                                        <!-- Price (price) -->
+                                        <div class="text-right shrink-0 pl-1">
+                                            <div class="text-xs sm:text-sm font-bold text-liva-dark">
+                                                ${{ number_format($item['price'], 2) }}
+                                            </div>
+                                            <span class="set-card-status-label text-[10px] font-semibold {{ $isPreselected ? 'text-emerald-700' : 'text-liva-muted' }} block mt-0.5">
+                                                {{ $isPreselected ? '✓ Added' : '+ Select' }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Live Set Bundle Summary & Discount Box -->
+                            <div id="set-summary-banner" class="p-3.5 rounded-2xl bg-emerald-50/90 border border-emerald-200 text-xs space-y-1.5 transition-all shadow-2xs">
+                                <div class="flex items-center justify-between font-semibold">
+                                    <span id="set-summary-status-text" class="text-emerald-950 flex items-center gap-1.5">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        <span>2 Products Selected in Set</span>
+                                    </span>
+                                    <span id="set-summary-discount-badge" class="px-2 py-0.5 rounded-full bg-emerald-200/80 text-emerald-950 text-[10px] font-bold tracking-wide">
+                                        15% OFF BUNDLE
+                                    </span>
+                                </div>
+                                <div class="flex items-baseline justify-between text-liva-muted text-[11px] pt-0.5">
+                                    <span id="set-summary-items-list" class="truncate max-w-[240px] sm:max-w-xs text-emerald-900/80 font-medium">
+                                        ...
+                                    </span>
+                                    <div class="flex items-center gap-1.5 shrink-0">
+                                        <span id="set-summary-original-price" class="line-through text-gray-400 text-xs">$70.00</span>
+                                        <span id="set-summary-final-price" class="text-xs sm:text-sm font-bold text-emerald-950">$59.50</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                        <!-- ============================================== -->
+                        <!-- SINGLE PRODUCT: SELECT SIZE                    -->
+                        <!-- ============================================== -->
                         <div>
                             <div class="flex items-center justify-between text-xs tracking-wider uppercase text-gray-500 font-semibold mb-3">
                                 <span>SELECT SIZE</span>
                                 <span id="active-size-volume-display" class="font-semibold normal-case text-sm text-liva-dark">{{ $initialSize['volume'] }}</span>
                             </div>
 
-                            <!-- Size Pills: 100 mL, 250 mL, 500 mL -->
                             <div class="flex flex-wrap items-center gap-2.5 sm:gap-3" id="size-pills-container">
                                 @foreach($product['sizes'] as $sIndex => $s)
                                 <button type="button" 
                                         onclick="selectProductSize({{ $sIndex }}, {{ $s['price'] }}, {{ $s['stock'] }}, '{{ $s['label'] }}', '{{ $s['volume'] }}', this)"
-                                        class="size-pill-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer {{ $sIndex === 0 ? 'bg-[#1F2522] text-white shadow-sm ring-1 ring-black/10' : 'bg-[#EFECE6] text-liva-dark hover:bg-[#E5E0D8]' }}">
-                                    {{ $s['volume'] }}
+                                        class="size-pill-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer {{ $sIndex === 0 ? 'bg-[#1F2522] text-white shadow-sm ring-1 ring-black/10' : 'bg-[#EFECE6] text-liva-dark hover:bg-[#E5E0D8]' }}">
+                                    <span>{{ $s['volume'] }}</span>
+                                    <span class="text-xs opacity-75 font-normal ml-1.5">· ${{ number_format($s['price'], 2) }}</span>
                                 </button>
                                 @endforeach
                             </div>
                         </div>
+                        @endif
 
                         <!-- Quantity & Stepper + Add to Bag Row -->
                         <div>
                             <!-- Quantity Header -->
                             <div class="flex items-center justify-between text-xs text-gray-500 mb-2.5">
                                 <div class="flex items-center gap-2">
-                                    <span class="font-medium text-gray-500">Quantity</span>
-                                    <span id="detail-stock-pill" class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/70">
-                                        • In stock: {{ $initialSize['stock'] }}
+                                    <span class="font-medium text-gray-500">{{ $isKm ? 'បរិមាណ' : 'Quantity' }}</span>
+                                    <span id="detail-stock-pill" class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/70">
+                                        Stock: {{ $initialSize['stock'] }}
                                     </span>
                                 </div>
                                 <span class="text-xs text-gray-400 font-medium tracking-wider">USD</span>
@@ -164,12 +299,14 @@
                                     <button type="button" onclick="changeDetailQty(1)" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-liva-dark text-lg font-light transition-colors">+</button>
                                 </div>
 
-                                <!-- Add to Bag Pill Button: Add to bag       $20.00 -> -->
+                                <!-- Add to Bag Pill Button -->
                                 <button type="button" 
                                         id="detail-add-bag-btn"
                                         onclick="addDetailProductToBag()" 
                                         class="flex-1 h-12 rounded-full bg-[#27231F] hover:bg-liva-olive text-white px-6 sm:px-7 flex items-center justify-between shadow-md hover:shadow-lg transition-all duration-200 active:scale-98 group cursor-pointer">
-                                    <span class="font-medium text-xs sm:text-sm tracking-wide">Add to bag</span>
+                                    <span id="detail-add-bag-btn-text" class="font-medium text-xs sm:text-sm tracking-wide">
+                                        {{ $isSet ? ($isKm ? 'ដាក់ឈុតនេះចូលកន្ត្រក' : 'Add Set to bag') : ($isKm ? 'ដាក់ចូលកន្ត្រក' : 'Add to bag') }}
+                                    </span>
                                     <div class="flex items-center gap-2 font-medium text-xs sm:text-sm">
                                         <span id="btn-display-price">${{ number_format($initialPrice, 2) }}</span>
                                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
@@ -255,9 +392,12 @@
                 @php
                     $relName = $isKm ? $rel['name_km'] : $rel['name_en'];
                 @endphp
-                <div class="w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
+                <div class="product-slide-card w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
                     <a href="/product/{{ $rel['id'] }}" class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
-                        <img src="{{ $rel['image'] }}" alt="{{ $relName }}" class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-106" />
+                        <img src="{{ $rel['image'] }}" alt="{{ $relName }}" class="product-primary-img w-full h-full object-cover object-center" />
+                        @if(!empty($rel['hover_image']))
+                        <img src="{{ $rel['hover_image'] }}" alt="{{ $relName }} hover" class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" />
+                        @endif
                     </a>
                     <div class="p-4 flex-1 flex flex-col justify-between">
                         <div>
@@ -312,6 +452,11 @@
 
     <!-- Page Specific Script for Gallery Switcher, Size Selector, Price Base Size & Favorite State -->
     <script>
+        const isSetProduct = {{ $isSet ? 'true' : 'false' }};
+        const availableItemsData = @json($availableItems);
+        const defaultSetItemIds = @json($defaultItems);
+        let selectedSetItems = new Set(defaultSetItemIds);
+
         let currentDetailQty = 1;
         let selectedSizeIndex = 0;
         let currentUnitPrice = {{ $initialPrice }};
@@ -320,6 +465,9 @@
         let currentSizeVolume = "{{ $initialSize['volume'] }}";
         let currentMethod = 'one-time';
         const productId = '{{ $product['id'] }}';
+        const productNameEn = '{{ addslashes($product['name_en']) }}';
+        const productNameKm = '{{ addslashes($product['name_km']) }}';
+        const productMainImage = '{{ $product['image'] }}';
 
         function switchGalleryImg(src, btn) {
             const mainImg = document.getElementById('main-product-gallery-img');
@@ -342,6 +490,173 @@
             }
         }
 
+        function toggleSetItem(id) {
+            if (selectedSetItems.has(id)) {
+                selectedSetItems.delete(id);
+            } else {
+                selectedSetItems.add(id);
+            }
+            updateSetCustomizerUI();
+        }
+
+        function applySetPreset(type) {
+            if (type === 'duo') {
+                selectedSetItems = new Set(defaultSetItemIds.slice(0, 2));
+            } else if (type === 'trio') {
+                const trioIds = [...defaultSetItemIds];
+                availableItemsData.forEach(item => {
+                    if (trioIds.length < 3 && !trioIds.includes(item.id)) {
+                        trioIds.push(item.id);
+                    }
+                });
+                selectedSetItems = new Set(trioIds.slice(0, 3));
+            } else if (type === 'all') {
+                selectedSetItems = new Set(availableItemsData.map(p => p.id));
+            }
+
+            document.querySelectorAll('.set-preset-btn').forEach(btn => {
+                btn.className = 'set-preset-btn px-3 py-1 rounded-full text-xs font-medium border border-liva-border bg-white text-liva-charcoal hover:bg-liva-stone/70 transition-all shadow-2xs hover:scale-102 cursor-pointer';
+            });
+            const activeBtn = document.getElementById('preset-btn-' + type);
+            if (activeBtn) {
+                activeBtn.className = 'set-preset-btn px-3 py-1 rounded-full text-xs font-semibold border border-liva-dark bg-liva-dark text-white transition-all shadow-2xs hover:scale-102 cursor-pointer';
+            }
+
+            updateSetCustomizerUI();
+        }
+
+        function updateSetCustomizerUI() {
+            if (!isSetProduct) return;
+
+            const isKm = window.livaApp ? window.livaApp.currentLang === 'km' : {{ $isKm ? 'true' : 'false' }};
+            const count = selectedSetItems.size;
+
+            availableItemsData.forEach(item => {
+                const card = document.getElementById('set-card-' + item.id);
+                if (!card) return;
+                const isSelected = selectedSetItems.has(item.id);
+                const checkbox = card.querySelector('.set-card-checkbox');
+                const checkIcon = card.querySelector('.set-card-check-icon');
+                const statusLabel = card.querySelector('.set-card-status-label');
+
+                if (isSelected) {
+                    card.className = 'set-choice-card group relative flex items-center gap-3.5 p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none border-liva-dark bg-white shadow-sm ring-1 ring-liva-dark/10';
+                    if (checkbox) {
+                        checkbox.className = 'set-card-checkbox w-6 h-6 rounded-lg border-2 border-liva-dark bg-liva-dark text-white flex items-center justify-center shrink-0 transition-all shadow-2xs group-hover:scale-105';
+                    }
+                    if (checkIcon) {
+                        checkIcon.classList.remove('opacity-0');
+                        checkIcon.classList.add('opacity-100');
+                    }
+                    if (statusLabel) {
+                        statusLabel.textContent = isKm ? '✓ បានរើស' : '✓ Added';
+                        statusLabel.className = 'set-card-status-label text-[10px] font-semibold text-emerald-700 block mt-0.5';
+                    }
+                } else {
+                    card.className = 'set-choice-card group relative flex items-center gap-3.5 p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none border-liva-border/90 bg-white/80 hover:bg-white hover:border-liva-olive/60 shadow-2xs';
+                    if (checkbox) {
+                        checkbox.className = 'set-card-checkbox w-6 h-6 rounded-lg border-2 border-liva-border bg-white flex items-center justify-center shrink-0 transition-all shadow-2xs group-hover:scale-105';
+                    }
+                    if (checkIcon) {
+                        checkIcon.classList.remove('opacity-100');
+                        checkIcon.classList.add('opacity-0');
+                    }
+                    if (statusLabel) {
+                        statusLabel.textContent = isKm ? '+ ជ្រើសរើស' : '+ Select';
+                        statusLabel.className = 'set-card-status-label text-[10px] font-semibold text-liva-muted block mt-0.5';
+                    }
+                }
+            });
+
+            const countBadge = document.getElementById('set-items-count-badge');
+            if (countBadge) {
+                countBadge.textContent = isKm ? `${count} មុខបានជ្រើសរើស` : `${count} Items Selected`;
+            }
+
+            const selectedProducts = availableItemsData.filter(p => selectedSetItems.has(p.id));
+            const rawSubtotal = selectedProducts.reduce((sum, p) => sum + p.price, 0);
+
+            const banner = document.getElementById('set-summary-banner');
+            const statusText = document.getElementById('set-summary-status-text');
+            const discountBadge = document.getElementById('set-summary-discount-badge');
+            const itemsListEl = document.getElementById('set-summary-items-list');
+            const origPriceEl = document.getElementById('set-summary-original-price');
+            const finalPriceEl = document.getElementById('set-summary-final-price');
+            const btnText = document.getElementById('detail-add-bag-btn-text');
+            const addBtn = document.getElementById('detail-add-bag-btn');
+
+            if (count >= 2) {
+                const discountedUnit = Math.round(rawSubtotal * 0.85 * 100) / 100;
+                currentUnitPrice = discountedUnit;
+
+                const totalRaw = (rawSubtotal * currentDetailQty).toFixed(2);
+                const totalFinal = (currentUnitPrice * currentDetailQty).toFixed(2);
+
+                if (banner) {
+                    banner.className = 'p-3.5 rounded-2xl bg-emerald-50/90 border border-emerald-200 text-xs space-y-1.5 transition-all shadow-2xs';
+                }
+                if (statusText) {
+                    statusText.className = 'text-emerald-950 flex items-center gap-1.5';
+                    statusText.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>${count} ${isKm ? 'មុខក្នុងឈុត (បញ្ចុះតម្លៃ ១៥%)' : 'Products Selected in Set'}</span>`;
+                }
+                if (discountBadge) {
+                    discountBadge.className = 'px-2 py-0.5 rounded-full bg-emerald-200/80 text-emerald-950 text-[10px] font-bold tracking-wide';
+                    discountBadge.textContent = isKm ? 'ចុះតម្លៃ ១៥%' : '15% OFF BUNDLE';
+                }
+                if (itemsListEl) {
+                    const names = selectedProducts.map(p => isKm ? p.name_km : p.name_en).join(' + ');
+                    itemsListEl.textContent = names;
+                }
+                if (origPriceEl) {
+                    origPriceEl.textContent = `$${totalRaw}`;
+                    origPriceEl.classList.remove('hidden');
+                }
+                if (finalPriceEl) {
+                    finalPriceEl.textContent = `$${totalFinal}`;
+                }
+
+                if (btnText) {
+                    btnText.textContent = isKm ? `ដាក់ឈុត (${count} មុខ) ចូលកន្ត្រក` : `Add Set (${count} Items) to Bag`;
+                }
+                if (addBtn) {
+                    addBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            } else {
+                currentUnitPrice = rawSubtotal;
+                const totalFinal = (currentUnitPrice * currentDetailQty).toFixed(2);
+
+                if (banner) {
+                    banner.className = 'p-3.5 rounded-2xl bg-amber-50/90 border border-amber-300 text-xs space-y-1.5 transition-all shadow-2xs';
+                }
+                if (statusText) {
+                    statusText.className = 'text-amber-950 flex items-center gap-1.5 font-bold';
+                    statusText.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span><span>${isKm ? 'សូមជ្រើសរើសយ៉ាងតិច ២ មុខសម្រាប់ឈុតនេះ' : 'Please select at least 2 items (1 Set = 2+ products)'}</span>`;
+                }
+                if (discountBadge) {
+                    discountBadge.className = 'px-2 py-0.5 rounded-full bg-amber-200 text-amber-950 text-[10px] font-bold tracking-wide';
+                    discountBadge.textContent = isKm ? 'ជ្រើសរើស ២ មុខឡើងទៅ' : 'SELECT 2+';
+                }
+                if (itemsListEl) {
+                    itemsListEl.textContent = isKm ? '១ ឈុតត្រូវមានផលិតផលចាប់ពី ២ មុខឡើងទៅ' : 'A bundle requires 2 or more products to apply 15% discount.';
+                }
+                if (origPriceEl) {
+                    origPriceEl.classList.add('hidden');
+                }
+                if (finalPriceEl) {
+                    finalPriceEl.textContent = `$${totalFinal}`;
+                }
+
+                if (btnText) {
+                    btnText.textContent = isKm ? 'សូមជ្រើសរើសចាប់ពី ២ មុខឡើងទៅ' : 'Select at least 2 items';
+                }
+                if (addBtn) {
+                    addBtn.classList.add('opacity-60');
+                }
+            }
+
+            updateDisplayPrice();
+        }
+
         function selectProductSize(index, price, stock, label, volume, btn) {
             selectedSizeIndex = index;
             currentUnitPrice = price;
@@ -349,14 +664,12 @@
             currentSizeLabel = label;
             currentSizeVolume = volume;
 
-            // Reset quantity to 1 if it exceeds stock
             if (currentDetailQty > currentMaxStock) {
                 currentDetailQty = 1;
                 const qtyEl = document.getElementById('detail-qty-val');
                 if (qtyEl) qtyEl.textContent = '1';
             }
 
-            // Update UI pills
             document.querySelectorAll('.size-pill-btn').forEach(b => {
                 b.className = 'size-pill-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer bg-[#EFECE6] text-liva-dark hover:bg-[#E5E0D8]';
             });
@@ -364,21 +677,19 @@
                 btn.className = 'size-pill-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer bg-[#1F2522] text-white shadow-sm ring-1 ring-black/10';
             }
 
-            // Update size volume label in header (e.g. 250 mL)
             const activeVolDisplay = document.getElementById('active-size-volume-display');
             if (activeVolDisplay) activeVolDisplay.textContent = volume;
 
             const headerSize = document.getElementById('detail-header-size');
             if (headerSize) headerSize.textContent = '{{ ucfirst($product['category']) }} · ' + volume;
 
-            // Update stock pill
             const stockPill = document.getElementById('detail-stock-pill');
             if (stockPill) {
-                stockPill.textContent = '• In stock: ' + stock;
+                stockPill.textContent = 'Stock: ' + stock;
                 if (stock <= 5) {
-                    stockPill.className = 'text-[11px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/70';
+                    stockPill.className = 'text-[11px] font-semibold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/70';
                 } else {
-                    stockPill.className = 'text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/70';
+                    stockPill.className = 'text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/70';
                 }
             }
 
@@ -389,28 +700,78 @@
             currentDetailQty = Math.max(1, Math.min(currentMaxStock, currentDetailQty + delta));
             const el = document.getElementById('detail-qty-val');
             if (el) el.textContent = currentDetailQty;
-            updateDisplayPrice();
+            if (isSetProduct) {
+                updateSetCustomizerUI();
+            } else {
+                updateDisplayPrice();
+            }
         }
 
         function updateDisplayPrice() {
             const total = (currentUnitPrice * currentDetailQty).toFixed(2);
             
-            // Header main price
             const el = document.getElementById('active-display-price');
             if (el) el.textContent = total;
 
-            // Price inside the "Add to bag" pill button
             const btnPrice = document.getElementById('btn-display-price');
             if (btnPrice) btnPrice.textContent = '$' + total;
 
-            // Installment note
             const instEl = document.getElementById('installment-note');
             if (instEl) instEl.textContent = 'or 4 interest-free payments of $' + (currentUnitPrice * currentDetailQty / 4).toFixed(2);
         }
 
         function addDetailProductToBag() {
-            if (window.livaApp) {
-                window.livaApp.addToCart(productId, currentDetailQty, currentSizeVolume, currentUnitPrice);
+            const isKm = window.livaApp ? window.livaApp.currentLang === 'km' : {{ $isKm ? 'true' : 'false' }};
+
+            if (isSetProduct) {
+                if (selectedSetItems.size < 2) {
+                    if (window.livaApp) {
+                        window.livaApp.showToast(isKm ? 'សូមជ្រើសរើសយ៉ាងតិច ២ មុខសម្រាប់ឈុតនេះ' : 'Please select at least 2 items to complete this set');
+                    }
+                    return;
+                }
+
+                const selectedProducts = availableItemsData.filter(p => selectedSetItems.has(p.id));
+                const count = selectedProducts.length;
+                const rawTotal = selectedProducts.reduce((sum, p) => sum + p.price, 0);
+                const finalUnitPrice = Math.round(rawTotal * 0.85 * 100) / 100;
+                const namesEn = selectedProducts.map(p => p.name_en).join(' + ');
+                const namesKm = selectedProducts.map(p => p.name_km).join(' + ');
+                const sortedIds = Array.from(selectedSetItems).sort().join('-');
+                const setKey = `set-${productId}-${sortedIds}`;
+
+                const customSetItem = {
+                    id: setKey,
+                    cartKey: setKey,
+                    isCustomSet: true,
+                    nameEn: `${productNameEn} (${count} Items Set)`,
+                    nameKm: `${productNameKm} (ឈុត ${count} មុខ)`,
+                    sizeEn: `${count} Selected Products (15% Bundle Discount)`,
+                    sizeKm: `ជ្រើសរើស ${count} មុខ (បញ្ចុះតម្លៃ ១៥%)`,
+                    detailsEn: namesEn,
+                    detailsKm: namesKm,
+                    image: productMainImage,
+                    price: finalUnitPrice,
+                    originalPrice: rawTotal,
+                    qty: currentDetailQty
+                };
+
+                if (window.livaApp) {
+                    const existing = window.livaApp.cart.find(i => (i.cartKey ? i.cartKey === setKey : i.id === setKey));
+                    if (existing) {
+                        existing.qty += currentDetailQty;
+                    } else {
+                        window.livaApp.cart.push(customSetItem);
+                    }
+                    window.livaApp.saveCart();
+                    window.livaApp.renderCart();
+                    window.livaApp.showToast(isKm ? `បានដាក់ ${productNameKm} (${count} មុខ) ចូលកន្ត្រក! 🎉` : `Added ${productNameEn} (${count} items) to bag! 🎉`);
+                    window.livaApp.toggleCart(true);
+                }
+            } else {
+                if (window.livaApp) {
+                    window.livaApp.addToCart(productId, currentDetailQty, currentSizeVolume, currentUnitPrice);
+                }
             }
         }
 
@@ -452,8 +813,46 @@
             if (target) target.classList.remove('hidden');
         }
 
+        // Auto-slide for related products slider
+        let relatedAutoSlideTimer = null;
+        function initRelatedAutoSlide() {
+            const relSlider = document.getElementById('slider-related-products');
+            if (!relSlider) return;
+
+            function slideRel() {
+                const card = relSlider.querySelector('.product-slide-card');
+                const scrollAmount = card ? (card.offsetWidth + 24) : 320;
+                const maxScroll = relSlider.scrollWidth - relSlider.clientWidth;
+                if (relSlider.scrollLeft >= maxScroll - 15) {
+                    relSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    relSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }
+
+            function startRelTimer() {
+                if (relatedAutoSlideTimer) clearInterval(relatedAutoSlideTimer);
+                relatedAutoSlideTimer = setInterval(slideRel, 4000);
+            }
+
+            function pauseRelTimer() {
+                if (relatedAutoSlideTimer) clearInterval(relatedAutoSlideTimer);
+            }
+
+            relSlider.addEventListener('mouseenter', pauseRelTimer);
+            relSlider.addEventListener('mouseleave', startRelTimer);
+            relSlider.addEventListener('touchstart', pauseRelTimer, { passive: true });
+            relSlider.addEventListener('touchend', startRelTimer, { passive: true });
+
+            startRelTimer();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             syncDetailFavoriteState();
+            initRelatedAutoSlide();
+            if (isSetProduct) {
+                updateSetCustomizerUI();
+            }
         });
     </script>
 </x-layouts.app>

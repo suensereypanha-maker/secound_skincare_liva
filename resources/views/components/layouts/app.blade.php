@@ -29,8 +29,17 @@
         {{ $slot }}
     </main>
 
+    <!-- All Products Catalog Modal (Full screen dialog with filter tabs) -->
+    <x-all-products-modal />
+
     <!-- Slide-Out Shopping Bag Drawer -->
     <x-cart-drawer />
+
+    <!-- Saved Wishlist / Favorites Drawer -->
+    <x-favorites-modal />
+
+    <!-- Checkout Modal (COD, Cash on Bank: ABA, ACLEDA, Wing) -->
+    <x-checkout-modal />
 
     <!-- Brand Footer -->
     <x-footer />

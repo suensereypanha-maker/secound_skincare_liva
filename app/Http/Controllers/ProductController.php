@@ -23,7 +23,12 @@ class ProductController extends Controller
 
         $relatedProducts = ProductCatalog::related($id, 4);
 
-        return view('product.show', compact('product', 'relatedProducts'));
+        $availableItems = collect(ProductCatalog::all())
+            ->filter(fn($p) => ($p['category'] ?? '') !== 'sets')
+            ->values()
+            ->all();
+
+        return view('product.show', compact('product', 'relatedProducts', 'availableItems'));
     }
 }
 

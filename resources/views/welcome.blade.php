@@ -4,12 +4,8 @@
 
     <!-- 2. Spotlight Section (Center Featured Bottle + 4 Features from Wireframe) -->
     <x-spotlight />
-        <!-- 4. Curated Collection Product Grid (Filter Tabs + 8 Cards from Wireframe Section 4) -->
+        <!-- 4. Curated Collection Product Grid (Filter Tabs + Cards from Wireframe Section 4) -->
     <x-product-grid />
-
-  
-
-
 
     <!-- 5. Campaign Ambient Motion Study Video -->
     <x-campaign-video />
