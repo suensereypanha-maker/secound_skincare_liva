@@ -1,0 +1,111 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+@theme {
+    --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-khmer: 'Kantumruy Pro', 'Battambang', system-ui, sans-serif;
+
+    --color-liva-cream: #FAF8F5;
+    --color-liva-stone: #F3EFEA;
+    --color-liva-sand: #E6DFD5;
+    --color-liva-olive: #334335;
+    --color-liva-dark-olive: #1F2C21;
+    --color-liva-sage: #58735E;
+    --color-liva-sage-light: #E2EAE3;
+    --color-liva-gold: #B68D40;
+    --color-liva-gold-light: #DFBA73;
+    --color-liva-terracotta: #C07954;
+    --color-liva-dark: #161A17;
+    --color-liva-charcoal: #2A302B;
+    --color-liva-muted: #6E7570;
+    --color-liva-border: #E8E3DA;
+}
+
+/* Custom Utilities for Luxury Skincare Editorial */
+html {
+    scroll-behavior: smooth;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body {
+    background-color: var(--color-liva-cream);
+    color: var(--color-liva-dark);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[lang="km"] {
+    font-family: var(--font-khmer), var(--font-sans);
+    line-height: 1.7;
+}
+
+[lang="km"] .font-serif,
+[lang="km"] h1,
+[lang="km"] h2,
+[lang="km"] h3,
+[lang="km"] h4 {
+    font-family: var(--font-khmer);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Glassmorphism and Luxury Glows */
+.glass-nav {
+    background: rgba(250, 248, 245, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.luxury-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-liva-border);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -12px rgba(37, 51, 38, 0.12);
+    border-color: #D4CBBC;
+}
+
+/* Smooth Image Transitions */
+.image-zoom-wrapper {
+    overflow: hidden;
+}
+
+.image-zoom-wrapper img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-zoom-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+/* Custom Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+    background: #D5CEC2;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #B68D40;
+}

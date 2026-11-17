@@ -1,0 +1,454 @@
+// i18n Translations for LIVA Skincare (English & Khmer)
+export const translations = {
+    en: {
+        brandName: "LIVA",
+        brandSubtitle: "BOTANICAL SKINCARE",
+        announcement: "Complimentary luxury travel mist & free express shipping on all orders over $50",
+        navHome: "Home",
+        navProducts: "Collection",
+        navSpotlight: "Formula",
+        navRituals: "Rituals",
+        navPhilosophy: "Philosophy",
+        navReviews: "Reviews",
+        navContact: "Contact",
+        navSearchPlaceholder: "Search botanicals, cleansers, serums...",
+        shopNow: "Shop Now",
+        takeQuiz: "Skin Quiz",
+        cart: "Bag",
+        wishlist: "Wishlist",
+        langSelect: "Language",
+
+        // Hero
+        heroTag: "100% ORGANIC BOTANICAL SKINCARE",
+        heroTitle: "Pure Botanical Alchemy for Radiant, Timeless Skin",
+        heroDesc: "Formulated with potent bio-compatible botanicals, cold-pressed plant extracts, and clinical actives to deeply nourish, fortify the lipid barrier, and reveal your natural luminescence.",
+        exploreCollection: "Explore Collection",
+        takeRoutineQuiz: "Take Skin Routine Quiz",
+        heroRatingText: "4.96 / 5 based on 2,800+ real skin transformations",
+
+        // 4 Feature Cards (UX Wireframe Hero Bottom)
+        feature1Title: "100% Organic & Clean",
+        feature1Desc: "Wild-harvested bioactive extracts with zero parabens, sulfates, silicones, or synthetic perfumes.",
+        feature2Title: "Dermatologist Tested",
+        feature2Desc: "Clinically validated for high restorative efficacy and hypoallergenic safety on sensitive skin.",
+        feature3Title: "Cruelty-Free & Vegan",
+        feature3Desc: "Leaping Bunny certified, strictly cruelty-free, and respectful of natural ecosystems.",
+        feature4Title: "Eco-Conscious Packaging",
+        feature4Desc: "100% recyclable amber apothecary glass and post-consumer recycled dispensers.",
+
+        // Section 2: Spotlight Center Visual (UX Wireframe)
+        spotlightTag: "THE SIGNATURE FORMULA",
+        spotlightTitle: "Crafted to Transform Your Daily Ritual",
+        spotlightSubtitle: "Every single drop delivers multi-layered nourishment, balancing deep cellular moisture retention with regenerative botanical purity.",
+        leftFeature1Title: "Deep Cellular Hydration",
+        leftFeature1Desc: "Multi-molecular hyaluronic complex penetrates deep into the dermal matrix to lock water for 24 hours.",
+        leftFeature2Title: "Barrier Defense Matrix",
+        leftFeature2Desc: "Plant-derived phyto-ceramides and lipids restore the acid mantle against pollution and environmental fatigue.",
+        rightFeature1Title: "Antioxidant Radiance",
+        rightFeature1Desc: "Cold-pressed camellia and green tea seed oils neutralize free radicals and clarify skin tone.",
+        rightFeature2Title: "Velvet Satin Finish",
+        rightFeature2Desc: "Absorbs instantaneously without pore-clogging heaviness, leaving a luminous, breathable veil.",
+        spotlightCta: "Discover The Signature Duo",
+
+        // Section 3: Dual Horizontal Banners (UX Wireframe)
+        banner1Tag: "OUR BOTANICAL PHILOSOPHY",
+        banner1Title: "Harvested with Reverence, Perfected by Science",
+        banner1Desc: "We believe true skin longevity is achieved when timeless plant wisdom unites with modern cellular biotechnology. We sustainably harvest wild botanical actives directly from biodynamic family gardens.",
+        banner1Cta: "Read Our Story",
+
+        banner2Tag: "MINDFUL EVERYDAY RITUAL",
+        banner2Title: "Sensorial Body & Hair Self-Care Experience",
+        banner2Desc: "Turn simple showers into grounding moments of restorative calm. Infused with soothing cedarwood, bergamot, and neroli to quiet the nervous system while leaving hair and body velvety soft.",
+        banner2Cta: "Explore The Ritual Sets",
+
+        // Section 4: 1 Title 1 Row Sliders (New Arrival, Promotion, Top Product)
+        viewMore: "View more...",
+        tagNewArrivals: "SEASONAL HARVEST",
+        titleNewArrivals: "New Arrivals",
+        subtitleNewArrivals: "Freshly formulated plant-active releases crafted for daily radiance and revitalized texture.",
+        tagPromotions: "LIMITED TIME OFFERS",
+        titlePromotions: "Special Promotions",
+        subtitlePromotions: "Exclusive ritual duos, botanical sets, and seasonal savings available for a limited time.",
+        tagTopProducts: "COMMUNITY FAVORITES",
+        titleTopProducts: "Top Products",
+        subtitleTopProducts: "Our highest-rated, multi-award-winning formulations loved by thousands of radiant clients.",
+
+        addToCart: "Add to Bag",
+        addedToCart: "Added to Bag!",
+        quickView: "Quick Details",
+        inStockStatus: "In Stock: {count} units",
+        lowStockStatus: "Only {count} left in stock!",
+        ratingLabel: "reviews",
+        addToFavorites: "Add to Wishlist",
+        removeFromFavorites: "Remove from Wishlist",
+        favoriteAddedToast: "Added {name} to your favorites ❤️",
+        favoriteRemovedToast: "Removed {name} from your favorites",
+
+        // Clinical Results
+        resultsTag: "CLINICAL PERFORMANCE",
+        resultsTitle: "Real People, Proven Luminescence",
+        resultsSubtitle: "Independent clinical trial results after 14 days of daily morning and evening application.",
+        result1Pct: "98%",
+        result1Label: "Noticed immediate skin hydration and softness after first use",
+        result2Pct: "94%",
+        result2Label: "Reported visible calming of redness and strengthened skin barrier",
+        result3Pct: "96%",
+        result3Label: "Observed radiant, natural dewy glow and refined texture within 14 days",
+
+        // Video
+        videoTag: "AMBIENT MOTION STUDY",
+        videoTitle: "The Everyday Moment of Quiet Luxury",
+        videoDesc: "Watch how LIVA turns everyday self-care into a restorative sensory meditation in natural light.",
+
+        // Cart Drawer
+        cartTitle: "Your Shopping Bag",
+        cartEmpty: "Your bag is currently empty",
+        cartEmptyDesc: "Explore our botanical formulations to begin your daily ritual.",
+        freeShippingGoal: "Free Shipping unlocks at $50",
+        freeShippingQualified: "You unlocked Free Express Shipping & Travel Mist!",
+        freeShippingRemaining: "Add {amount} more for Free Shipping!",
+        subtotal: "Subtotal",
+        checkout: "Proceed to Checkout",
+        continueShopping: "Continue Shopping",
+        remove: "Remove",
+        taxShippingNote: "Taxes and duties calculated at checkout.",
+
+        // Newsletter
+        newsletterTag: "THE LIVA CIRCLE",
+        newsletterTitle: "Join the Circle & Receive 15% Off",
+        newsletterDesc: "Be the first to receive seasonal botanical harvest alerts, bespoke skincare routines, and invitations to private drops.",
+        emailPlaceholder: "Enter your email address...",
+        subscribeBtn: "Subscribe",
+        subscribeSuccess: "Thank you for joining the LIVA circle! Your 15% code is LIVA15.",
+
+        // Footer
+        footerBrandDesc: "LIVA is a mindful botanical personal-care house crafting clean, clinically backed skin, hair, and body rituals inspired by pristine nature and Southeast Asian flora.",
+        colShopTitle: "Explore Collection",
+        colAboutTitle: "About LIVA",
+        colCareTitle: "Client Experience",
+        linkCleanPromise: "Our Clean Promise",
+        linkSustainability: "Sustainability & Glass",
+        linkIngredients: "Botanical Glossary",
+        linkPress: "Editorial & Press",
+        linkFaq: "Frequently Asked Questions",
+        linkShipping: "Shipping & Global Delivery",
+        linkContactUs: "Contact Concierge",
+        copyright: "© 2026 LIVA Botanical Skincare. All rights reserved.",
+        privacy: "Privacy Policy",
+        terms: "Terms of Service",
+        cookies: "Cookie Settings",
+    },
+    km: {
+        brandName: "លីវ៉ា",
+        brandSubtitle: "ថែរក្សាស្បែកបែបធម្មជាតិ",
+        announcement: "ថែមជូនទឹកបាញ់មុខរុក្ខជាតិពិសេស & ដឹកជញ្ជូនឥតគិតថ្លៃសម្រាប់ការទិញលើស $50",
+        navHome: "ទំព័រដើម",
+        navProducts: "បណ្តុំផលិតផល",
+        navSpotlight: "រូបមន្ត",
+        navRituals: "ទម្លាប់ថែស្បែក",
+        navPhilosophy: "ទស្សនវិស័យ",
+        navReviews: "លទ្ធផល",
+        navContact: "ទំនាក់ទំនង",
+        navSearchPlaceholder: "ស្វែងរកផលិតផលថែរក្សាស្បែក, សេរ៉ូម...",
+        shopNow: "ទិញឥឡូវនេះ",
+        takeQuiz: "តេស្តស្បែក",
+        cart: "កន្ត្រក",
+        wishlist: "បញ្ជីពេញចិត្ត",
+        langSelect: "ភាសា",
+
+        // Hero
+        heroTag: "ផលិតផលថែរក្សាស្បែករុក្ខជាតិធម្មជាតិ ១០០%",
+        heroTitle: "រូបមន្តរុក្ខជាតិធម្មជាតិសុទ្ធសាធ ដើម្បីស្បែកភ្លឺថ្លា និងក្មេងជាងវ័យ",
+        heroDesc: "ផ្សំឡើងពីសារធាតុរុក្ខជាតិសរីរាង្គកម្រិតខ្ពស់ ចម្រាញ់ដោយភាពត្រជាក់ និងរូបមន្តវិទ្យាសាស្ត្រ ដើម្បីចិញ្ចឹមស្បែកយ៉ាងជ្រៅ ជួសជុលរបាំងការពារស្បែក និងផ្តល់ភាពភ្លឺថ្លាពីធម្មជាតិជារៀងរាល់ថ្ងៃ។",
+        exploreCollection: "ស្វែងយល់ពីបណ្តុំ",
+        takeRoutineQuiz: "ធ្វើតេស្តស្វែងរករូបមន្តស្បែក",
+        heroRatingText: "ពិន្ទុ ៤.៩៦ / ៥ ពីការវាយតម្លៃរបស់អតិថិជនជាង ២,៨០០ នាក់",
+
+        // 4 Feature Cards (UX Wireframe Hero Bottom)
+        feature1Title: "ធម្មជាតិ និងសរីរាង្គ ១០០%",
+        feature1Desc: "ចម្រាញ់ចេញពីរុក្ខជាតិធម្មជាតិសុទ្ធ គ្មានសារធាតុប៉ារ៉ាបែន ស៊ុលហ្វាត ស៊ីលីខន ឬក្លិនក្រអូបសិប្បនិម្មិត។",
+        feature2Title: "ឆ្លងកាត់ការពិសោធន៍វេជ្ជសាស្ត្រ",
+        feature2Desc: "បញ្ជាក់ដោយគ្រូពេទ្យជំនាញស្បែក ផ្តល់ប្រសិទ្ធភាពខ្ពស់ និងសុវត្ថិភាពបំផុតសម្រាប់ស្បែកងាយប្រតិកម្ម។",
+        feature3Title: "គ្មានការសាកល្បងលើសត្វ",
+        feature3Desc: "មានវិញ្ញាបនបត្រ Leaping Bunny ស្រឡាញ់សត្វ បន្លែធម្មជាតិ និងការពារប្រព័ន្ធអេកូឡូស៊ី។",
+        feature4Title: "ការវេចខ្ចប់ការពារបរិស្ថាន",
+        feature4Desc: "ដបកែវពណ៌ត្នោតកែច្នៃឡើងវិញបាន ១០០% កាត់បន្ថយការប្រើប្រាស់ប្លាស្ទិកយ៉ាងយកចិត្តទុកដាក់។",
+
+        // Section 2: Spotlight Center Visual (UX Wireframe)
+        spotlightTag: "រូបមន្តស្នូលពិសេស",
+        spotlightTitle: "បង្កើតឡើងដើម្បីលើកកម្ពស់ការថែទាំស្បែកប្រចាំថ្ងៃរបស់អ្នក",
+        spotlightSubtitle: "រាល់តំណក់ផ្តល់សំណើមយ៉ាងជ្រៅ បង្កើតតុល្យភាពជាតិទឹក និងស្តារកោសិកាស្បែកឡើងវិញយ៉ាងឆាប់រហ័ស។",
+        leftFeature1Title: "ផ្តល់សំណើមដល់ស្រទាប់កោសិកា",
+        leftFeature1Desc: "សារធាតុ Hyaluronic រុក្ខជាតិជ្រាបចូលជ្រៅជួយឱ្យស្បែកទន់ ណែន និងមានសំណើមពេញ ២៤ម៉ោង។",
+        leftFeature2Title: "ពង្រឹងរបាំងការពារស្បែក",
+        leftFeature2Desc: "សារធាតុសេរ៉ាម៉ាយធម្មជាតិជួយពង្រឹងកោសិកាស្បែក ការពារពីកម្ដៅថ្ងៃ ធូលី និងខ្យល់ស្ងួត។",
+        rightFeature1Title: "បង្កើនពន្លឺស្បែកប្រឆាំងអុកស៊ីតកម្ម",
+        rightFeature1Desc: "ប្រេងគ្រាប់ផ្កាកាមេលីយ៉ា និងតែបៃតងជួយកម្ចាត់ជាតិពុល ធ្វើឱ្យស្បែកភ្លឺថ្លាស្មើពណ៌។",
+        rightFeature2Title: "ផ្ទៃស្បែកទន់រលោងដូចសូត្រ",
+        rightFeature2Desc: "ជ្រាបចូលលឿន មិនកកស្ទះរន្ធញើស មិនស្អិត ផ្តល់ភាពស្រស់ថ្លាពេញមួយថ្ងៃ។",
+        spotlightCta: "ស្វែងយល់ពីឈុតពិសេស Liva Duo",
+
+        // Section 3: Dual Horizontal Banners (UX Wireframe)
+        banner1Tag: "ទស្សនវិជ្ជារុក្ខជាតិធម្មជាតិ",
+        banner1Title: "ដកស្រង់ដោយការគោរពធម្មជាតិ បញ្ជាក់ដោយវិទ្យាសាស្ត្រ",
+        banner1Desc: "យើងជឿជាក់ថា សុខភាពស្បែកល្អពិតប្រាកដកើតចេញពីការរួមបញ្ចូលគ្នារវាងប្រាជ្ញារុក្ខជាតិបុរាណ និងជីវបច្ចេកវិទ្យាទំនើប។ រុក្ខជាតិទាំងអស់ត្រូវបានដាំដុះដោយសរីរាង្គ។",
+        banner1Cta: "អានទស្សនវិស័យរបស់យើង",
+
+        banner2Tag: "ទម្លាប់ថែរក្សាស្បែកបែបសមាធិ",
+        banner2Title: "ការថែរក្សាសក់ និងដងខ្លួនឱ្យមានផាសុកភាពខ្ពស់",
+        banner2Desc: "ផ្លាស់ប្តូរការងូតទឹកប្រចាំថ្ងៃឱ្យទៅជាការលំហែកាយយ៉ាងជ្រាលជ្រៅ ជាមួយក្លិនក្រអូបស្រាលពីឈើស្រល់ ផ្លែប៊ឺហ្គាម៉ុត និងផ្កាក្រូច ធ្វើឱ្យអារម្មណ៍ស្រស់ស្រាយ និងសក់ទន់រលោង។",
+        banner2Cta: "ស្វែងយល់ពីឈុតទម្លាប់",
+
+        // Section 4: 1 Title 1 Row Sliders (New Arrival, Promotion, Top Product)
+        viewMore: "មើលបន្ថែម...",
+        tagNewArrivals: "ផលិតផលថ្មីៗ",
+        titleNewArrivals: "ទំនិញមកដល់ថ្មី",
+        subtitleNewArrivals: "រូបមន្តរុក្ខជាតិធម្មជាតិទើបតែផលិតថ្មីៗ ដើម្បីស្បែកភ្លឺថ្លា និងទន់រលោងជារៀងរាល់ថ្ងៃ។",
+        tagPromotions: "ការផ្តល់ជូនពិសេស",
+        titlePromotions: "ការបញ្ចុះតម្លៃពិសេស",
+        subtitlePromotions: "ឈុតថែរក្សាស្បែកពិសេស និងការបញ្ចុះតម្លៃតាមរដូវកាលសម្រាប់រយៈពេលកំណត់។",
+        tagTopProducts: "ផលិតផលពេញនិយមបំផុត",
+        titleTopProducts: "ផលិតផលលក់ដាច់បំផុត",
+        subtitleTopProducts: "រូបមន្តដែលទទួលបានការគាំទ្រ និងការវាយតម្លៃផ្កាយ ៥ ច្រើនជាងគេបំផុត។",
+
+        addToCart: "ដាក់ចូលកន្ត្រក",
+        addedToCart: "បានដាក់ចូល!",
+        quickView: "ព័ត៌មានរហ័ស",
+        inStockStatus: "មានក្នុងស្តុក៖ {count} ប្រអប់",
+        lowStockStatus: "នៅសល់តែ {count} ក្នុងស្តុក!",
+        ratingLabel: "ការវាយតម្លៃ",
+        addToFavorites: "បន្ថែមទៅបញ្ជីពេញចិត្ត",
+        removeFromFavorites: "ដកចេញពីបញ្ជីពេញចិត្ត",
+        favoriteAddedToast: "បានបន្ថែម {name} ទៅបញ្ជីពេញចិត្ត ❤️",
+        favoriteRemovedToast: "បានដក {name} ចេញពីបញ្ជីពេញចិត្ត",
+
+        // Clinical Results
+        resultsTag: "ប្រសិទ្ធភាពគ្លីនិកជាក់ស្តែង",
+        resultsTitle: "លទ្ធផលជាក់ស្តែង ពីអតិថិជនពិត",
+        resultsSubtitle: "លទ្ធផលតេស្តគ្លីនិកឯករាជ្យ បន្ទាប់ពីការប្រើប្រាស់ទៀងទាត់ពេលព្រឹក និងពេលល្ងាចរយៈពេល ១៤ ថ្ងៃ។",
+        result1Pct: "៩៨%",
+        result1Label: "កត់សម្គាល់ឃើញស្បែកមានសំណើម និងទន់រលោងភ្លាមៗក្រោយប្រើលើកដំបូង",
+        result2Pct: "៩៤%",
+        result2Label: "ស្បែកមានភាពស្ងប់លែងក្រហម និងរបាំងការពារស្បែករឹងមាំជាងមុន",
+        result3Pct: "៩៦%",
+        result3Label: "ឃើញស្បែកភ្លឺថ្លាមានពន្លឺធម្មជាតិ និងស្បែកម៉ត់ខៃក្នុងរយៈពេល ១៤ ថ្ងៃ",
+
+        // Video
+        videoTag: "វីដេអូបង្ហាញពីភាពស្ងប់ស្ងាត់",
+        videoTitle: "ពេលវេលាដ៏ស្ងប់ស្ងាត់ និងប្រណិតភាពប្រចាំថ្ងៃ",
+        videoDesc: "ទស្សនាការរួមបញ្ចូលគ្នានៃការថែទាំស្បែក និងការលំហែអារម្មណ៍បែបធម្មជាតិក្រោមពន្លឺថ្ងៃដ៏កក់ក្តៅ។",
+
+        // Cart Drawer
+        cartTitle: "កន្ត្រកទំនិញរបស់អ្នក",
+        cartEmpty: "កន្ត្រករបស់អ្នកមិនទាន់មានទំនិញនៅឡើយទេ",
+        cartEmptyDesc: "សូមស្វែងរកផលិតផលរុក្ខជាតិដើម្បីចាប់ផ្តើមការថែទាំស្បែករបស់អ្នក។",
+        freeShippingGoal: "ដឹកជញ្ជូនឥតគិតថ្លៃសម្រាប់ការទិញចាប់ពី $50",
+        freeShippingQualified: "អ្នកទទួលបានការដឹកជញ្ជូនឥតគិតថ្លៃ និងកាដូទឹកបាញ់មុខ!",
+        freeShippingRemaining: "ថែមត្រឹមតែ {amount} ទៀតដើម្បីដឹកជញ្ជូនឥតគិតថ្លៃ!",
+        subtotal: "សរុបបណ្តោះអាសន្ន",
+        checkout: "បន្តទៅការទូទាត់ប្រាក់",
+        continueShopping: "បន្តការទិញទំនិញ",
+        remove: "លុបចេញ",
+        taxShippingNote: "ពន្ធ និងថ្លៃសេវាត្រូវបានគណនានៅពេលទូទាត់ប្រាក់។",
+
+        // Newsletter
+        newsletterTag: "គ្រួសារ LIVA",
+        newsletterTitle: "ចូលរួមជាមួយ LIVA និងទទួលបានការបញ្ចុះតម្លៃ ១៥%",
+        newsletterDesc: "ក្លាយជាអ្នកដំបូងគេដែលទទួលបានព័ត៌មានពីរូបមន្តរុក្ខជាតិថ្មីៗ ការណែនាំថែរក្សាស្បែក និងការបញ្ចុះតម្លៃផ្តាច់មុខ។",
+        emailPlaceholder: "បញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នក...",
+        subscribeBtn: "ជាវប្រចាំ",
+        subscribeSuccess: "សូមអរគុណសម្រាប់ការចូលរួមជាមួយ LIVA! កូដបញ្ចុះតម្លៃរបស់អ្នកគឺ LIVA15។",
+
+        // Footer
+        footerBrandDesc: "LIVA គឺជាម៉ាកយីហោថែរក្សាស្បែករុក្ខជាតិធម្មជាតិកម្រិតខ្ពស់ បង្កើតឡើងដោយការស្រាវជ្រាវវិទ្យាសាស្ត្រ និងការស្រឡាញ់ធម្មជាតិនៃតំបន់អាស៊ីអាគ្នេយ៍។",
+        colShopTitle: "បណ្តុំផលិតផល",
+        colAboutTitle: "អំពី LIVA",
+        colCareTitle: "សេវាកម្មអតិថិជន",
+        linkCleanPromise: "ការសន្យាធម្មជាតិសុទ្ធ",
+        linkSustainability: "និរន្តរភាព & ដបកែវ",
+        linkIngredients: "វចនានុក្រមរុក្ខជាតិ",
+        linkPress: "ព័ត៌មាន & សារព័ត៌មាន",
+        linkFaq: "សំណួរដែលសួរញឹកញាប់",
+        linkShipping: "ការដឹកជញ្ជូនទូទាំងពិភពលោក",
+        linkContactUs: "ទាក់ទងមកកាន់យើងខ្ញុំ",
+        copyright: "© ២០២៦ LIVA ផលិតផលថែរក្សាស្បែកធម្មជាតិ។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+        privacy: "គោលការណ៍ឯកជនភាព",
+        terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        cookies: "ការកំណត់ខូគី",
+    }
+};
+
+// Master Products Catalog
+export const allProducts = [
+    {
+        id: "liva-body-lotion",
+        category: "body",
+        nameEn: "Liva Velvet Nourishing Body Lotion",
+        nameKm: "គ្រីមផ្តល់សំណើមរាងកាយ Liva Velvet",
+        benefitEn: "Cold-pressed camellia, shea butter & rice ceramide",
+        benefitKm: "ប្រេងផ្កាកាមេលីយ៉ា ខ្លាញ់គ្រាប់សៀ និងសេរ៉ាម៉ាយអង្ករ",
+        price: 38.00,
+        originalPrice: 46.00,
+        rating: 4.9,
+        reviewsCount: 142,
+        stock: 14,
+        image: "/img/body-lotion.webp",
+        hoverImage: "/img/daily-edit-detail.webp",
+        badgeEn: "NEW HARVEST",
+        badgeKm: "ទើបមកដល់",
+        size: "250 ml / 8.4 fl oz"
+    },
+    {
+        id: "liva-shampoo",
+        category: "hair",
+        nameEn: "Liva Botanical Balancing Shampoo",
+        nameKm: "សាប៊ូកក់សក់តុល្យភាពធម្មជាតិ Liva",
+        benefitEn: "Clarifying bergamot, rosemary & cedarwood",
+        benefitKm: "ផ្លែប៊ឺហ្គាម៉ុត ផ្កាកុលាប និងឈើស្រល់ធម្មជាតិ",
+        price: 34.00,
+        originalPrice: 42.00,
+        rating: 5.0,
+        reviewsCount: 218,
+        stock: 6,
+        image: "/img/shampoo.webp",
+        hoverImage: "/img/shampoo-hover.webp",
+        badgeEn: "AWARD WINNER",
+        badgeKm: "ពានរង្វាន់",
+        size: "300 ml / 10.1 fl oz"
+    },
+    {
+        id: "liva-conditioner",
+        category: "hair",
+        nameEn: "Liva Silk Infusion Hair Conditioner",
+        nameKm: "ក្រែមបន្ទន់សក់សូត្រធម្មជាតិ Liva",
+        benefitEn: "Hydrolyzed oat protein, squalane & argan elixir",
+        benefitKm: "ប្រូតេអ៊ីនស្រូវសាលី ស្គ្វាលែន និងប្រេងអាហ្កាន",
+        price: 36.00,
+        originalPrice: 44.00,
+        rating: 4.8,
+        reviewsCount: 96,
+        stock: 9,
+        image: "/img/conditioner.webp",
+        hoverImage: "/img/conditioner-hover.webp",
+        badgeEn: "HYDRATING",
+        badgeKm: "សំណើមខ្ពស់",
+        size: "300 ml / 10.1 fl oz"
+    },
+    {
+        id: "liva-body-wash",
+        category: "body",
+        nameEn: "Liva Revitalizing Gentle Body Wash",
+        nameKm: "សាប៊ូងូតទឹកចម្រាញ់ពីរុក្ខជាតិ Liva",
+        benefitEn: "Gentle coconut glucoside, neroli & calendula",
+        benefitKm: "ពពុះដូងធម្មជាតិ ផ្កាក្រូច និងផ្កាខាឡិនឌូឡា",
+        price: 32.00,
+        originalPrice: 40.00,
+        rating: 4.9,
+        reviewsCount: 110,
+        stock: 18,
+        image: "/img/body-wash.webp",
+        hoverImage: "/img/campaign/your-moment.webp",
+        badgeEn: "GENTLE",
+        badgeKm: "ទន់ភ្លន់",
+        size: "300 ml / 10.1 fl oz"
+    },
+    {
+        id: "liva-hair-mask",
+        category: "hair",
+        nameEn: "Liva Deep Cellular Repair Hair Mask",
+        nameKm: "ម៉ាស់បំប៉នសក់ខូច Liva Deep Repair",
+        benefitEn: "Murumuru butter, amino acids & camellia extract",
+        benefitKm: "ប័រមូរូមូរូ អាស៊ីតអាមីណូ និងចំរាញ់ផ្កាកាមេលីយ៉ា",
+        price: 42.00,
+        originalPrice: 52.00,
+        rating: 4.9,
+        reviewsCount: 88,
+        stock: 4,
+        image: "/img/hair-mask.webp",
+        hoverImage: "/img/campaign/hair-pair.webp",
+        badgeEn: "REPAIR",
+        badgeKm: "ជួសជុលសក់",
+        size: "200 ml / 6.7 fl oz"
+    },
+    {
+        id: "liva-shower-gel",
+        category: "body",
+        nameEn: "Liva Refreshing Awakening Shower Gel",
+        nameKm: "ជែលងូតទឹកស្រស់ស្រាយ Liva Awakening",
+        benefitEn: "Mandarin rind, eucalyptus & bamboo water",
+        benefitKm: "សំបកក្រូចឃ្វិច ប្រេងស្លឹកខ្យល់ និងទឹកឫស្សី",
+        price: 28.00,
+        originalPrice: 35.00,
+        rating: 4.7,
+        reviewsCount: 74,
+        stock: 21,
+        image: "/img/shower-gel.webp",
+        hoverImage: "/img/daily-edit.webp",
+        badgeEn: "ENERGIZE",
+        badgeKm: "ស្រស់ស្រាយ",
+        size: "250 ml / 8.4 fl oz"
+    },
+    {
+        id: "liva-travel-set",
+        category: "sets",
+        nameEn: "Liva Botanical Travel Discovery Set",
+        nameKm: "ឈុតតូចសម្រាប់ដំណើរកម្សាន្ត Liva Travel",
+        benefitEn: "4 flight-ready essentials in reusable canvas pouch",
+        benefitKm: "ផលិតផលចាំបាច់ ៤ មុខ ក្នុងកាបូបក្រណាត់ស្រស់ស្អាត",
+        price: 65.00,
+        originalPrice: 82.00,
+        rating: 5.0,
+        reviewsCount: 165,
+        stock: 5,
+        image: "/img/travel-set.webp",
+        hoverImage: "/img/campaign/everyday-poster.webp",
+        badgeEn: "LIMITED PROMO",
+        badgeKm: "បញ្ចុះតម្លៃ",
+        size: "4 x 60 ml"
+    },
+    {
+        id: "liva-ritual-duo",
+        category: "sets",
+        nameEn: "Liva Daily Signature Ritual Duo",
+        nameKm: "ឈុតសេរ៉ូម និងក្រែមបំប៉ន Liva Daily Duo",
+        benefitEn: "Complete day & night botanical restoration system",
+        benefitKm: "ប្រព័ន្ធថែរក្សាស្បែកពេលថ្ងៃ និងពេលយប់ពេញលេញ",
+        price: 78.00,
+        originalPrice: 98.00,
+        rating: 5.0,
+        reviewsCount: 310,
+        stock: 8,
+        image: "/img/ritual-duo.webp",
+        hoverImage: "/img/hero.webp",
+        badgeEn: "BESTSELLER DUO",
+        badgeKm: "ពេញនិយមបំផុត",
+        size: "Full Size Duo"
+    }
+];
+
+// Curated rows for the sliders
+export const newArrivalsProducts = [
+    allProducts[0], // Body Lotion
+    allProducts[4], // Hair Mask
+    allProducts[5], // Shower Gel
+    allProducts[2], // Conditioner
+    allProducts[1], // Shampoo
+];
+
+export const promotionsProducts = [
+    { ...allProducts[7], promoBadgeEn: "SAVE 20%", promoBadgeKm: "បញ្ចុះតម្លៃ ២០%" }, // Ritual Duo
+    { ...allProducts[6], promoBadgeEn: "SAVE 21%", promoBadgeKm: "បញ្ចុះតម្លៃ ២១%" }, // Travel Set
+    { ...allProducts[3], promoBadgeEn: "SPECIAL GIFT", promoBadgeKm: "ថែមជូនកាដូ" }, // Body Wash
+    { ...allProducts[1], promoBadgeEn: "SAVE $8", promoBadgeKm: "បញ្ចុះ $8" },      // Shampoo
+    { ...allProducts[0], promoBadgeEn: "BUNDLE DEAL", promoBadgeKm: "ឈុតពិសេស" },    // Body Lotion
+];
+
+export const topProductsList = [
+    allProducts[7], // Ritual Duo
+    allProducts[1], // Shampoo
+    allProducts[0], // Body Lotion
+    allProducts[6], // Travel Set
+    allProducts[3], // Body Wash
+];
+
+export const initialProducts = allProducts;
