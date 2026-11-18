@@ -256,9 +256,9 @@ class LivaApp {
         const updateDotsAndCounter = () => {
             dots.forEach((dot, idx) => {
                 if (idx === currentSlide) {
-                    dot.className = 'hero-dot w-8 h-2 rounded-full bg-liva-dark transition-all duration-300 cursor-pointer';
+                    dot.className = 'hero-dot w-8 h-2 rounded-full bg-white transition-all duration-300 cursor-pointer';
                 } else {
-                    dot.className = 'hero-dot w-2.5 h-2 rounded-full bg-liva-charcoal/25 hover:bg-liva-charcoal/50 transition-all duration-300 cursor-pointer';
+                    dot.className = 'hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer';
                 }
             });
 
