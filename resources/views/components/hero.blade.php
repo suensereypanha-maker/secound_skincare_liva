@@ -36,13 +36,7 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </button>
 
-                    <!-- Secondary CTA Button -->
-                    <a href="#spotlight" 
-                       class="px-7 py-3.5 bg-white hover:bg-liva-stone text-liva-dark border border-liva-border hover:border-liva-charcoal text-xs sm:text-sm tracking-wider uppercase font-semibold rounded-full shadow-xs transition-all duration-200 inline-flex items-center gap-2"
-                       data-i18n="takeRoutineQuiz">
-                        <svg class="w-4 h-4 text-liva-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span>{{ __('skincare.take_routine_quiz') }}</span>
-                    </a>
+                   
                 </div>
 
              

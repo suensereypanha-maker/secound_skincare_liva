@@ -13,9 +13,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-18 sm:h-20 gap-3 lg:gap-6">
             
-            <!-- Logo Section (Left) - Single Unified Bilingual Logo -->
+            <!-- Logo Section (Left) - Luxury LIVA Logo -->
             <div class="flex items-center shrink-0">
-                <x-logo height="h-9 sm:h-11" variant="dark" />
+                <x-logo height="h-10 sm:h-12" variant="dark" />
             </div>
 
             <!-- Desktop Navigation Menu (Center) - Never wraps to 2 lines -->
