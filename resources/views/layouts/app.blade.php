@@ -44,6 +44,9 @@
     <!-- Brand Footer -->
     <x-footer />
 
+    <!-- Floating Direct Social Chat (Telegram & Facebook on all pages) -->
+    <x-floating-social />
+
 </body>
 </html>
 

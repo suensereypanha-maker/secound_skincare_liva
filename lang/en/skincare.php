@@ -99,6 +99,8 @@ return [
     'newsletter_btn' => 'Subscribe',
 
     'footer_brand_desc' => 'LIVA is a mindful botanical personal-care house crafting clean, clinically backed skin, hair, and body rituals inspired by pristine nature and Southeast Asian flora.',
+    'col_khqr_title' => 'Support KH QR',
+    'khqr_desc' => 'We support instant payments via KHQR. Scan with any mobile banking app in Cambodia.',
     'copyright' => '© 2026 LIVA Botanical Skincare. All rights reserved.',
 ];
 

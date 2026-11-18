@@ -236,27 +236,20 @@
                                 </div>
                             </div>
 
-                            <!-- QR Scan Box with Simulated Bakong / KHQR -->
+                            <!-- QR Scan Box with Real KHQR Code Image -->
                             <div class="pt-3 border-t border-liva-border/80 flex flex-col sm:flex-row items-center gap-4">
-                                <div class="w-36 h-36 bg-white p-2.5 rounded-2xl border-2 border-liva-border shadow-sm flex flex-col items-center justify-between shrink-0">
-                                    <div class="w-full flex items-center justify-between text-[9px] font-bold text-rose-600">
-                                        <span>KHQR</span>
-                                        <span id="active-qr-bank-label">ABA</span>
-                                    </div>
-                                    <div class="w-24 h-24 relative flex items-center justify-center p-1 bg-white">
-                                        <!-- QR Matrix Pattern Preview -->
-                                        <div class="w-full h-full border border-gray-300 rounded-lg flex items-center justify-center bg-gray-50 relative overflow-hidden">
-                                            <div class="absolute inset-1 grid grid-cols-4 grid-rows-4 gap-0.5 opacity-70">
-                                                <div class="bg-black"></div><div class="bg-black"></div><div></div><div class="bg-black"></div>
-                                                <div></div><div class="bg-black"></div><div class="bg-black"></div><div></div>
-                                                <div class="bg-black"></div><div></div><div class="bg-black"></div><div class="bg-black"></div>
-                                                <div class="bg-black"></div><div class="bg-black"></div><div></div><div class="bg-black"></div>
-                                            </div>
-                                            <!-- Centered Bank Logo -->
-                                            <img id="active-qr-bank-logo" src="/img/payments/aba.png" alt="Bank Logo" class="w-7 h-7 object-contain z-10 bg-white p-0.5 rounded shadow-xs" />
+                                <div class="w-36 sm:w-40 bg-white p-2.5 rounded-2xl border-2 border-liva-border shadow-sm flex flex-col items-center justify-between shrink-0 gap-1.5">
+                                    <div class="w-full flex items-center justify-between text-[10px] font-bold">
+                                        <span class="text-rose-600 font-extrabold tracking-wider">KHQR</span>
+                                        <div class="flex items-center gap-1">
+                                            <img id="active-qr-bank-logo" src="/img/payments/aba.png" alt="Bank Logo" class="w-3.5 h-3.5 object-contain" />
+                                            <span id="active-qr-bank-label" class="text-liva-muted uppercase tracking-wider text-[9px]">ABA</span>
                                         </div>
                                     </div>
-                                    <div class="text-[9px] font-semibold text-liva-dark" id="active-qr-amount">
+                                    <div class="w-28 h-28 relative flex items-center justify-center p-0.5 bg-white rounded-xl border border-gray-200 shadow-2xs overflow-hidden">
+                                        <img id="active-qr-img" src="/img/payments/khqr.png" alt="KHQR Payment QR Code" class="w-full h-full object-contain" />
+                                    </div>
+                                    <div class="text-[10px] font-bold text-liva-dark tracking-tight" id="active-qr-amount">
                                         $0.00
                                     </div>
                                 </div>
@@ -292,8 +285,8 @@
                         Order Summary
                     </h3>
 
-                    <!-- Mini items list -->
-                    <div id="checkout-items-list" class="divide-y divide-liva-border/50 max-h-60 overflow-y-auto pr-1 space-y-2">
+                    <!-- Mini items list (Full List Without Inner Scroll) -->
+                    <div id="checkout-items-list" class="divide-y divide-liva-border/50 space-y-2">
                         <!-- Populated dynamically by JavaScript -->
                     </div>
 

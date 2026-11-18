@@ -344,6 +344,8 @@ class ProductCatalog
                     '/img/shampoo.webp',
                     '/img/conditioner.webp',
                     '/img/botanical.webp',
+                    '/img/campaign/your-moment.webp',
+                    '/img/hair-mask.webp',
                 ],
                 'sizes' => [
                     ['volume' => '2-Piece Pair', 'label' => 'Standard 2-Piece Pair (Shampoo + Conditioner)', 'price' => 62.00, 'stock' => 10],
@@ -383,6 +385,8 @@ class ProductCatalog
                     '/img/body-lotion.webp',
                     '/img/body-wash.webp',
                     '/img/campaign/your-moment.webp',
+                    '/img/botanical.webp',
+                    '/img/hero.webp',
                 ],
                 'sizes' => [
                     ['volume' => '2-Piece Duo', 'label' => 'Essential 2-Piece Glow Duo (Body Wash + Lotion)', 'price' => 60.00, 'stock' => 12],

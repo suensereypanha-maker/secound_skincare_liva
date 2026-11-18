@@ -50,16 +50,43 @@
                              class="w-full h-full object-cover object-center transition-all duration-500 ease-out group-hover:scale-104" />
                     </div>
 
-                    <!-- Horizontal Thumbnails Row (5 Clickable Views) -->
-                    <div class="grid grid-cols-5 gap-2.5 sm:gap-3">
-                        @foreach($product['gallery'] as $index => $thumb)
+                    @php
+                        $gallery = $product['gallery'] ?? [$product['image']];
+                        $galleryCount = count($gallery);
+                        $hasMoreThanFour = $galleryCount > 4;
+                    @endphp
+
+                    <!-- Horizontal Thumbnails Row (Clean Responsive 4 + 4+ View) -->
+                    <div class="grid {{ $hasMoreThanFour ? 'grid-cols-5' : 'grid-cols-' . min(4, $galleryCount) }} gap-2 sm:gap-2.5">
+                        @foreach(array_slice($gallery, 0, 4) as $index => $thumb)
                         <button type="button" 
-                                onclick="switchGalleryImg('{{ $thumb }}', this)"
-                                class="gallery-thumb-btn relative aspect-square rounded-xl overflow-hidden bg-[#F4F1EA] border-2 transition-all duration-200 {{ $index === 0 ? 'border-liva-olive ring-2 ring-liva-olive/20' : 'border-liva-border/80 hover:border-liva-sage opacity-80 hover:opacity-100' }}"
+                                onclick="switchGalleryImg('{{ $thumb }}', this, {{ $index }})"
+                                class="gallery-thumb-btn relative aspect-square rounded-xl overflow-hidden bg-[#F4F1EA] border-2 transition-all duration-200 cursor-pointer {{ $index === 0 ? 'border-liva-olive ring-2 ring-liva-olive/20 opacity-100' : 'border-liva-border/80 hover:border-liva-sage opacity-80 hover:opacity-100' }}"
                                 aria-label="View angle {{ $index + 1 }}">
                             <img src="{{ $thumb }}" alt="Thumbnail {{ $index + 1 }}" class="w-full h-full object-cover object-center" />
                         </button>
                         @endforeach
+
+                        @if($hasMoreThanFour)
+                        <!-- 5th Thumbnail with 4+ More Images Overlay -->
+                        @php
+                            $fifthThumb = $gallery[4];
+                            $remainingCount = $galleryCount - 4;
+                        @endphp
+                        <button type="button" 
+                                id="gallery-thumb-more-btn"
+                                onclick="handleMoreGalleryClick(this)"
+                                class="gallery-thumb-btn group relative aspect-square rounded-xl overflow-hidden bg-[#F4F1EA] border-2 border-liva-border/80 hover:border-liva-dark transition-all duration-200 cursor-pointer opacity-90 hover:opacity-100"
+                                aria-label="View more images (4+)">
+                            <img id="gallery-thumb-more-img" src="{{ $fifthThumb }}" alt="More gallery photos" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-black/55 backdrop-blur-[1px] group-hover:bg-black/65 transition-colors flex flex-col items-center justify-center text-white">
+                                <span id="gallery-thumb-more-badge" class="text-xs sm:text-sm font-bold tracking-wider">4+</span>
+                                <span class="text-[8px] sm:text-[9px] uppercase tracking-wider text-white/80 font-medium mt-0.5">
+                                    {{ $remainingCount > 1 ? '+' . $remainingCount : ($isKm ? 'រូបភាព' : 'More') }}
+                                </span>
+                            </div>
+                        </button>
+                        @endif
                     </div>
                 </div>
 
@@ -70,14 +97,20 @@
                 <div class="lg:col-span-6 space-y-6">
                     
                     <!-- Header with Title, Category, Rating & FAVORITE Button (at exact position marked in screenshot) -->
-                    <div>
+                    <!-- Header with Title, Category, Rating & FAVORITE Button (Luxury Editorial Typography) -->
+                    <div class="space-y-3">
                         <!-- Category / Size & Rating Header -->
-                        <div class="flex items-center justify-between text-xs mb-2">
-                            <span id="detail-header-size" class="text-xs uppercase tracking-wider font-semibold text-liva-muted">
-                                {{ ucfirst($product['category']) }} · {{ $initialSize['label'] }}
-                            </span>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-0.5 rounded-full bg-liva-stone/90 text-liva-dark text-[10px] font-bold uppercase tracking-wider border border-liva-border/80">
+                                    {{ ucfirst($product['category']) }}
+                                </span>
+                                <span id="detail-header-size" class="text-xs font-medium text-liva-muted">
+                                    {{ $initialSize['volume'] ?? $initialSize['label'] }}
+                                </span>
+                            </div>
 
-                            <div class="flex items-center gap-1.5 text-amber-500 text-xs">
+                            <div class="flex items-center gap-1.5 text-amber-500 text-xs shrink-0">
                                 <span>★★★★★</span>
                                 <span class="font-bold text-liva-dark text-xs">{{ $product['rating'] }}</span>
                                 <span class="text-liva-muted">({{ $product['reviews_count'] }} {{ __('skincare.reviews') ?? 'reviews' }})</span>
@@ -86,11 +119,11 @@
 
                         <!-- Title + FAVORITE Button Row -->
                         <div class="flex items-start justify-between gap-4">
-                            <h1 class="text-3xl sm:text-4xl font-serif font-bold text-liva-dark tracking-tight leading-tight flex-1">
+                            <h1 class="text-2xl sm:text-3xl lg:text-[34px] font-serif font-bold text-liva-dark tracking-tight leading-[1.2] flex-1">
                                 {{ $name }}
                             </h1>
 
-                            <!-- Favorite Button (as boxed in screenshot next to title) -->
+                            <!-- Favorite Button -->
                             <button type="button" 
                                     id="detail-title-favorite-btn"
                                     onclick="toggleDetailFavorite()" 
@@ -104,17 +137,18 @@
                         </div>
 
                         <!-- Benefit Subtitle -->
-                        <p class="text-sm text-liva-muted mt-2 leading-relaxed">
-                            {{ $benefit }}
+                        <p class="text-xs sm:text-sm text-liva-charcoal/80 leading-relaxed flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-liva-olive/50 shrink-0"></span>
+                            <span>{{ $benefit }}</span>
                         </p>
                     </div>
 
                     <!-- Price & Installment Note (Updates based on size) -->
                     <div class="pt-2 border-t border-liva-border/70 flex flex-wrap items-baseline gap-3">
-                        <div class="text-3xl font-serif font-bold text-liva-dark">
+                        <div class="text-2xl sm:text-3xl font-serif font-bold text-liva-dark">
                             $<span id="active-display-price">{{ number_format($initialPrice, 2) }}</span>
                         </div>
-                        <span id="installment-note" class="text-xs text-liva-muted font-normal">
+                        <span id="installment-note" class="text-xs text-liva-muted font-normal bg-liva-stone/60 px-2.5 py-1 rounded-full border border-liva-border/60">
                             or 4 interest-free payments of ${{ number_format($initialPrice / 4, 2) }}
                         </span>
                     </div>
@@ -129,107 +163,130 @@
                         <!-- ============================================================== -->
                         <!-- SET PRODUCT SELECTION: IMG + TITLE + PRICE + MULTIPLE SELECT   -->
                         <!-- ============================================================== -->
-                        <div class="space-y-3.5">
-                            <!-- Header & Counter -->
-                            <div class="flex items-center justify-between text-xs tracking-wider uppercase font-semibold">
+                        <div class="space-y-3 min-w-0 max-w-full">
+                            <!-- Header & Counter & Slide Left/Right Controls -->
+                            <div class="flex items-center justify-between text-xs tracking-wider uppercase font-semibold gap-2 pb-0.5">
                                 <div class="flex items-center gap-2">
                                     <span class="text-liva-dark font-bold">{{ $isKm ? 'ជ្រើសរើសមុខទំនិញក្នុងឈុត' : 'CHOOSE SET ITEMS' }}</span>
                                     <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">
                                         {{ $isKm ? 'ជ្រើសរើសបានច្រើនមុខ (២+)' : 'MULTIPLE CHOICES (2+)' }}
                                     </span>
                                 </div>
-                                <span id="set-items-count-badge" class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                                    2 Items Selected
-                                </span>
+                                <div class="flex items-center gap-2">
+                                    <span id="set-items-count-badge" class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 whitespace-nowrap">
+                                        2 Items Selected
+                                    </span>
+                                    <!-- Slide Left Right Controls (Always Kept) -->
+                                    <div class="flex items-center gap-1">
+                                        <button type="button" 
+                                                id="set-slider-prev-btn"
+                                                onclick="slideSetItems('left')"
+                                                class="w-7 h-7 rounded-full bg-white hover:bg-liva-dark hover:text-white text-liva-charcoal border border-liva-border flex items-center justify-center transition-all shadow-2xs active:scale-90 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                                                title="{{ $isKm ? 'រំកិលទៅឆ្វេង' : 'Slide left' }}"
+                                                aria-label="Slide left">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                                        </button>
+                                        <button type="button" 
+                                                id="set-slider-next-btn"
+                                                onclick="slideSetItems('right')"
+                                                class="w-7 h-7 rounded-full bg-white hover:bg-liva-dark hover:text-white text-liva-charcoal border border-liva-border flex items-center justify-center transition-all shadow-2xs active:scale-90 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                                                title="{{ $isKm ? 'រំកិលទៅស្តាំ' : 'Slide right' }}"
+                                                aria-label="Slide right">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
-                            <p class="text-xs text-liva-muted">
-                                {{ $isKm ? '១ ឈុតអាចជ្រើសរើសបានចាប់ពី ២ មុខឡើងទៅ។ ចុចលើរូប ឬប្រអប់ដើម្បីជ្រើសរើស (បញ្ចុះតម្លៃ ១៥% ដោយស្វ័យប្រវត្តិ)៖' : '1 Set can be 2+ items. Select multiple products to customize your set with an automatic 15% discount:' }}
-                            </p>
+                            <!-- Choice Cards Horizontal Slider (Card 3 Peeks In to Show More Products) -->
+                            <div class="relative group/setslider min-w-0 max-w-full">
+                                <div class="flex gap-2.5 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2 pt-1 px-0.5 select-none cursor-grab active:cursor-grabbing" 
+                                     id="set-multi-choice-container">
+                                    @foreach($availableItems as $item)
+                                        @php
+                                            $itemTitle = $isKm ? $item['name_km'] : $item['name_en'];
+                                            $itemBenefit = $isKm ? $item['benefit_km'] : $item['benefit_en'];
+                                            $isPreselected = in_array($item['id'], $defaultItems);
+                                        @endphp
+                                        <div class="set-choice-card product-slide-card luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white transition-all duration-300 cursor-pointer select-none shrink-0 snap-start w-[calc((100%-12px)/1.35)] sm:w-[calc((100%-20px)/2.35)] min-w-[195px] max-w-[235px] {{ $isPreselected ? 'border-2 border-liva-dark shadow-md ring-2 ring-liva-dark/15' : 'border border-liva-border/80 shadow-xs hover:border-liva-olive/60 hover:shadow-lg' }}"
+                                             id="set-card-{{ $item['id'] }}"
+                                             data-id="{{ $item['id'] }}"
+                                             data-price="{{ $item['price'] }}"
+                                             data-name-en="{{ $item['name_en'] }}"
+                                             data-name-km="{{ $item['name_km'] }}"
+                                             data-image="{{ $item['image'] }}"
+                                             data-size="{{ $item['size'] }}"
+                                             tabindex="0"
+                                             role="checkbox"
+                                             aria-checked="{{ $isPreselected ? 'true' : 'false' }}"
+                                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSetItem('{{ $item['id'] }}');}"
+                                             onclick="toggleSetItem('{{ $item['id'] }}')">
+                                            
+                                            <!-- FULL Image Showcase Container (Matching Home Page Product Card) -->
+                                            <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
+                                                <!-- Primary Product Image -->
+                                                <img src="{{ $item['image'] }}" 
+                                                     alt="{{ $itemTitle }}" 
+                                                     class="product-primary-img w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                                                     loading="lazy" />
 
-                            <!-- Quick Preset Pills (Duo, Trio, All) -->
-                            <div class="flex flex-wrap items-center gap-2 pt-0.5 pb-1">
-                                <span class="text-[11px] text-liva-muted font-medium mr-1">{{ $isKm ? 'ឈុតរហ័ស៖' : 'Quick Presets:' }}</span>
-                                <button type="button" 
-                                        id="preset-btn-duo"
-                                        onclick="applySetPreset('duo')"
-                                        class="set-preset-btn px-3 py-1 rounded-full text-xs font-semibold border border-liva-dark bg-liva-dark text-white transition-all shadow-2xs hover:scale-102 cursor-pointer">
-                                    {{ $isKm ? 'ឈុត ២ មុខ (Duo)' : '2-Piece Duo' }}
-                                </button>
-                                <button type="button" 
-                                        id="preset-btn-trio"
-                                        onclick="applySetPreset('trio')"
-                                        class="set-preset-btn px-3 py-1 rounded-full text-xs font-medium border border-liva-border bg-white text-liva-charcoal hover:bg-liva-stone/70 transition-all shadow-2xs hover:scale-102 cursor-pointer">
-                                    {{ $isKm ? 'ឈុត ៣ មុខ (Trio)' : '3-Piece Trio' }}
-                                </button>
-                                <button type="button" 
-                                        id="preset-btn-all"
-                                        onclick="applySetPreset('all')"
-                                        class="set-preset-btn px-3 py-1 rounded-full text-xs font-medium border border-liva-border bg-white text-liva-charcoal hover:bg-liva-stone/70 transition-all shadow-2xs hover:scale-102 cursor-pointer">
-                                    {{ $isKm ? 'ឈុតទាំងអស់ (៥ មុខ)' : 'All 5 Products' }}
-                                </button>
-                            </div>
+                                                @if(!empty($item['hover_image']))
+                                                <!-- Alternate Hover Image -->
+                                                <img src="{{ $item['hover_image'] }}" 
+                                                     alt="{{ $itemTitle }} hover" 
+                                                     class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" 
+                                                     loading="lazy" />
+                                                @endif
 
-                            <!-- Choice Cards List: Each has img, title, price, and can select multiple -->
-                            <div class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1 no-scrollbar" id="set-multi-choice-container">
-                                @foreach($availableItems as $item)
-                                    @php
-                                        $itemTitle = $isKm ? $item['name_km'] : $item['name_en'];
-                                        $itemBenefit = $isKm ? $item['benefit_km'] : $item['benefit_en'];
-                                        $isPreselected = in_array($item['id'], $defaultItems);
-                                    @endphp
-                                    <div class="set-choice-card group relative flex items-center gap-3.5 p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none {{ $isPreselected ? 'border-liva-dark bg-white shadow-sm ring-1 ring-liva-dark/10' : 'border-liva-border/90 bg-white/80 hover:bg-white hover:border-liva-olive/60 shadow-2xs' }}"
-                                         id="set-card-{{ $item['id'] }}"
-                                         data-id="{{ $item['id'] }}"
-                                         data-price="{{ $item['price'] }}"
-                                         data-name-en="{{ $item['name_en'] }}"
-                                         data-name-km="{{ $item['name_km'] }}"
-                                         data-image="{{ $item['image'] }}"
-                                         data-size="{{ $item['size'] }}"
-                                         onclick="toggleSetItem('{{ $item['id'] }}')">
-                                        
-                                        <!-- Multi-Select Checkbox (can select multiple) -->
-                                        <div class="set-card-checkbox w-6 h-6 rounded-lg border-2 {{ $isPreselected ? 'border-liva-dark bg-liva-dark text-white' : 'border-liva-border bg-white' }} flex items-center justify-center shrink-0 transition-all shadow-2xs group-hover:scale-105">
-                                            <svg class="set-card-check-icon w-3.5 h-3.5 text-white {{ $isPreselected ? 'opacity-100' : 'opacity-0' }} transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
+                                                <!-- Top-Left Selection Checkbox -->
+                                                <div class="set-card-checkbox absolute top-2.5 left-2.5 z-10 w-6 h-6 rounded-lg border-2 {{ $isPreselected ? 'border-liva-dark bg-liva-dark text-white' : 'border-liva-border/90 bg-white/90 text-transparent' }} flex items-center justify-center transition-all shadow-xs group-hover:scale-105 backdrop-blur-xs">
+                                                    <svg class="set-card-check-icon w-3.5 h-3.5 text-white {{ $isPreselected ? 'opacity-100' : 'opacity-0' }} transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
 
-                                        <!-- Image (img) -->
-                                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-[#F7F4EE] p-1.5 shrink-0 border border-liva-border/60 overflow-hidden flex items-center justify-center">
-                                            <img src="{{ $item['image'] }}" 
-                                                 alt="{{ $itemTitle }}" 
-                                                 class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-200" 
-                                                 loading="lazy" />
-                                        </div>
-
-                                        <!-- Title & Info (title) -->
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center gap-1.5 mb-0.5">
-                                                <span class="text-[10px] font-bold text-liva-muted uppercase tracking-wider">{{ $item['size'] }}</span>
-                                                <span class="text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                                    Stock: {{ $item['stock'] }}
+                                                <!-- Top-Right Selection Status Badge -->
+                                                <span class="set-card-status-label absolute top-2.5 right-2.5 z-10 text-[9px] font-semibold px-2 py-0.5 rounded-full transition-all shadow-2xs backdrop-blur-md {{ $isPreselected ? 'bg-emerald-600 text-white border border-emerald-500' : 'bg-white/90 text-liva-charcoal border border-liva-border/80 opacity-0 group-hover:opacity-100' }}">
+                                                    {{ $isPreselected ? ($isKm ? '✓ បានរើស' : '✓ Added') : ($isKm ? '+ ជ្រើសរើស' : '+ Select') }}
                                                 </span>
                                             </div>
-                                            <h4 class="text-xs sm:text-sm font-semibold text-liva-dark truncate group-hover:text-liva-olive transition-colors">
-                                                {{ $itemTitle }}
-                                            </h4>
-                                            <p class="text-[11px] text-liva-muted truncate">
-                                                {{ $itemBenefit }}
-                                            </p>
-                                        </div>
 
-                                        <!-- Price (price) -->
-                                        <div class="text-right shrink-0 pl-1">
-                                            <div class="text-xs sm:text-sm font-bold text-liva-dark">
-                                                ${{ number_format($item['price'], 2) }}
+                                            <!-- Card Details (Matching Home Page Product Card) -->
+                                            <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between bg-white">
+                                                <div>
+                                                    <div class="text-[11px] text-liva-muted mb-1 truncate">{{ $item['size'] }}</div>
+                                                    <h4 class="font-medium text-xs sm:text-sm text-liva-dark group-hover:text-liva-sage transition-colors line-clamp-1 block leading-snug" title="{{ $itemTitle }}">
+                                                        {{ $itemTitle }}
+                                                    </h4>
+                                                </div>
+
+                                                <!-- Price & Stock on 1 Row (Exact match to Home Page Card) -->
+                                                <div class="mt-3 pt-2.5 border-t border-liva-border/60 flex items-center justify-between gap-1.5">
+                                                    <span class="text-xs sm:text-sm font-bold text-liva-dark">${{ number_format($item['price'], 2) }}</span>
+                                                    <span class="text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 shrink-0">
+                                                        Stock: {{ $item['stock'] }}
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <span class="set-card-status-label text-[10px] font-semibold {{ $isPreselected ? 'text-emerald-700' : 'text-liva-muted' }} block mt-0.5">
-                                                {{ $isPreselected ? '✓ Added' : '+ Select' }}
-                                            </span>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
+
+                                <!-- Floating Arrow Nav for Desktop Slide UX -->
+                                <button type="button" 
+                                        onclick="slideSetItems('left')" 
+                                        id="set-slider-float-prev"
+                                        class="hidden md:flex absolute -left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-liva-dark hover:text-white text-liva-charcoal border border-liva-border shadow-md items-center justify-center transition-all duration-200 z-10 active:scale-95 disabled:opacity-0 disabled:pointer-events-none opacity-0 group-hover/setslider:opacity-100 cursor-pointer"
+                                        aria-label="Slide Left">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                                <button type="button" 
+                                        onclick="slideSetItems('right')" 
+                                        id="set-slider-float-next"
+                                        class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-liva-dark hover:text-white text-liva-charcoal border border-liva-border shadow-md items-center justify-center transition-all duration-200 z-10 active:scale-95 disabled:opacity-0 disabled:pointer-events-none opacity-0 group-hover/setslider:opacity-100 cursor-pointer"
+                                        aria-label="Slide Right">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                </button>
                             </div>
 
                             <!-- Live Set Bundle Summary & Discount Box -->
@@ -432,23 +489,7 @@
     <!-- ============================================================== -->
     <!-- SECTION: Sage Green Discount Newsletter Banner (from UX Wireframe) -->
     <!-- ============================================================== -->
-    <section class="py-14 md:py-18 bg-[#58735E] text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white mb-2">
-                Subscribe to get 15% off your first order
-            </h2>
-            <p class="text-xs sm:text-sm text-white/80 max-w-md mx-auto mb-6">
-                Receive private invitations to seasonal harvests, bespoke skin rituals, and botanical gifts.
-            </p>
-
-            <form onsubmit="event.preventDefault(); window.livaApp.showToast('Thank you for subscribing! Use code LIVA15'); this.reset();" class="max-w-md mx-auto flex gap-2">
-                <input type="email" required placeholder="Drop your email here..." class="flex-1 px-5 py-3 rounded-full bg-white text-liva-dark text-xs sm:text-sm outline-none placeholder-liva-muted shadow-inner" />
-                <button type="submit" class="w-12 h-12 rounded-full bg-liva-dark text-white flex items-center justify-center hover:bg-liva-gold transition-colors shrink-0 shadow-md" aria-label="Submit email">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                </button>
-            </form>
-        </div>
-    </section>
+  
 
     <!-- Page Specific Script for Gallery Switcher, Size Selector, Price Base Size & Favorite State -->
     <script>
@@ -469,7 +510,18 @@
         const productNameKm = '{{ addslashes($product['name_km']) }}';
         const productMainImage = '{{ $product['image'] }}';
 
-        function switchGalleryImg(src, btn) {
+        let currentGalleryIndex = 0;
+        let moreGalleryIndex = 4;
+        const productGallery = @json($product['gallery'] ?? [$product['image']]);
+
+        function switchGalleryImg(src, btn, index) {
+            if (typeof index === 'number') {
+                currentGalleryIndex = index;
+            } else {
+                const found = productGallery.indexOf(src);
+                if (found !== -1) currentGalleryIndex = found;
+            }
+
             const mainImg = document.getElementById('main-product-gallery-img');
             if (mainImg) {
                 mainImg.style.opacity = '0.4';
@@ -490,7 +542,104 @@
             }
         }
 
+        function handleMoreGalleryClick(btn) {
+            if (!productGallery || productGallery.length <= 4) return;
+            const targetSrc = productGallery[moreGalleryIndex];
+            switchGalleryImg(targetSrc, btn, moreGalleryIndex);
+
+            // If there are more than 5 images, cycle to next on each click
+            if (productGallery.length > 5) {
+                moreGalleryIndex++;
+                if (moreGalleryIndex >= productGallery.length) {
+                    moreGalleryIndex = 4;
+                }
+            }
+        }
+
+        let isSetSliderDragging = false;
+        let setSliderMoved = false;
+
+        function slideSetItems(direction) {
+            const container = document.getElementById('set-multi-choice-container');
+            if (!container) return;
+            const card = container.querySelector('.set-choice-card');
+            const cardWidth = card ? (card.offsetWidth + 10) : 220;
+            const scrollDistance = cardWidth * (window.innerWidth < 640 ? 1 : 2);
+            container.scrollBy({
+                left: direction === 'left' ? -scrollDistance : scrollDistance,
+                behavior: 'smooth'
+            });
+        }
+
+        function updateSetSliderNavButtons() {
+            const container = document.getElementById('set-multi-choice-container');
+            if (!container) return;
+            const isAtStart = container.scrollLeft <= 5;
+            const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 5;
+
+            const prevBtn = document.getElementById('set-slider-prev-btn');
+            const nextBtn = document.getElementById('set-slider-next-btn');
+            const floatPrev = document.getElementById('set-slider-float-prev');
+            const floatNext = document.getElementById('set-slider-float-next');
+
+            if (prevBtn) prevBtn.disabled = isAtStart;
+            if (nextBtn) nextBtn.disabled = isAtEnd;
+            if (floatPrev) floatPrev.disabled = isAtStart;
+            if (floatNext) floatNext.disabled = isAtEnd;
+        }
+
+        function initSetItemsSlider() {
+            const container = document.getElementById('set-multi-choice-container');
+            if (!container) return;
+
+            let startX = 0;
+            let scrollStart = 0;
+
+            container.addEventListener('mousedown', (e) => {
+                isSetSliderDragging = true;
+                setSliderMoved = false;
+                startX = e.pageX - container.offsetLeft;
+                scrollStart = container.scrollLeft;
+                container.classList.add('cursor-grabbing');
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (!isSetSliderDragging) return;
+                isSetSliderDragging = false;
+                if (container) container.classList.remove('cursor-grabbing');
+                setTimeout(() => { setSliderMoved = false; }, 60);
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isSetSliderDragging) return;
+                const x = e.pageX - container.offsetLeft;
+                const walk = (x - startX) * 1.3;
+                if (Math.abs(walk) > 5) {
+                    setSliderMoved = true;
+                }
+                container.scrollLeft = scrollStart - walk;
+            });
+
+            // Smooth mousewheel horizontal scroll (X Axis)
+            container.addEventListener('wheel', (e) => {
+                if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+                    const canScrollLeft = container.scrollLeft > 0;
+                    const canScrollRight = container.scrollLeft + container.clientWidth < container.scrollWidth - 2;
+                    if ((e.deltaY > 0 && canScrollRight) || (e.deltaY < 0 && canScrollLeft)) {
+                        e.preventDefault();
+                        container.scrollLeft += e.deltaY;
+                    }
+                }
+            }, { passive: false });
+
+            container.addEventListener('scroll', updateSetSliderNavButtons, { passive: true });
+            updateSetSliderNavButtons();
+        }
+
         function toggleSetItem(id) {
+            if (setSliderMoved) {
+                return;
+            }
             if (selectedSetItems.has(id)) {
                 selectedSetItems.delete(id);
             } else {
@@ -512,6 +661,11 @@
                 selectedSetItems = new Set(trioIds.slice(0, 3));
             } else if (type === 'all') {
                 selectedSetItems = new Set(availableItemsData.map(p => p.id));
+            }
+
+            const container = document.getElementById('set-multi-choice-container');
+            if (container) {
+                container.scrollTo({ left: 0, behavior: 'smooth' });
             }
 
             document.querySelectorAll('.set-preset-btn').forEach(btn => {
@@ -539,10 +693,13 @@
                 const checkIcon = card.querySelector('.set-card-check-icon');
                 const statusLabel = card.querySelector('.set-card-status-label');
 
+                const baseCardClass = 'set-choice-card product-slide-card luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white transition-all duration-300 cursor-pointer select-none shrink-0 snap-start w-[calc((100%-12px)/1.35)] sm:w-[calc((100%-20px)/2.35)] min-w-[195px] max-w-[235px] ';
+
                 if (isSelected) {
-                    card.className = 'set-choice-card group relative flex items-center gap-3.5 p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none border-liva-dark bg-white shadow-sm ring-1 ring-liva-dark/10';
+                    card.className = baseCardClass + 'border-2 border-liva-dark shadow-md ring-2 ring-liva-dark/15';
+                    card.setAttribute('aria-checked', 'true');
                     if (checkbox) {
-                        checkbox.className = 'set-card-checkbox w-6 h-6 rounded-lg border-2 border-liva-dark bg-liva-dark text-white flex items-center justify-center shrink-0 transition-all shadow-2xs group-hover:scale-105';
+                        checkbox.className = 'set-card-checkbox absolute top-2.5 left-2.5 z-10 w-6 h-6 rounded-lg border-2 border-liva-dark bg-liva-dark text-white flex items-center justify-center transition-all shadow-xs group-hover:scale-105 backdrop-blur-xs';
                     }
                     if (checkIcon) {
                         checkIcon.classList.remove('opacity-0');
@@ -550,12 +707,13 @@
                     }
                     if (statusLabel) {
                         statusLabel.textContent = isKm ? '✓ បានរើស' : '✓ Added';
-                        statusLabel.className = 'set-card-status-label text-[10px] font-semibold text-emerald-700 block mt-0.5';
+                        statusLabel.className = 'set-card-status-label absolute top-2.5 right-2.5 z-10 text-[9px] font-semibold px-2 py-0.5 rounded-full transition-all shadow-2xs backdrop-blur-md bg-emerald-600 text-white border border-emerald-500 block';
                     }
                 } else {
-                    card.className = 'set-choice-card group relative flex items-center gap-3.5 p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none border-liva-border/90 bg-white/80 hover:bg-white hover:border-liva-olive/60 shadow-2xs';
+                    card.className = baseCardClass + 'border border-liva-border/80 shadow-xs hover:border-liva-olive/60 hover:shadow-lg';
+                    card.setAttribute('aria-checked', 'false');
                     if (checkbox) {
-                        checkbox.className = 'set-card-checkbox w-6 h-6 rounded-lg border-2 border-liva-border bg-white flex items-center justify-center shrink-0 transition-all shadow-2xs group-hover:scale-105';
+                        checkbox.className = 'set-card-checkbox absolute top-2.5 left-2.5 z-10 w-6 h-6 rounded-lg border-2 border-liva-border/90 bg-white/90 text-transparent flex items-center justify-center transition-all shadow-xs group-hover:scale-105 backdrop-blur-xs';
                     }
                     if (checkIcon) {
                         checkIcon.classList.remove('opacity-100');
@@ -563,7 +721,7 @@
                     }
                     if (statusLabel) {
                         statusLabel.textContent = isKm ? '+ ជ្រើសរើស' : '+ Select';
-                        statusLabel.className = 'set-card-status-label text-[10px] font-semibold text-liva-muted block mt-0.5';
+                        statusLabel.className = 'set-card-status-label absolute top-2.5 right-2.5 z-10 text-[9px] font-semibold px-2 py-0.5 rounded-full transition-all shadow-2xs backdrop-blur-md bg-white/90 text-liva-charcoal border border-liva-border/80 opacity-0 group-hover:opacity-100 block';
                     }
                 }
             });
@@ -851,6 +1009,7 @@
             syncDetailFavoriteState();
             initRelatedAutoSlide();
             if (isSetProduct) {
+                initSetItemsSlider();
                 updateSetCustomizerUI();
             }
         });
