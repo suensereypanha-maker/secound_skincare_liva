@@ -27,6 +27,9 @@ class LivaApp {
         // Start Product Sliders Auto-sliding
         this.startAutoSlide();
 
+        // Initialize Top Section Slide Banner
+        this.initHeroSlider();
+
         // Render cart & favorites badges
         this.renderCart();
         this.updateFavoriteBadges();
@@ -227,6 +230,162 @@ class LivaApp {
 
         // Reset auto-slide timer so user gets full interval before next auto-slide
         this.resumeSlider(sliderId);
+    }
+
+    initHeroSlider() {
+        const track = document.getElementById('hero-carousel-track');
+        if (!track) return;
+
+        const slides = track.querySelectorAll('.hero-slide');
+        if (!slides || slides.length === 0) return;
+
+        const prevBtn = document.getElementById('hero-slide-prev');
+        const nextBtn = document.getElementById('hero-slide-next');
+        const dots = document.querySelectorAll('.hero-dot');
+        const counter = document.getElementById('hero-slide-counter');
+        const progress = document.getElementById('hero-slide-progress');
+        const card = document.getElementById('hero-carousel-card');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let slideInterval = null;
+        const slideDuration = 5000;
+        let progressStart = 0;
+        let progressFrame = null;
+
+        const updateDotsAndCounter = () => {
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.className = 'hero-dot w-8 h-2 rounded-full bg-liva-dark transition-all duration-300 cursor-pointer';
+                } else {
+                    dot.className = 'hero-dot w-2.5 h-2 rounded-full bg-liva-charcoal/25 hover:bg-liva-charcoal/50 transition-all duration-300 cursor-pointer';
+                }
+            });
+
+            if (counter) {
+                counter.textContent = `0${currentSlide + 1} / 0${totalSlides}`;
+            }
+        };
+
+        const startProgressBar = () => {
+            if (!progress) return;
+            if (progressFrame) cancelAnimationFrame(progressFrame);
+            progress.style.transition = 'none';
+            progress.style.width = '0%';
+            progressStart = performance.now();
+
+            const step = (now) => {
+                const elapsed = now - progressStart;
+                const pct = Math.min((elapsed / slideDuration) * 100, 100);
+                progress.style.width = `${pct}%`;
+                if (pct < 100) {
+                    progressFrame = requestAnimationFrame(step);
+                }
+            };
+            progressFrame = requestAnimationFrame(step);
+        };
+
+        const goToSlide = (index) => {
+            if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                currentSlide = 0;
+            } else {
+                currentSlide = index;
+            }
+
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateDotsAndCounter();
+            startProgressBar();
+        };
+
+        const nextSlide = () => goToSlide(currentSlide + 1);
+        const prevSlide = () => goToSlide(currentSlide - 1);
+
+        const startHeroTimer = () => {
+            stopHeroTimer();
+            startProgressBar();
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, slideDuration);
+        };
+
+        const stopHeroTimer = () => {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+            if (progressFrame) {
+                cancelAnimationFrame(progressFrame);
+                progressFrame = null;
+            }
+            if (progress) {
+                progress.style.width = '0%';
+            }
+        };
+
+        const resetHeroTimer = () => {
+            stopHeroTimer();
+            startHeroTimer();
+        };
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetHeroTimer();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetHeroTimer();
+            });
+        }
+
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                const idx = parseInt(dot.getAttribute('data-dot-index'), 10);
+                if (!isNaN(idx)) {
+                    goToSlide(idx);
+                    resetHeroTimer();
+                }
+            });
+        });
+
+        if (card) {
+            card.addEventListener('mouseenter', () => {
+                stopHeroTimer();
+            });
+            card.addEventListener('mouseleave', () => {
+                startHeroTimer();
+            });
+
+            // Touch Swipe Support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            card.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                stopHeroTimer();
+            }, { passive: true });
+
+            card.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+                resetHeroTimer();
+            }, { passive: true });
+        }
+
+        // Initialize state & start auto-timer
+        goToSlide(0);
+        startHeroTimer();
     }
 
     startAutoSlide() {

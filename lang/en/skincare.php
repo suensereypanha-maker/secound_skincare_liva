@@ -28,6 +28,31 @@ return [
     'take_routine_quiz' => 'Take Skin Routine Quiz',
     'hero_rating' => '4.96 / 5 based on 2,800+ real skin transformations',
 
+    // Slide Banner
+    'slide1_tag' => '100% ORGANIC BOTANICAL SKINCARE',
+    'slide1_title' => 'Pure Botanical Alchemy for Radiant, Timeless Skin',
+    'slide1_desc' => 'Formulated with potent bio-compatible botanicals, cold-pressed plant extracts, and clinical actives to deeply nourish, fortify the lipid barrier, and reveal your natural luminescence.',
+    'slide1_btn_primary' => 'Explore Collection',
+    'slide1_btn_secondary' => 'Shop Ritual Duo ($59.50)',
+
+    'slide2_tag' => 'SIGNATURE RITUAL • SAVE 15%',
+    'slide2_title' => 'Patented Phytotech for Deep Cellular Hydration',
+    'slide2_desc' => 'Our iconic dual-step ritual combines cold-pressed camellia seed elixir and restorative oat ceramide. Locks in dermal moisture for 72 hours while defending against fatigue.',
+    'slide2_btn_primary' => 'Shop Ritual Duo ($59.50)',
+    'slide2_btn_secondary' => 'Quick Add to Bag',
+
+    'slide3_tag' => 'LUXURY BODY & HAIR CARE',
+    'slide3_title' => 'Mindful Everyday Rituals for Body and Scalp',
+    'slide3_desc' => 'Infused with cold-pressed camellia, nourishing shea butter, and clarifying bergamot. Transforms everyday cleansing into an aromatic sanctuary of restorative wellness.',
+    'slide3_btn_primary' => 'Explore All Products',
+    'slide3_btn_secondary' => 'Discover Shower Gel',
+
+    'slide4_tag' => 'TRAVEL EDITION',
+    'slide4_title' => 'Radiant Skin Anywhere Your Journey Leads',
+    'slide4_desc' => 'Four curated TSA-friendly travel miniatures formulated to prevent cabin dehydration and shield against climate stress. Housed in a bespoke linen travel case.',
+    'slide4_btn_primary' => 'Shop Travel Set ($48.00)',
+    'slide4_btn_secondary' => 'Quick Add to Bag',
+
     'feature_1_title' => '100% Organic & Clean',
     'feature_1_desc' => 'Wild-harvested bioactive extracts with zero parabens, sulfates, silicones, or synthetic perfumes.',
     'feature_2_title' => 'Dermatologist Tested',

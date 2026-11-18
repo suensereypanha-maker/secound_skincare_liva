@@ -40,6 +40,31 @@ export const translations = {
         takeRoutineQuiz: "Take Skin Routine Quiz",
         heroRatingText: "4.96 / 5 based on 2,800+ real skin transformations",
 
+        // Top Section Slide Banner
+        slide1Tag: "100% ORGANIC BOTANICAL SKINCARE",
+        slide1Title: "Pure Botanical Alchemy for Radiant, Timeless Skin",
+        slide1Desc: "Formulated with potent bio-compatible botanicals, cold-pressed plant extracts, and clinical actives to deeply nourish, fortify the lipid barrier, and reveal your natural luminescence.",
+        slide1BtnPrimary: "Explore Collection",
+        slide1BtnSecondary: "Shop Ritual Duo ($59.50)",
+
+        slide2Tag: "SIGNATURE RITUAL • SAVE 15%",
+        slide2Title: "Patented Phytotech for Deep Cellular Hydration",
+        slide2Desc: "Our iconic dual-step ritual combines cold-pressed camellia seed elixir and restorative oat ceramide. Locks in dermal moisture for 72 hours while defending against fatigue.",
+        slide2BtnPrimary: "Shop Ritual Duo ($59.50)",
+        slide2BtnSecondary: "Quick Add to Bag",
+
+        slide3Tag: "LUXURY BODY & HAIR CARE",
+        slide3Title: "Mindful Everyday Rituals for Body and Scalp",
+        slide3Desc: "Infused with cold-pressed camellia, nourishing shea butter, and clarifying bergamot. Transforms everyday cleansing into an aromatic sanctuary of restorative wellness.",
+        slide3BtnPrimary: "Explore All Products",
+        slide3BtnSecondary: "Discover Shower Gel",
+
+        slide4Tag: "TRAVEL EDITION",
+        slide4Title: "Radiant Skin Anywhere Your Journey Leads",
+        slide4Desc: "Four curated TSA-friendly travel miniatures formulated to prevent cabin dehydration and shield against climate stress. Housed in a bespoke linen travel case.",
+        slide4BtnPrimary: "Shop Travel Set ($48.00)",
+        slide4BtnSecondary: "Quick Add to Bag",
+
         // 4 Feature Cards (UX Wireframe Hero Bottom)
         feature1Title: "100% Organic & Clean",
         feature1Desc: "Wild-harvested bioactive extracts with zero parabens, sulfates, silicones, or synthetic perfumes.",
@@ -224,6 +249,31 @@ export const translations = {
         exploreCollection: "ស្វែងយល់ពីបណ្តុំ",
         takeRoutineQuiz: "ធ្វើតេស្តស្វែងរករូបមន្តស្បែក",
         heroRatingText: "ពិន្ទុ ៤.៩៦ / ៥ ពីការវាយតម្លៃរបស់អតិថិជនជាង ២,៨០០ នាក់",
+
+        // Top Section Slide Banner
+        slide1Tag: "ផលិតផលថែរក្សាស្បែករុក្ខជាតិធម្មជាតិ ១០០%",
+        slide1Title: "រូបមន្តរុក្ខជាតិធម្មជាតិសុទ្ធសាធ ដើម្បីស្បែកភ្លឺថ្លា និងក្មេងជាងវ័យ",
+        slide1Desc: "ផ្សំឡើងពីសារធាតុរុក្ខជាតិសរីរាង្គកម្រិតខ្ពស់ ចម្រាញ់ដោយភាពត្រជាក់ និងរូបមន្តវិទ្យាសាស្ត្រ ដើម្បីចិញ្ចឹមស្បែកយ៉ាងជ្រៅ ជួសជុលរបាំងការពារស្បែក និងផ្តល់ភាពភ្លឺថ្លាពីធម្មជាតិ។",
+        slide1BtnPrimary: "ស្វែងយល់ពីបណ្តុំ",
+        slide1BtnSecondary: "ទិញឈុត Ritual Duo ($59.50)",
+
+        slide2Tag: "ឈុតរូបមន្តស្នូល • ចំណេញ ១៥%",
+        slide2Title: "រូបមន្តប៉ាតង់ Phytotech ផ្តល់សំណើមដល់ស្រទាប់កោសិកា",
+        slide2Desc: "រូបមន្តថែស្បែក ២ ជំហានរួមផ្សំប្រេងគ្រាប់កាមេលីយ៉ា និងសេរ៉ាម៉ាយធម្មជាតិ ជួយរក្សាសំណើមបានរហូតដល់ ៧២ ម៉ោង និងការពារពីការនឿយហត់នៃស្បែក។",
+        slide2BtnPrimary: "ទិញឈុត Ritual Duo ($59.50)",
+        slide2BtnSecondary: "ដាក់ចូលកន្ត្រកភ្លាមៗ",
+
+        slide3Tag: "ការថែទាំស្បែក និងសក់កម្រិតខ្ពស់",
+        slide3Title: "ទម្លាប់ថែរក្សាស្បែក និងសក់ប្រចាំថ្ងៃដ៏ស្ងប់ស្ងាត់",
+        slide3Desc: "ផ្សំឡើងពីប្រេងផ្កាកាមេលីយ៉ា ខ្លាញ់គ្រាប់សៀ និងប៊ឺហ្គាម៉ុត បង្កើតបទពិសោធន៍ងូតទឹកដ៏ស្រស់ស្រាយ និងជួយឱ្យស្បែកទន់ម៉ត់រលោង។",
+        slide3BtnPrimary: "មើលផលិតផលទាំងអស់",
+        slide3BtnSecondary: "ស្វែងយល់ពីសាប៊ូដុសខ្លួន",
+
+        slide4Tag: "ឈុតងាយស្រួលធ្វើដំណើរ",
+        slide4Title: "ស្បែកភ្លឺថ្លាស្រស់ស្អាតគ្រប់ទីកន្លែងក្នុងការធ្វើដំណើរ",
+        slide4Desc: "បណ្តុំផលិតផល ៤ មុខខ្នាតតូចស្របតាមស្តង់ដារ TSA ការពារស្បែកពីភាពស្ងួតពេលជិះយន្តហោះ និងបម្រែបម្រួលអាកាសធាតុ ភ្ជាប់ជាមួយថង់ក្រណាត់ទេសចរណ៍ពិសេស។",
+        slide4BtnPrimary: "ទិញឈុតធ្វើដំណើរ ($48.00)",
+        slide4BtnSecondary: "ដាក់ចូលកន្ត្រកភ្លាមៗ",
 
         // 4 Feature Cards (UX Wireframe Hero Bottom)
         feature1Title: "ធម្មជាតិ និងសរីរាង្គ ១០០%",

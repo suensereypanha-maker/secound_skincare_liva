@@ -1,21 +1,7 @@
 <section id="collection" class="py-12 md:py-20 bg-[#FAF7F2] border-t border-liva-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-20">
         
-        <!-- ============================================================== -->
-        <!-- TOP BUTTON: SHOW ALL PRODUCT (Centered as marked in screenshot) -->
-        <!-- ============================================================== -->
-        <div class="flex flex-col items-center justify-center text-center -mb-6">
-            <button type="button" 
-                    id="show-all-products-btn"
-                    onclick="window.livaApp.openAllProductsModal('all')"
-                    class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-white hover:bg-liva-dark text-liva-charcoal hover:text-white border-2 border-liva-border hover:border-liva-dark shadow-sm hover:shadow-lg transition-all duration-300 text-xs sm:text-sm font-semibold tracking-wide cursor-pointer group">
-                <svg class="w-4 h-4 text-liva-olive group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-                </svg>
-                <span id="show-all-btn-text" data-i18n="showAllProduct">{{ __('skincare.show_all_product') ?? 'Show all product' }}</span>
-                <span class="text-[11px] px-2 py-0.5 rounded-full bg-liva-stone group-hover:bg-white/20 text-liva-muted group-hover:text-white font-bold transition-colors">10</span>
-            </button>
-        </div>
+
 
         <!-- Inline All Products Grid (Revealed when "Show all product" is clicked) -->
         <div id="inline-all-products-section" class="hidden transition-all duration-500 pb-10 border-b border-liva-border/80 space-y-6">
