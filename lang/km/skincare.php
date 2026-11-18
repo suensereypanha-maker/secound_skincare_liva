@@ -14,6 +14,7 @@ return [
     'nav_rituals' => 'ទម្លាប់ថែស្បែក',
     'nav_philosophy' => 'ទស្សនវិស័យ',
     'nav_reviews' => 'លទ្ធផល',
+    'nav_about' => 'អំពីយើង',
     'nav_contact' => 'ទំនាក់ទំនង',
     'nav_search' => 'ស្វែងរកផលិតផលថែរក្សាស្បែក, សេរ៉ូម...',
     'shop_now' => 'ទិញឥឡូវនេះ',

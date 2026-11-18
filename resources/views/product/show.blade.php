@@ -448,26 +448,99 @@
                 @foreach($relatedProducts as $rel)
                 @php
                     $relName = $isKm ? $rel['name_km'] : $rel['name_en'];
+                    $relBenefit = $isKm ? $rel['benefit_km'] : $rel['benefit_en'];
+                    $relBadge = $isKm ? $rel['badge_km'] : $rel['badge_en'];
+                    $isLowStock = $rel['stock'] <= 8;
+                    $hasHover = !empty($rel['hover_image']);
+                    $hasOriginal = !empty($rel['original_price']) && $rel['original_price'] > $rel['price'];
                 @endphp
-                <div class="product-slide-card w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
-                    <a href="/product/{{ $rel['id'] }}" class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
-                        <img src="{{ $rel['image'] }}" alt="{{ $relName }}" class="product-primary-img w-full h-full object-cover object-center" />
-                        @if(!empty($rel['hover_image']))
-                        <img src="{{ $rel['hover_image'] }}" alt="{{ $relName }} hover" class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" />
-                        @endif
-                    </a>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] text-liva-muted mb-1">{{ $rel['size'] }}</div>
-                            <a href="/product/{{ $rel['id'] }}" class="font-medium text-sm text-liva-dark hover:text-liva-sage transition-colors line-clamp-1 block">
-                                {{ $relName }}
-                            </a>
+                <div class="product-slide-card w-[280px] sm:w-[320px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300" data-product-id="{{ $rel['id'] }}">
+                    
+                    <!-- FULL Image Showcase Container (Clickable -> View Detail) -->
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA]">
+                        <a href="/product/{{ $rel['id'] }}" class="absolute inset-0 z-0 block cursor-pointer">
+                            <!-- Primary FULL Product Image -->
+                            <img src="{{ $rel['image'] }}"
+                                 alt="{{ $relName }}"
+                                 class="product-primary-img w-full h-full object-cover object-center"
+                                 loading="lazy" />
+
+                            @if($hasHover)
+                            <!-- Secondary Alternate Image (Shown on Hover) -->
+                            <img src="{{ $rel['hover_image'] }}"
+                                 alt="{{ $relName }} hover"
+                                 class="product-hover-img absolute inset-0 w-full h-full object-cover object-center"
+                                 loading="lazy" />
+                            @endif
+                        </a>
+
+                        <!-- Top-Left Badge -->
+                        <span class="absolute top-3 left-3 z-10 text-[10px] tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full bg-white/95 text-liva-olive backdrop-blur-md border border-white/80 shadow-xs pointer-events-none">
+                            {{ $relBadge }}
+                        </span>
+
+                        <!-- Top-Right Add to Favorite Button (Heart) -->
+                        <button type="button"
+                                onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.toggleFavorite('{{ $rel['id'] }}')"
+                                class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
+                                aria-label="Toggle favorite">
+                            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Hover Quick Add to Bag Overlay Button -->
+                        <div class="absolute inset-x-3 bottom-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 hidden sm:block z-20">
+                            <button type="button"
+                                    onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.addToCart('{{ $rel['id'] }}')"
+                                    class="w-full py-2.5 px-4 bg-liva-dark/95 backdrop-blur-md text-white text-xs tracking-wider uppercase font-semibold rounded-xl hover:bg-liva-olive transition-colors shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                <span>{{ $isKm ? 'បន្ថែមក្នុងកន្ត្រក' : 'Add to Bag' }}</span>
+                            </button>
                         </div>
-                        <div class="mt-3 pt-2.5 border-t border-liva-border/60 flex items-center justify-between gap-1.5">
-                            <span class="text-sm font-bold text-liva-dark">${{ number_format($rel['price'], 2) }}</span>
-                            <span class="text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                Stock: {{ $rel['stock'] }}
-                            </span>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Size -->
+                            <div class="flex items-center justify-between text-xs mb-1.5">
+                                <span class="text-[11px] font-medium text-liva-muted tracking-wide">{{ $rel['size'] }}</span>
+                            </div>
+
+                            <!-- Title (Links to View Detail) -->
+                            <a href="/product/{{ $rel['id'] }}" class="block group/title">
+                                <h3 class="font-medium text-sm sm:text-base text-liva-dark line-clamp-1 group-hover/title:text-liva-sage transition-colors">
+                                    {{ $relName }}
+                                </h3>
+                            </a>
+
+                            <!-- Benefit / Key Ingredients -->
+                            <p class="text-xs text-liva-muted mt-1 line-clamp-1">
+                                {{ $relBenefit }}
+                            </p>
+                        </div>
+
+                        <!-- Price & Stock QTY on 1 Row -->
+                        <div class="mt-4 pt-3 border-t border-liva-border/60 flex items-center justify-between gap-2">
+                            <div class="flex items-baseline gap-1.5 shrink-0">
+                                <span class="text-base sm:text-lg font-bold text-liva-dark">
+                                    ${{ number_format($rel['price'], 2) }}
+                                </span>
+                                @if($hasOriginal)
+                                <span class="text-xs sm:text-sm text-liva-muted line-through font-normal">
+                                    ${{ number_format($rel['original_price'], 2) }}
+                                </span>
+                                @endif
+                            </div>
+
+                            <!-- Stock Badge: Only stock:qty with green/amber dot -->
+                            <div class="shrink-0">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold {{ $isLowStock ? 'text-amber-800 bg-amber-50/95 border-amber-200/90' : 'text-emerald-800 bg-emerald-50/95 border-emerald-200/90' }} border px-2.5 py-1 rounded-full shadow-2xs">
+                                    <span class="w-1.5 h-1.5 rounded-full {{ $isLowStock ? 'bg-amber-500 animate-pulse' : 'bg-emerald-500' }}"></span>
+                                    <span>Stock: {{ $rel['stock'] }}</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -950,6 +1023,23 @@
                     btn.classList.remove('border-rose-200', 'bg-rose-50/50');
                 }
             }
+
+            // Sync favorite hearts on related product cards
+            document.querySelectorAll('#slider-related-products [data-product-id]').forEach(card => {
+                const pid = card.getAttribute('data-product-id');
+                const isCardFav = window.livaApp.favorites.includes(pid);
+                const heartBtn = card.querySelector('button[aria-label="Toggle favorite"]');
+                const heartSvg = heartBtn ? heartBtn.querySelector('svg') : null;
+                if (heartBtn && heartSvg) {
+                    if (isCardFav) {
+                        heartBtn.className = 'absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-rose-500 cursor-pointer';
+                        heartSvg.className = 'w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-rose-500 text-rose-500 scale-110';
+                    } else {
+                        heartBtn.className = 'absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer';
+                        heartSvg.className = 'w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current';
+                    }
+                }
+            });
         }
 
         function switchDetailTab(tabKey, btn) {
@@ -1007,6 +1097,16 @@
             if (isSetProduct) {
                 initSetItemsSlider();
                 updateSetCustomizerUI();
+            }
+
+            // Hook into favorite toggle to keep hearts updated in real time
+            if (window.livaApp && !window._favHookInstalled) {
+                window._favHookInstalled = true;
+                const origToggle = window.livaApp.toggleFavorite.bind(window.livaApp);
+                window.livaApp.toggleFavorite = function(pid) {
+                    origToggle(pid);
+                    syncDetailFavoriteState();
+                };
             }
         });
     </script>

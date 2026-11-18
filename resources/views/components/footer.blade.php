@@ -1,4 +1,4 @@
-<footer class="bg-liva-dark text-white pt-16 pb-12 border-t border-white/10">
+<footer id="footer" class="bg-liva-dark text-white pt-16 pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Main Footer Columns -->

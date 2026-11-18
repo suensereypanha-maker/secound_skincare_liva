@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="UYqm94sj0wGxIIz8orQdgucjbjI8vWgCwDkSksmO">
+    <meta name="csrf-token" content="WsNeePAF17s4yFXM8Yi3pRfh8DaYV0sQVxu0MhY0">
 
     <title>LIVA Botanical Skincare | Pure Organic Beauty &amp; Everyday Rituals</title>
     <meta name="description" content="LIVA is a mindful botanical personal-care lab crafting pure, clinically backed skin, hair, and body rituals inspired by nature.">
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Vite Assets -->
-    <link rel="preload" as="style" href="/secound_skincare_liva/build/assets/app-C6xq2l93.css" /><link rel="modulepreload" as="script" href="/secound_skincare_liva/build/assets/app-Bwq45us1.js" /><link rel="stylesheet" href="/secound_skincare_liva/build/assets/app-C6xq2l93.css" /><script type="module" src="/secound_skincare_liva/build/assets/app-Bwq45us1.js"></script>
+    <link rel="preload" as="style" href="/secound_skincare_liva/build/assets/app-DfdX_zYa.css" /><link rel="modulepreload" as="script" href="/secound_skincare_liva/build/assets/app-D8YBWS72.js" /><link rel="stylesheet" href="/secound_skincare_liva/build/assets/app-DfdX_zYa.css" /><script type="module" src="/secound_skincare_liva/build/assets/app-D8YBWS72.js"></script>
 </head>
 <body class="bg-liva-cream text-liva-dark antialiased min-h-screen flex flex-col selection:bg-liva-gold-light selection:text-liva-dark">
     
@@ -65,28 +65,14 @@
                     All Products
                 </button>
                 
-                <!-- Single Products -->
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('single')" 
-                        class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 cursor-pointer" 
-                        data-i18n="navSingleProduct">
-                    Single Products
-                </button>
-
-                <!-- Set Products (2+) -->
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('sets')" 
-                        class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 cursor-pointer inline-flex items-center gap-1.5" 
-                        data-i18n="navSetProduct">
-                    <span>Set Products (2+)</span>
-                    <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-liva-stone text-liva-olive font-bold">2+</span>
-                </button>
-
-                <a href="#spotlight" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navSpotlight">
-                    Formula
+                <!-- About -->
+                <a href="/secound_skincare_liva/#spotlight" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navAbout">
+                    About
                 </a>
-                <a href="#results" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navReviews">
-                    Reviews
+
+                <!-- Contact -->
+                <a href="/secound_skincare_liva/#footer" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navContact">
+                    Contact
                 </a>
             </nav>
 
@@ -213,27 +199,20 @@
                 All Products
             </button>
             
-            <!-- Single Products -->
-            <button type="button" 
-                    onclick="window.livaApp.openAllProductsModal('single'); document.getElementById('mobile-menu').classList.add('hidden')" 
-                    class="w-full text-left block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone cursor-pointer" 
-                    data-i18n="navSingleProduct">
-                Single Products
-            </button>
-
-            <!-- Set Products (2+) -->
-            <button type="button" 
-                    onclick="window.livaApp.openAllProductsModal('sets'); document.getElementById('mobile-menu').classList.add('hidden')" 
-                    class="w-full text-left flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone cursor-pointer">
-                <span data-i18n="navSetProduct">Set Products (2+)</span>
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-liva-stone text-liva-olive font-bold">2+ items</span>
-            </button>
-
-            <a href="#spotlight" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navSpotlight">
-                Formula
+            <!-- About -->
+            <a href="/secound_skincare_liva/#spotlight" 
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
+               data-i18n="navAbout">
+                About
             </a>
-            <a href="#results" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navReviews">
-                Reviews
+
+            <!-- Contact -->
+            <a href="/secound_skincare_liva/#footer" 
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
+               data-i18n="navContact">
+                Contact
             </a>
             <div class="pt-2">
                 <button type="button" 
@@ -540,83 +519,347 @@
 
             <!-- 1-Row Related Products Slider Track -->
             <div id="slider-related-products" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-3">
-                                                <div class="product-slide-card w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
-                    <a href="/secound_skincare_liva/product/liva-body-lotion/" class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
-                        <img src="/secound_skincare_liva/img/body-lotion.webp" alt="Liva Velvet Nourishing Body Lotion" class="product-primary-img w-full h-full object-cover object-center" />
-                                                <img src="/secound_skincare_liva/img/daily-edit-detail.webp" alt="Liva Velvet Nourishing Body Lotion hover" class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" />
-                                            </a>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] text-liva-muted mb-1">250 ml / 8.4 fl oz</div>
-                            <a href="/secound_skincare_liva/product/liva-body-lotion/" class="font-medium text-sm text-liva-dark hover:text-liva-sage transition-colors line-clamp-1 block">
-                                Liva Velvet Nourishing Body Lotion
-                            </a>
+                                                <div class="product-slide-card w-[280px] sm:w-[320px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300" data-product-id="liva-body-lotion">
+                    
+                    <!-- FULL Image Showcase Container (Clickable -> View Detail) -->
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA]">
+                        <a href="/secound_skincare_liva/product/liva-body-lotion/" class="absolute inset-0 z-0 block cursor-pointer">
+                            <!-- Primary FULL Product Image -->
+                            <img src="/secound_skincare_liva/img/body-lotion.webp"
+                                 alt="Liva Velvet Nourishing Body Lotion"
+                                 class="product-primary-img w-full h-full object-cover object-center"
+                                 loading="lazy" />
+
+                                                        <!-- Secondary Alternate Image (Shown on Hover) -->
+                            <img src="/secound_skincare_liva/img/daily-edit-detail.webp"
+                                 alt="Liva Velvet Nourishing Body Lotion hover"
+                                 class="product-hover-img absolute inset-0 w-full h-full object-cover object-center"
+                                 loading="lazy" />
+                                                    </a>
+
+                        <!-- Top-Left Badge -->
+                        <span class="absolute top-3 left-3 z-10 text-[10px] tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full bg-white/95 text-liva-olive backdrop-blur-md border border-white/80 shadow-xs pointer-events-none">
+                            BEST SELLER
+                        </span>
+
+                        <!-- Top-Right Add to Favorite Button (Heart) -->
+                        <button type="button"
+                                onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.toggleFavorite('liva-body-lotion')"
+                                class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
+                                aria-label="Toggle favorite">
+                            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Hover Quick Add to Bag Overlay Button -->
+                        <div class="absolute inset-x-3 bottom-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 hidden sm:block z-20">
+                            <button type="button"
+                                    onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.addToCart('liva-body-lotion')"
+                                    class="w-full py-2.5 px-4 bg-liva-dark/95 backdrop-blur-md text-white text-xs tracking-wider uppercase font-semibold rounded-xl hover:bg-liva-olive transition-colors shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                <span>Add to Bag</span>
+                            </button>
                         </div>
-                        <div class="mt-3 pt-2.5 border-t border-liva-border/60 flex items-center justify-between gap-1.5">
-                            <span class="text-sm font-bold text-liva-dark">$38.00</span>
-                            <span class="text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                Stock: 14
-                            </span>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Size -->
+                            <div class="flex items-center justify-between text-xs mb-1.5">
+                                <span class="text-[11px] font-medium text-liva-muted tracking-wide">250 ml / 8.4 fl oz</span>
+                            </div>
+
+                            <!-- Title (Links to View Detail) -->
+                            <a href="/secound_skincare_liva/product/liva-body-lotion/" class="block group/title">
+                                <h3 class="font-medium text-sm sm:text-base text-liva-dark line-clamp-1 group-hover/title:text-liva-sage transition-colors">
+                                    Liva Velvet Nourishing Body Lotion
+                                </h3>
+                            </a>
+
+                            <!-- Benefit / Key Ingredients -->
+                            <p class="text-xs text-liva-muted mt-1 line-clamp-1">
+                                Cold-pressed camellia, shea butter &amp; rice ceramide
+                            </p>
+                        </div>
+
+                        <!-- Price & Stock QTY on 1 Row -->
+                        <div class="mt-4 pt-3 border-t border-liva-border/60 flex items-center justify-between gap-2">
+                            <div class="flex items-baseline gap-1.5 shrink-0">
+                                <span class="text-base sm:text-lg font-bold text-liva-dark">
+                                    $38.00
+                                </span>
+                                                                <span class="text-xs sm:text-sm text-liva-muted line-through font-normal">
+                                    $46.00
+                                </span>
+                                                            </div>
+
+                            <!-- Stock Badge: Only stock:qty with green/amber dot -->
+                            <div class="shrink-0">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50/95 border-emerald-200/90 border px-2.5 py-1 rounded-full shadow-2xs">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    <span>Stock: 14</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                                                <div class="product-slide-card w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
-                    <a href="/secound_skincare_liva/product/liva-shampoo/" class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
-                        <img src="/secound_skincare_liva/img/shampoo.webp" alt="Liva Botanical Balancing Shampoo" class="product-primary-img w-full h-full object-cover object-center" />
-                                                <img src="/secound_skincare_liva/img/shampoo-hover.webp" alt="Liva Botanical Balancing Shampoo hover" class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" />
-                                            </a>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] text-liva-muted mb-1">300 ml / 10.1 fl oz</div>
-                            <a href="/secound_skincare_liva/product/liva-shampoo/" class="font-medium text-sm text-liva-dark hover:text-liva-sage transition-colors line-clamp-1 block">
-                                Liva Botanical Balancing Shampoo
-                            </a>
+                                                <div class="product-slide-card w-[280px] sm:w-[320px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300" data-product-id="liva-shampoo">
+                    
+                    <!-- FULL Image Showcase Container (Clickable -> View Detail) -->
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA]">
+                        <a href="/secound_skincare_liva/product/liva-shampoo/" class="absolute inset-0 z-0 block cursor-pointer">
+                            <!-- Primary FULL Product Image -->
+                            <img src="/secound_skincare_liva/img/shampoo.webp"
+                                 alt="Liva Botanical Balancing Shampoo"
+                                 class="product-primary-img w-full h-full object-cover object-center"
+                                 loading="lazy" />
+
+                                                        <!-- Secondary Alternate Image (Shown on Hover) -->
+                            <img src="/secound_skincare_liva/img/shampoo-hover.webp"
+                                 alt="Liva Botanical Balancing Shampoo hover"
+                                 class="product-hover-img absolute inset-0 w-full h-full object-cover object-center"
+                                 loading="lazy" />
+                                                    </a>
+
+                        <!-- Top-Left Badge -->
+                        <span class="absolute top-3 left-3 z-10 text-[10px] tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full bg-white/95 text-liva-olive backdrop-blur-md border border-white/80 shadow-xs pointer-events-none">
+                            AWARD WINNER
+                        </span>
+
+                        <!-- Top-Right Add to Favorite Button (Heart) -->
+                        <button type="button"
+                                onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.toggleFavorite('liva-shampoo')"
+                                class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
+                                aria-label="Toggle favorite">
+                            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Hover Quick Add to Bag Overlay Button -->
+                        <div class="absolute inset-x-3 bottom-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 hidden sm:block z-20">
+                            <button type="button"
+                                    onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.addToCart('liva-shampoo')"
+                                    class="w-full py-2.5 px-4 bg-liva-dark/95 backdrop-blur-md text-white text-xs tracking-wider uppercase font-semibold rounded-xl hover:bg-liva-olive transition-colors shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                <span>Add to Bag</span>
+                            </button>
                         </div>
-                        <div class="mt-3 pt-2.5 border-t border-liva-border/60 flex items-center justify-between gap-1.5">
-                            <span class="text-sm font-bold text-liva-dark">$34.00</span>
-                            <span class="text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                Stock: 6
-                            </span>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Size -->
+                            <div class="flex items-center justify-between text-xs mb-1.5">
+                                <span class="text-[11px] font-medium text-liva-muted tracking-wide">300 ml / 10.1 fl oz</span>
+                            </div>
+
+                            <!-- Title (Links to View Detail) -->
+                            <a href="/secound_skincare_liva/product/liva-shampoo/" class="block group/title">
+                                <h3 class="font-medium text-sm sm:text-base text-liva-dark line-clamp-1 group-hover/title:text-liva-sage transition-colors">
+                                    Liva Botanical Balancing Shampoo
+                                </h3>
+                            </a>
+
+                            <!-- Benefit / Key Ingredients -->
+                            <p class="text-xs text-liva-muted mt-1 line-clamp-1">
+                                Clarifying bergamot, rosemary &amp; cedarwood
+                            </p>
+                        </div>
+
+                        <!-- Price & Stock QTY on 1 Row -->
+                        <div class="mt-4 pt-3 border-t border-liva-border/60 flex items-center justify-between gap-2">
+                            <div class="flex items-baseline gap-1.5 shrink-0">
+                                <span class="text-base sm:text-lg font-bold text-liva-dark">
+                                    $34.00
+                                </span>
+                                                                <span class="text-xs sm:text-sm text-liva-muted line-through font-normal">
+                                    $42.00
+                                </span>
+                                                            </div>
+
+                            <!-- Stock Badge: Only stock:qty with green/amber dot -->
+                            <div class="shrink-0">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-amber-800 bg-amber-50/95 border-amber-200/90 border px-2.5 py-1 rounded-full shadow-2xs">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                                    <span>Stock: 6</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                                                <div class="product-slide-card w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
-                    <a href="/secound_skincare_liva/product/liva-body-wash/" class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
-                        <img src="/secound_skincare_liva/img/body-wash.webp" alt="Liva Revitalizing Gentle Body Wash" class="product-primary-img w-full h-full object-cover object-center" />
-                                                <img src="/secound_skincare_liva/img/campaign/your-moment.webp" alt="Liva Revitalizing Gentle Body Wash hover" class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" />
-                                            </a>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] text-liva-muted mb-1">300 ml / 10.1 fl oz</div>
-                            <a href="/secound_skincare_liva/product/liva-body-wash/" class="font-medium text-sm text-liva-dark hover:text-liva-sage transition-colors line-clamp-1 block">
-                                Liva Revitalizing Gentle Body Wash
-                            </a>
+                                                <div class="product-slide-card w-[280px] sm:w-[320px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300" data-product-id="liva-body-wash">
+                    
+                    <!-- FULL Image Showcase Container (Clickable -> View Detail) -->
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA]">
+                        <a href="/secound_skincare_liva/product/liva-body-wash/" class="absolute inset-0 z-0 block cursor-pointer">
+                            <!-- Primary FULL Product Image -->
+                            <img src="/secound_skincare_liva/img/body-wash.webp"
+                                 alt="Liva Revitalizing Gentle Body Wash"
+                                 class="product-primary-img w-full h-full object-cover object-center"
+                                 loading="lazy" />
+
+                                                        <!-- Secondary Alternate Image (Shown on Hover) -->
+                            <img src="/secound_skincare_liva/img/campaign/your-moment.webp"
+                                 alt="Liva Revitalizing Gentle Body Wash hover"
+                                 class="product-hover-img absolute inset-0 w-full h-full object-cover object-center"
+                                 loading="lazy" />
+                                                    </a>
+
+                        <!-- Top-Left Badge -->
+                        <span class="absolute top-3 left-3 z-10 text-[10px] tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full bg-white/95 text-liva-olive backdrop-blur-md border border-white/80 shadow-xs pointer-events-none">
+                            GENTLE CLEANSE
+                        </span>
+
+                        <!-- Top-Right Add to Favorite Button (Heart) -->
+                        <button type="button"
+                                onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.toggleFavorite('liva-body-wash')"
+                                class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
+                                aria-label="Toggle favorite">
+                            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Hover Quick Add to Bag Overlay Button -->
+                        <div class="absolute inset-x-3 bottom-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 hidden sm:block z-20">
+                            <button type="button"
+                                    onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.addToCart('liva-body-wash')"
+                                    class="w-full py-2.5 px-4 bg-liva-dark/95 backdrop-blur-md text-white text-xs tracking-wider uppercase font-semibold rounded-xl hover:bg-liva-olive transition-colors shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                <span>Add to Bag</span>
+                            </button>
                         </div>
-                        <div class="mt-3 pt-2.5 border-t border-liva-border/60 flex items-center justify-between gap-1.5">
-                            <span class="text-sm font-bold text-liva-dark">$32.00</span>
-                            <span class="text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                Stock: 18
-                            </span>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Size -->
+                            <div class="flex items-center justify-between text-xs mb-1.5">
+                                <span class="text-[11px] font-medium text-liva-muted tracking-wide">300 ml / 10.1 fl oz</span>
+                            </div>
+
+                            <!-- Title (Links to View Detail) -->
+                            <a href="/secound_skincare_liva/product/liva-body-wash/" class="block group/title">
+                                <h3 class="font-medium text-sm sm:text-base text-liva-dark line-clamp-1 group-hover/title:text-liva-sage transition-colors">
+                                    Liva Revitalizing Gentle Body Wash
+                                </h3>
+                            </a>
+
+                            <!-- Benefit / Key Ingredients -->
+                            <p class="text-xs text-liva-muted mt-1 line-clamp-1">
+                                Gentle coconut glucoside, neroli &amp; calendula
+                            </p>
+                        </div>
+
+                        <!-- Price & Stock QTY on 1 Row -->
+                        <div class="mt-4 pt-3 border-t border-liva-border/60 flex items-center justify-between gap-2">
+                            <div class="flex items-baseline gap-1.5 shrink-0">
+                                <span class="text-base sm:text-lg font-bold text-liva-dark">
+                                    $32.00
+                                </span>
+                                                                <span class="text-xs sm:text-sm text-liva-muted line-through font-normal">
+                                    $40.00
+                                </span>
+                                                            </div>
+
+                            <!-- Stock Badge: Only stock:qty with green/amber dot -->
+                            <div class="shrink-0">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50/95 border-emerald-200/90 border px-2.5 py-1 rounded-full shadow-2xs">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    <span>Stock: 18</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                                                <div class="product-slide-card w-[260px] sm:w-[280px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300">
-                    <a href="/secound_skincare_liva/product/liva-hair-mask/" class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA] block">
-                        <img src="/secound_skincare_liva/img/hair-mask.webp" alt="Liva Deep Cellular Repair Hair Mask" class="product-primary-img w-full h-full object-cover object-center" />
-                                                <img src="/secound_skincare_liva/img/campaign/hair-pair.webp" alt="Liva Deep Cellular Repair Hair Mask hover" class="product-hover-img absolute inset-0 w-full h-full object-cover object-center" />
-                                            </a>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] text-liva-muted mb-1">200 ml / 6.7 fl oz</div>
-                            <a href="/secound_skincare_liva/product/liva-hair-mask/" class="font-medium text-sm text-liva-dark hover:text-liva-sage transition-colors line-clamp-1 block">
-                                Liva Deep Cellular Repair Hair Mask
-                            </a>
+                                                <div class="product-slide-card w-[280px] sm:w-[320px] lg:w-[calc(25%-18px)] shrink-0 snap-start luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300" data-product-id="liva-hair-mask">
+                    
+                    <!-- FULL Image Showcase Container (Clickable -> View Detail) -->
+                    <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA]">
+                        <a href="/secound_skincare_liva/product/liva-hair-mask/" class="absolute inset-0 z-0 block cursor-pointer">
+                            <!-- Primary FULL Product Image -->
+                            <img src="/secound_skincare_liva/img/hair-mask.webp"
+                                 alt="Liva Deep Cellular Repair Hair Mask"
+                                 class="product-primary-img w-full h-full object-cover object-center"
+                                 loading="lazy" />
+
+                                                        <!-- Secondary Alternate Image (Shown on Hover) -->
+                            <img src="/secound_skincare_liva/img/campaign/hair-pair.webp"
+                                 alt="Liva Deep Cellular Repair Hair Mask hover"
+                                 class="product-hover-img absolute inset-0 w-full h-full object-cover object-center"
+                                 loading="lazy" />
+                                                    </a>
+
+                        <!-- Top-Left Badge -->
+                        <span class="absolute top-3 left-3 z-10 text-[10px] tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full bg-white/95 text-liva-olive backdrop-blur-md border border-white/80 shadow-xs pointer-events-none">
+                            INTENSIVE REPAIR
+                        </span>
+
+                        <!-- Top-Right Add to Favorite Button (Heart) -->
+                        <button type="button"
+                                onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.toggleFavorite('liva-hair-mask')"
+                                class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
+                                aria-label="Toggle favorite">
+                            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Hover Quick Add to Bag Overlay Button -->
+                        <div class="absolute inset-x-3 bottom-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 hidden sm:block z-20">
+                            <button type="button"
+                                    onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.addToCart('liva-hair-mask')"
+                                    class="w-full py-2.5 px-4 bg-liva-dark/95 backdrop-blur-md text-white text-xs tracking-wider uppercase font-semibold rounded-xl hover:bg-liva-olive transition-colors shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                <span>Add to Bag</span>
+                            </button>
                         </div>
-                        <div class="mt-3 pt-2.5 border-t border-liva-border/60 flex items-center justify-between gap-1.5">
-                            <span class="text-sm font-bold text-liva-dark">$42.00</span>
-                            <span class="text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                Stock: 4
-                            </span>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Size -->
+                            <div class="flex items-center justify-between text-xs mb-1.5">
+                                <span class="text-[11px] font-medium text-liva-muted tracking-wide">200 ml / 6.7 fl oz</span>
+                            </div>
+
+                            <!-- Title (Links to View Detail) -->
+                            <a href="/secound_skincare_liva/product/liva-hair-mask/" class="block group/title">
+                                <h3 class="font-medium text-sm sm:text-base text-liva-dark line-clamp-1 group-hover/title:text-liva-sage transition-colors">
+                                    Liva Deep Cellular Repair Hair Mask
+                                </h3>
+                            </a>
+
+                            <!-- Benefit / Key Ingredients -->
+                            <p class="text-xs text-liva-muted mt-1 line-clamp-1">
+                                Murumuru butter, amino acids &amp; camellia extract
+                            </p>
+                        </div>
+
+                        <!-- Price & Stock QTY on 1 Row -->
+                        <div class="mt-4 pt-3 border-t border-liva-border/60 flex items-center justify-between gap-2">
+                            <div class="flex items-baseline gap-1.5 shrink-0">
+                                <span class="text-base sm:text-lg font-bold text-liva-dark">
+                                    $42.00
+                                </span>
+                                                                <span class="text-xs sm:text-sm text-liva-muted line-through font-normal">
+                                    $52.00
+                                </span>
+                                                            </div>
+
+                            <!-- Stock Badge: Only stock:qty with green/amber dot -->
+                            <div class="shrink-0">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-amber-800 bg-amber-50/95 border-amber-200/90 border px-2.5 py-1 rounded-full shadow-2xs">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                                    <span>Stock: 4</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1098,6 +1341,23 @@
                     btn.classList.remove('border-rose-200', 'bg-rose-50/50');
                 }
             }
+
+            // Sync favorite hearts on related product cards
+            document.querySelectorAll('#slider-related-products [data-product-id]').forEach(card => {
+                const pid = card.getAttribute('data-product-id');
+                const isCardFav = window.livaApp.favorites.includes(pid);
+                const heartBtn = card.querySelector('button[aria-label="Toggle favorite"]');
+                const heartSvg = heartBtn ? heartBtn.querySelector('svg') : null;
+                if (heartBtn && heartSvg) {
+                    if (isCardFav) {
+                        heartBtn.className = 'absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-rose-500 cursor-pointer';
+                        heartSvg.className = 'w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-rose-500 text-rose-500 scale-110';
+                    } else {
+                        heartBtn.className = 'absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer';
+                        heartSvg.className = 'w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current';
+                    }
+                }
+            });
         }
 
         function switchDetailTab(tabKey, btn) {
@@ -1155,6 +1415,16 @@
             if (isSetProduct) {
                 initSetItemsSlider();
                 updateSetCustomizerUI();
+            }
+
+            // Hook into favorite toggle to keep hearts updated in real time
+            if (window.livaApp && !window._favHookInstalled) {
+                window._favHookInstalled = true;
+                const origToggle = window.livaApp.toggleFavorite.bind(window.livaApp);
+                window.livaApp.toggleFavorite = function(pid) {
+                    origToggle(pid);
+                    syncDetailFavoriteState();
+                };
             }
         });
     </script>
@@ -1844,7 +2114,7 @@
 </div>
 
     <!-- Brand Footer -->
-    <footer class="bg-liva-dark text-white pt-16 pb-12 border-t border-white/10">
+    <footer id="footer" class="bg-liva-dark text-white pt-16 pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Main Footer Columns -->

@@ -32,28 +32,14 @@
                     {{ __('skincare.nav_all_products') ?? 'All Products' }}
                 </button>
                 
-                <!-- Single Products -->
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('single')" 
-                        class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 cursor-pointer" 
-                        data-i18n="navSingleProduct">
-                    {{ __('skincare.nav_single_product') }}
-                </button>
-
-                <!-- Set Products (2+) -->
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('sets')" 
-                        class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 cursor-pointer inline-flex items-center gap-1.5" 
-                        data-i18n="navSetProduct">
-                    <span>{{ __('skincare.nav_set_product') }}</span>
-                    <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-liva-stone text-liva-olive font-bold">2+</span>
-                </button>
-
-                <a href="#spotlight" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navSpotlight">
-                    {{ __('skincare.nav_spotlight') }}
+                <!-- About -->
+                <a href="/#spotlight" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navAbout">
+                    {{ __('skincare.nav_about') ?? 'About' }}
                 </a>
-                <a href="#results" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navReviews">
-                    {{ __('skincare.nav_reviews') }}
+
+                <!-- Contact -->
+                <a href="/#footer" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navContact">
+                    {{ __('skincare.nav_contact') ?? 'Contact' }}
                 </a>
             </nav>
 
@@ -180,27 +166,20 @@
                 {{ __('skincare.nav_all_products') ?? 'All Products' }}
             </button>
             
-            <!-- Single Products -->
-            <button type="button" 
-                    onclick="window.livaApp.openAllProductsModal('single'); document.getElementById('mobile-menu').classList.add('hidden')" 
-                    class="w-full text-left block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone cursor-pointer" 
-                    data-i18n="navSingleProduct">
-                {{ __('skincare.nav_single_product') }}
-            </button>
-
-            <!-- Set Products (2+) -->
-            <button type="button" 
-                    onclick="window.livaApp.openAllProductsModal('sets'); document.getElementById('mobile-menu').classList.add('hidden')" 
-                    class="w-full text-left flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone cursor-pointer">
-                <span data-i18n="navSetProduct">{{ __('skincare.nav_set_product') }}</span>
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-liva-stone text-liva-olive font-bold">2+ items</span>
-            </button>
-
-            <a href="#spotlight" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navSpotlight">
-                {{ __('skincare.nav_spotlight') }}
+            <!-- About -->
+            <a href="/#spotlight" 
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
+               data-i18n="navAbout">
+                {{ __('skincare.nav_about') ?? 'About' }}
             </a>
-            <a href="#results" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navReviews">
-                {{ __('skincare.nav_reviews') }}
+
+            <!-- Contact -->
+            <a href="/#footer" 
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
+               data-i18n="navContact">
+                {{ __('skincare.nav_contact') ?? 'Contact' }}
             </a>
             <div class="pt-2">
                 <button type="button" 

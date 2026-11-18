@@ -14,6 +14,7 @@ return [
     'nav_rituals' => 'Rituals',
     'nav_philosophy' => 'Philosophy',
     'nav_reviews' => 'Reviews',
+    'nav_about' => 'About',
     'nav_contact' => 'Contact',
     'nav_search' => 'Search botanicals, cleansers, serums...',
     'shop_now' => 'Shop Now',
