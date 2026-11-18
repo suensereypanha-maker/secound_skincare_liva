@@ -6,8 +6,6 @@
             
             <!-- Brand Column (Left) -->
             <div class="lg:col-span-4 space-y-4">
-                <x-logo height="h-10 sm:h-12" variant="light" />
-                
                 <p class="text-xs sm:text-sm text-[#A8B3AA] max-w-sm leading-relaxed" data-i18n="footerBrandDesc">
                     {{ __('skincare.footer_brand_desc') }}
                 </p>
