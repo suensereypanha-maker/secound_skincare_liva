@@ -486,10 +486,6 @@
     </section>
 
 
-    <!-- ============================================================== -->
-    <!-- SECTION: Sage Green Discount Newsletter Banner (from UX Wireframe) -->
-    <!-- ============================================================== -->
-  
 
     <!-- Page Specific Script for Gallery Switcher, Size Selector, Price Base Size & Favorite State -->
     <script>

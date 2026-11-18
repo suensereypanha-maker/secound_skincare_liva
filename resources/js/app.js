@@ -1,4 +1,4 @@
-import { translations, allProducts, newArrivalsProducts, promotionsProducts, topProductsList } from './i18n.js';
+import { translations, allProducts, newArrivalsProducts, promotionsProducts, topProductsList, getBasePath } from './i18n.js';
 
 class LivaApp {
     constructor() {
@@ -154,11 +154,11 @@ class LivaApp {
 
             return `
             <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-liva-border shadow-2xs group hover:border-liva-olive/50 transition-all">
-                <a href="/product/${product.id}" class="w-16 h-16 rounded-xl overflow-hidden bg-[#F4F1EA] shrink-0 border border-liva-border/60 block">
+                <a href="${getBasePath()}/product/${product.id}/" class="w-16 h-16 rounded-xl overflow-hidden bg-[#F4F1EA] shrink-0 border border-liva-border/60 block">
                     <img src="${product.image}" alt="${name}" class="w-full h-full object-cover" />
                 </a>
                 <div class="flex-1 min-w-0">
-                    <a href="/product/${product.id}" class="font-medium text-xs sm:text-sm text-liva-dark truncate block hover:text-liva-olive transition-colors">
+                    <a href="${getBasePath()}/product/${product.id}/" class="font-medium text-xs sm:text-sm text-liva-dark truncate block hover:text-liva-olive transition-colors">
                         ${name}
                     </a>
                     <div class="flex items-center gap-2 mt-0.5 text-[11px] text-liva-muted">
@@ -456,7 +456,7 @@ class LivaApp {
                 const itemsHtml = matches.slice(0, 5).map((p) => {
                     const name = isKm ? p.nameKm : p.nameEn;
                     return `
-                    <a href="/product/${p.id}" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-liva-stone/80 transition-colors">
+                    <a href="${getBasePath()}/product/${p.id}/" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-liva-stone/80 transition-colors">
                         <img src="${p.image}" alt="${name}" class="w-10 h-10 object-cover rounded-lg bg-[#FAF8F5] border border-liva-border/60 shrink-0" />
                         <div class="min-w-0 flex-1">
                             <h5 class="text-xs font-semibold text-liva-dark truncate">${name}</h5>
@@ -912,7 +912,7 @@ class LivaApp {
             sizeKm: `ឈុតផលិតផល ${count} មុខ (ចុះ ១៥%)`,
             detailsEn: namesEn,
             detailsKm: namesKm,
-            image: '/img/ritual-duo.webp',
+            image: getBasePath() + '/img/ritual-duo.webp',
             price: finalPrice,
             originalPrice: subtotal,
             qty: 1
@@ -1139,7 +1139,7 @@ class LivaApp {
             <!-- FULL Image Showcase Container (Clickable -> View Detail) -->
             <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F4F1EA]">
                 
-                <a href="/product/${product.id}" class="absolute inset-0 z-0 block cursor-pointer">
+                <a href="${getBasePath()}/product/${product.id}/" class="absolute inset-0 z-0 block cursor-pointer">
                     <!-- Primary FULL Product Image -->
                     <img src="${product.image}"
                          alt="${name}"
@@ -1191,7 +1191,7 @@ class LivaApp {
                     </div>
 
                     <!-- Title (Links to View Detail) -->
-                    <a href="/product/${product.id}" class="block group/title">
+                    <a href="${getBasePath()}/product/${product.id}/" class="block group/title">
                         <h3 class="font-medium text-sm sm:text-base text-liva-dark line-clamp-1 group-hover/title:text-liva-sage transition-colors">
                             ${name}
                         </h3>
@@ -1512,19 +1512,19 @@ class LivaApp {
                 name: 'LIVA BOTANICAL SKINCARE CO., LTD.',
                 num: '001 829 344 (USD)',
                 label: 'ABA BANK',
-                logo: '/img/payments/aba.png'
+                logo: getBasePath() + '/img/payments/aba.png'
             },
             acleda: {
                 name: 'LIVA BOTANICAL CO.',
                 num: '0100-298374-12 (USD)',
                 label: 'ACLEDA BANK',
-                logo: '/img/payments/acleda.png'
+                logo: getBasePath() + '/img/payments/acleda.png'
             },
             wing: {
                 name: 'LIVA SKINCARE',
                 num: '0389 4412 (USD)',
                 label: 'WING BANK',
-                logo: '/img/payments/wing.jpg'
+                logo: getBasePath() + '/img/payments/wing.jpg'
             }
         };
 

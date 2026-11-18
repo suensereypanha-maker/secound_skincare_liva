@@ -20,7 +20,7 @@
 
             <!-- Desktop Navigation Menu (Center) - Never wraps to 2 lines -->
             <nav class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-[13px] tracking-wider uppercase font-medium text-liva-charcoal shrink-0">
-                <a href="#hero" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navHome">
+                <a href="/" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navHome">
                     {{ __('skincare.nav_home') }}
                 </a>
 

@@ -370,8 +370,14 @@ export const translations = {
     }
 };
 
+// Base Path detection for local dev vs GitHub Pages
+export const getBasePath = () => {
+    if (typeof window === 'undefined') return '';
+    return window.location.pathname.includes('/secound_skincare_liva') ? '/secound_skincare_liva' : '';
+};
+
 // Master Products Catalog
-export const allProducts = [
+const rawProducts = [
     {
         id: "liva-body-lotion",
         category: "body",
@@ -553,6 +559,16 @@ export const allProducts = [
         size: "2-Piece Set"
     }
 ];
+
+export const allProducts = rawProducts.map((p) => {
+    const base = getBasePath();
+    if (!base) return p;
+    return {
+        ...p,
+        image: p.image && p.image.startsWith('/') ? base + p.image : p.image,
+        hoverImage: p.hoverImage && p.hoverImage.startsWith('/') ? base + p.hoverImage : p.hoverImage,
+    };
+});
 
 // Curated rows for the sliders
 export const newArrivalsProducts = [
