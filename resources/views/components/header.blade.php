@@ -121,14 +121,6 @@
                     </span>
                 </button>
 
-                <!-- Header CTA Button (from Wireframe: [Button]) -->
-                <button type="button" 
-                   onclick="window.livaApp.openAllProductsModal('all')"
-                   class="hidden md:inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs tracking-wider uppercase font-semibold text-white bg-liva-dark hover:bg-liva-olive rounded-full transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
-                   data-i18n="shopNow">
-                    {{ __('skincare.shop_now') }}
-                </button>
-
                 <!-- Mobile Hamburger Menu Button -->
                 <button type="button" 
                         id="mobile-menu-toggle"
@@ -181,14 +173,6 @@
                data-i18n="navContact">
                 {{ __('skincare.nav_contact') ?? 'Contact' }}
             </a>
-            <div class="pt-2">
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('all'); document.getElementById('mobile-menu').classList.add('hidden')"
-                        class="block text-center w-full py-2.5 px-4 bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider rounded-xl cursor-pointer" 
-                        data-i18n="shopNow">
-                    {{ __('skincare.shop_now') }}
-                </button>
-            </div>
         </div>
     </div>
 </header>
