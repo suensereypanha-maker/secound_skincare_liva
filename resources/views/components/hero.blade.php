@@ -20,7 +20,7 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent sm:from-black/70 sm:via-black/30"></div>
 
                 <!-- Content: Title and Some Description Only -->
-                <div class="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
+                <div class="relative z-10 max-w-7xl mx-auto w-full px-14 sm:px-16">
                     <div class="max-w-xl lg:max-w-2xl space-y-3 sm:space-y-4 text-white">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.14] tracking-tight drop-shadow-md" data-i18n="slide1Title">
                             {{ __('skincare.slide1_title') ?? 'Pure Botanical Alchemy for Radiant, Timeless Skin' }}
@@ -47,7 +47,7 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent sm:from-black/70 sm:via-black/30"></div>
 
                 <!-- Content: Title and Some Description Only -->
-                <div class="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
+                <div class="relative z-10 max-w-7xl mx-auto w-full px-14 sm:px-16">
                     <div class="max-w-xl lg:max-w-2xl space-y-3 sm:space-y-4 text-white">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.14] tracking-tight drop-shadow-md" data-i18n="slide2Title">
                             {{ __('skincare.slide2_title') ?? 'Patented Phytotech for Deep Cellular Hydration' }}
@@ -74,7 +74,7 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent sm:from-black/70 sm:via-black/30"></div>
 
                 <!-- Content: Title and Some Description Only -->
-                <div class="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
+                <div class="relative z-10 max-w-7xl mx-auto w-full px-14 sm:px-16">
                     <div class="max-w-xl lg:max-w-2xl space-y-3 sm:space-y-4 text-white">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.14] tracking-tight drop-shadow-md" data-i18n="slide3Title">
                             {{ __('skincare.slide3_title') ?? 'Mindful Everyday Rituals for Body and Scalp' }}
@@ -101,7 +101,7 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent sm:from-black/70 sm:via-black/30"></div>
 
                 <!-- Content: Title and Some Description Only -->
-                <div class="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
+                <div class="relative z-10 max-w-7xl mx-auto w-full px-14 sm:px-16">
                     <div class="max-w-xl lg:max-w-2xl space-y-3 sm:space-y-4 text-white">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.14] tracking-tight drop-shadow-md" data-i18n="slide4Title">
                             {{ __('skincare.slide4_title') ?? 'Radiant Skin Anywhere Your Journey Leads' }}
@@ -133,18 +133,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7"/>
             </svg>
         </button>
-
-        <!-- Bottom Pagination Pill Bar: Dots & Counter -->
-        <div class="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20 bg-black/45 backdrop-blur-md px-4 sm:px-5 py-2 rounded-full border border-white/20 text-white shadow-lg">
-            <div class="flex items-center gap-1.5" id="hero-slide-dots">
-                <button type="button" class="hero-dot w-8 h-2 rounded-full bg-white transition-all duration-300 cursor-pointer" data-dot-index="0" aria-label="Slide 1"></button>
-                <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-dot-index="1" aria-label="Slide 2"></button>
-                <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-dot-index="2" aria-label="Slide 3"></button>
-                <button type="button" class="hero-dot w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer" data-dot-index="3" aria-label="Slide 4"></button>
-            </div>
-            <div class="h-3.5 w-[1px] bg-white/30"></div>
-            <span id="hero-slide-counter" class="text-[11px] sm:text-xs font-bold text-white/90 tracking-widest select-none">01 / 04</span>
-        </div>
 
     </div>
 

@@ -29,9 +29,6 @@
         {{ $slot }}
     </main>
 
-    <!-- All Products Catalog Modal (Full screen dialog with filter tabs) -->
-    <x-all-products-modal />
-
     <!-- Slide-Out Shopping Bag Drawer -->
     <x-cart-drawer />
 

@@ -457,53 +457,15 @@ class LivaApp {
     }
 
     openAllProductsModal(category = 'all') {
-        const modal = document.getElementById('all-products-modal');
-        const backdrop = document.getElementById('all-products-backdrop');
-        if (!modal || !backdrop) return;
-
-        this.currentModalCategory = category;
-
-        // Highlight active filter button in modal
-        const container = document.getElementById('modal-category-filters');
-        if (container) {
-            container.querySelectorAll('.modal-filter-btn').forEach((btn) => {
-                const onclickAttr = btn.getAttribute('onclick') || '';
-                if (onclickAttr.includes(`'${category}'`)) {
-                    btn.className = 'modal-filter-btn px-3.5 py-1.5 rounded-full bg-liva-dark text-white font-semibold shadow-xs transition-all cursor-pointer';
-                } else {
-                    btn.className = 'modal-filter-btn px-3.5 py-1.5 rounded-full text-liva-charcoal hover:text-liva-dark transition-all cursor-pointer';
-                }
-            });
-        }
-
-        this.renderModalProducts(category);
-
-        backdrop.classList.remove('hidden');
-        modal.classList.remove('hidden');
-
-        setTimeout(() => {
-            backdrop.classList.add('opacity-100');
-            modal.classList.remove('opacity-0', 'scale-95');
-            modal.classList.add('opacity-100', 'scale-100');
-        }, 10);
-
-        document.body.classList.add('overflow-hidden');
+        const base = getBasePath();
+        const url = category && category !== 'all'
+            ? `${base}/products?filter=${encodeURIComponent(category)}`
+            : `${base}/products`;
+        window.location.href = url;
     }
 
     closeAllProductsModal() {
-        const modal = document.getElementById('all-products-modal');
-        const backdrop = document.getElementById('all-products-backdrop');
-        if (!modal || !backdrop) return;
-
-        backdrop.classList.remove('opacity-100');
-        modal.classList.remove('opacity-100', 'scale-100');
-        modal.classList.add('opacity-0', 'scale-95');
-
-        setTimeout(() => {
-            backdrop.classList.add('hidden');
-            modal.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }, 300);
+        // Legacy no-op: All Products now uses a dedicated page (/products)
     }
 
     toggleModalCategoryDropdown() {
@@ -657,13 +619,16 @@ class LivaApp {
         const navDropdown = document.getElementById('navbar-search-dropdown');
         if (navDropdown) navDropdown.classList.add('hidden');
 
-        this.openAllProductsModal('all');
-        const modalInput = document.getElementById('modal-search-input');
-        if (modalInput) {
-            modalInput.value = query || '';
-            this.handleModalSearch(query || '');
-            modalInput.focus();
+        const q = (query || '').trim();
+        if (window.livaCatalogPage) {
+            const catalogInput = document.getElementById('catalog-search-input');
+            if (catalogInput) catalogInput.value = q;
+            window.livaCatalogPage.handleSearch(q);
+            return;
         }
+
+        const base = getBasePath();
+        window.location.href = q ? `${base}/products?q=${encodeURIComponent(q)}` : `${base}/products`;
     }
 
     filterModalProducts(category, btnElement) {
@@ -1290,7 +1255,7 @@ class LivaApp {
 
         const widthClass = isGridCard
             ? 'w-full'
-            : 'w-[280px] sm:w-[320px] lg:w-[calc(25%-18px)] shrink-0 snap-start';
+            : 'w-[calc(50%-6px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] shrink-0 snap-start';
 
         return `
         <div class="product-slide-card ${widthClass} luxury-card group rounded-2xl overflow-hidden flex flex-col justify-between bg-white border border-liva-border/80 shadow-xs hover:shadow-xl transition-all duration-300" data-product-id="${product.id}">
@@ -1389,23 +1354,53 @@ class LivaApp {
     }
 
     renderAllSliders() {
-        // Slider 1: New Arrivals
-        const containerNew = document.getElementById('slider-new-arrivals');
-        if (containerNew) {
-            containerNew.innerHTML = this.newArrivals.map((p) => this.renderCard(p, false)).join('');
-        }
+        this.syncBladeProductCards();
+    }
 
-        // Slider 2: Promotions
-        const containerPromo = document.getElementById('slider-promotions');
-        if (containerPromo) {
-            containerPromo.innerHTML = this.promotions.map((p) => this.renderCard(p, true)).join('');
-        }
+    syncBladeProductCards() {
+        const isKm = this.currentLang === 'km';
+        const t = translations[this.currentLang] || translations.en;
 
-        // Slider 3: Top Products
-        const containerTop = document.getElementById('slider-top-products');
-        if (containerTop) {
-            containerTop.innerHTML = this.topProducts.map((p) => this.renderCard(p, false)).join('');
-        }
+        document.querySelectorAll('.product-slide-card[data-product-id]').forEach((card) => {
+            const productId = card.getAttribute('data-product-id');
+            if (!productId) return;
+
+            const isFav = this.favorites.includes(productId);
+            const favBtn = card.querySelector('.js-favorite-btn');
+            const favIcon = card.querySelector('.js-favorite-icon');
+            if (favBtn && favIcon) {
+                favBtn.title = isFav ? t.removeFromFavorites : t.addToFavorites;
+                if (isFav) {
+                    favBtn.classList.add('text-rose-500', 'bg-white');
+                    favBtn.classList.remove('text-liva-muted', 'bg-white/90');
+                    favIcon.classList.add('fill-rose-500', 'text-rose-500', 'scale-110');
+                    favIcon.classList.remove('fill-none');
+                } else {
+                    favBtn.classList.remove('text-rose-500', 'bg-white');
+                    favBtn.classList.add('text-liva-muted', 'bg-white/90');
+                    favIcon.classList.remove('fill-rose-500', 'text-rose-500', 'scale-110');
+                    favIcon.classList.add('fill-none');
+                }
+            }
+
+            const badgeEl = card.querySelector('.js-card-badge');
+            if (badgeEl) {
+                const text = isKm ? badgeEl.dataset.km : badgeEl.dataset.en;
+                if (text) badgeEl.textContent = text;
+            }
+
+            const nameEl = card.querySelector('.js-card-name');
+            if (nameEl) {
+                const text = isKm ? nameEl.dataset.km : nameEl.dataset.en;
+                if (text) nameEl.textContent = text;
+            }
+
+            const benefitEl = card.querySelector('.js-card-benefit');
+            if (benefitEl) {
+                const text = isKm ? benefitEl.dataset.km : benefitEl.dataset.en;
+                if (text) benefitEl.textContent = text;
+            }
+        });
     }
 
     addToCart(productId, qty = 1, size = null, price = null) {

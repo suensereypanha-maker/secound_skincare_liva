@@ -6,7 +6,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title ?? 'LIVA Botanical Skincare | Pure Organic Beauty & Everyday Rituals' }}</title>
-    <meta name="description" content="LIVA is a mindful botanical personal-care lab crafting pure, clinically backed skin, hair, and body rituals inspired by nature.">
+    <meta name="description" content="{{ $description ?? 'LIVA is a mindful botanical personal-care lab crafting pure, clinically backed skin, hair, and body rituals inspired by nature.' }}">
+
+    <!-- Open Graph / Social Share Metadata -->
+    <meta property="og:type" content="{{ $ogType ?? 'website' }}">
+    <meta property="og:title" content="{{ $ogTitle ?? ($title ?? 'LIVA Botanical Skincare | Pure Organic Beauty & Everyday Rituals') }}">
+    <meta property="og:description" content="{{ $ogDescription ?? ($description ?? 'LIVA is a mindful botanical personal-care lab crafting pure, clinically backed skin, hair, and body rituals inspired by nature.') }}">
+    @if(!empty($ogImage))
+    <meta property="og:image" content="{{ $ogImage }}">
+    @endif
+    <meta property="og:url" content="{{ url()->current() }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
@@ -28,9 +37,6 @@
     <main class="flex-1">
         {{ $slot }}
     </main>
-
-    <!-- All Products Catalog Modal (Full screen dialog with filter tabs) -->
-    <x-all-products-modal />
 
     <!-- Slide-Out Shopping Bag Drawer -->
     <x-cart-drawer />

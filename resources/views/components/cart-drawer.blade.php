@@ -39,7 +39,7 @@
             <p class="text-xs text-liva-muted max-w-xs mx-auto mb-6 leading-relaxed" data-i18n="cartEmptyDesc">
                 Explore our botanical formulations to begin your daily ritual.
             </p>
-            <a href="#collection" onclick="window.livaApp.toggleCart(false)" class="inline-flex px-6 py-2.5 rounded-full bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider hover:bg-liva-olive transition-colors" data-i18n="exploreCollection">
+            <a href="{{ route('products.index') }}" onclick="window.livaApp.toggleCart(false)" class="inline-flex px-6 py-2.5 rounded-full bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider hover:bg-liva-olive transition-colors" data-i18n="exploreCollection">
                 Explore Collection
             </a>
         </div>

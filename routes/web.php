@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -11,10 +12,15 @@ Route::get('/', function (Request $request) {
         $normalized = ($locale === 'kh') ? 'km' : $locale;
         App::setLocale($normalized);
     }
+
     return view('welcome');
 })->name('home');
 
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
 
 Route::get('/locale/{lang}', function (string $lang, Request $request) {
     if (in_array($lang, ['en', 'km', 'kh'])) {
@@ -23,5 +29,6 @@ Route::get('/locale/{lang}', function (string $lang, Request $request) {
         cookie()->queue(cookie('liva_locale', $normalized, 60 * 24 * 365));
         App::setLocale($normalized);
     }
+
     return redirect()->back();
 })->name('locale.switch');

@@ -28,10 +28,10 @@
                     Shop
                 </h4>
                 <ul class="space-y-2 text-xs text-[#A8B3AA]">
-                    <li><a href="#collection" class="hover:text-white transition-colors" data-i18n="tabAll">All Essentials</a></li>
-                    <li><a href="#collection" class="hover:text-white transition-colors" data-i18n="tabBody">Body Care</a></li>
-                    <li><a href="#collection" class="hover:text-white transition-colors" data-i18n="tabHair">Hair Care</a></li>
-                    <li><a href="#collection" class="hover:text-white transition-colors" data-i18n="tabSets">Ritual Sets</a></li>
+                    <li><a href="{{ route('products.index') }}" class="hover:text-white transition-colors" data-i18n="tabAll">All Essentials</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'body']) }}" class="hover:text-white transition-colors" data-i18n="tabBody">Body Care</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'hair']) }}" class="hover:text-white transition-colors" data-i18n="tabHair">Hair Care</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'sets']) }}" class="hover:text-white transition-colors" data-i18n="tabSets">Ritual Sets</a></li>
                 </ul>
             </div>
 
@@ -41,10 +41,10 @@
                     About LIVA
                 </h4>
                 <ul class="space-y-2 text-xs text-[#A8B3AA]">
-                    <li><a href="#philosophy" class="hover:text-white transition-colors" data-i18n="banner1Tag">Philosophy</a></li>
-                    <li><a href="#spotlight" class="hover:text-white transition-colors" data-i18n="spotlightTag">Signature Formula</a></li>
-                    <li><a href="#results" class="hover:text-white transition-colors" data-i18n="resultsTag">Clinical Proof</a></li>
-                    <li><a href="#hero" class="hover:text-white transition-colors" data-i18n="feature4Title">Sustainability</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-white transition-colors" data-i18n="banner1Tag">Philosophy</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-white transition-colors" data-i18n="spotlightTag">Signature Formula</a></li>
+                    <li><a href="/#results" class="hover:text-white transition-colors" data-i18n="resultsTag">Clinical Proof</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-white transition-colors" data-i18n="feature4Title">Sustainability</a></li>
                 </ul>
             </div>
 
@@ -54,9 +54,9 @@
                     Client Care
                 </h4>
                 <ul class="space-y-2 text-xs text-[#A8B3AA]">
-                    <li><a href="#hero" class="hover:text-white transition-colors" data-i18n="linkFaq">Frequently Asked Questions</a></li>
-                    <li><a href="#hero" class="hover:text-white transition-colors" data-i18n="linkShipping">Shipping & Global Delivery</a></li>
-                    <li><a href="#hero" class="hover:text-white transition-colors" data-i18n="linkContactUs">Contact Concierge</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors" data-i18n="linkFaq">Frequently Asked Questions</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors" data-i18n="linkShipping">Shipping & Global Delivery</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors" data-i18n="linkContactUs">Contact Concierge</a></li>
                 </ul>
                 <div class="pt-2 text-xs text-[#717D75]">
                     concierge@liva-skincare.com

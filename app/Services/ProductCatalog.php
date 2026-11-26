@@ -39,6 +39,8 @@ class ProductCatalog
                 ],
                 'how_to_use_en' => 'Massage generously onto clean, warm skin following your bath or shower. Pay special attention to elbows, knees, and dry areas. For optimal moisture retention, apply within three minutes of bathing.',
                 'how_to_use_km' => 'លាប និងម៉ាស្សាថ្នមៗលើស្បែកស្អាតក្រោយពេលងូតទឹក។ ផ្តោតជាពិសេសលើកែងដៃ ជង្គង់ និងកន្លែងស្បែកស្ងួត។ ដើម្បីទទួលបានសំណើមខ្ពស់បំផុត គួរលាបក្នុងរយៈពេល ៣ នាទីបន្ទាប់ពីងូតទឹករួច។',
+                'description_en' => 'A velvety, fast-absorbing botanical body emulsion crafted to replenish dehydrated skin without heavy residue. Cold-pressed camellia seed oil, unrefined shea butter, and bio-identical rice ceramides wrap the body in lasting comfort while uplifting notes of bergamot and cedarwood leave skin softly scented.',
+                'description_km' => 'គ្រីមផ្តល់សំណើមរាងកាយសាច់ទន់ម៉ត់ ជ្រាបចូលស្បែកលឿនដោយមិនស្អិត។ ផ្សំពីប្រេងគ្រាប់ផ្កាកាមេលីយ៉ា ខ្លាញ់គ្រាប់សៀ និងសេរ៉ាម៉ាយអង្ករ ជួយចិញ្ចឹម និងរក្សាសំណើមស្បែកពេញមួយថ្ងៃ ជាមួយក្លិនក្រអូបស្រាលបែបធម្មជាតិ។',
                 'benefits_en' => 'Provides 24-hour deep cellular hydration without greasiness. Fortifies natural skin barrier with bio-compatible lipids and antioxidant camellia seed oil, leaving a radiant satin glow.',
                 'benefits_km' => 'ផ្តល់សំណើមយ៉ាងជ្រៅដល់ស្រទាប់កោសិកាស្បែក ២៤ ម៉ោង ដោយមិនស្អិត។ ពង្រឹងរបាំងការពារស្បែកដោយសារធាតុខ្លាញ់រុក្ខជាតិ និងប្រេងផ្កាកាមេលីយ៉ា ជួយឱ្យស្បែកភ្លឺថ្លាទន់រលោង។',
                 'ingredients_en' => 'Aqua (Purified Spring Water), Camellia Oleifera Seed Oil, Butyrospermum Parkii (Shea Butter), Rice Bran Ceramide, Vegetable Glycerin, Niacinamide (Vitamin B3), Squalane (Olive-Derived), Bergamot Peel Oil, Cedarwood Bark Oil.',
@@ -78,6 +80,8 @@ class ProductCatalog
                 ],
                 'how_to_use_en' => 'Pump 2–3 times into palms and emulsify with warm water. Massage thoroughly into wet scalp to activate the rich, micro-fine botanical foam. Rinse thoroughly and follow with Silk Infusion Conditioner.',
                 'how_to_use_km' => 'ច្របាច់ ២-៣ ដំណក់លើបាតដៃ រួចលាយជាមួយទឹកក្តៅឧណ្ហៗ។ ម៉ាស្សាឱ្យសព្វស្បែកក្បាលសើម ដើម្បីបង្កើតពពុះរុក្ខជាតិទន់ម៉ត់។ លាងទឹកឱ្យស្អាត រួចប្រើក្រែមបន្ទន់សក់ Silk Infusion Conditioner។',
+                'description_en' => 'A gentle, sulfate-free clarifying cleanser formulated to purify the scalp without stripping natural protective oils. Organic rosemary and bergamot stimulate scalp vitality while provitamin B5 and wheat protein leave strands soft, airy, and balanced.',
+                'description_km' => 'សាប៊ូកក់សក់ធម្មជាតិគ្មានជាតិស៊ុលហ្វាត ជួយសម្អាតស្បែកក្បាលយ៉ាងទន់ភ្លន់ដោយមិនធ្វើឱ្យស្ងួត។ ចម្រាញ់ពីផ្កាកុលាបព្រៃ ប៊ឺហ្គាម៉ុត និងប្រូវីតាមីន B5 ជួយឱ្យសក់រឹងមាំ ទន់រលោង និងមានទម្ងន់។',
                 'benefits_en' => 'Restores sebum balance to the scalp while strengthening hair follicles from root to tip. Leaves hair weightlessly bouncy, lustrous, and gently scented with grounding botanical oils.',
                 'benefits_km' => 'បង្កើតតុល្យភាពជាតិខ្លាញ់លើស្បែកក្បាល និងពង្រឹងគល់សក់ឱ្យរឹងមាំពីឫសដល់ចុង។ ធ្វើឱ្យសក់ស្រាលទន់រលោង មានទម្ងន់ និងមានក្លិនក្រអូបបែបធម្មជាតិ។',
                 'ingredients_en' => 'Aloe Barbadensis Leaf Juice, Decyl Glucoside, Rosmarinus Officinalis (Rosemary) Extract, Citrus Bergamia (Bergamot) Fruit Oil, Cedrus Atlantica (Cedarwood) Bark Oil, Hydrolyzed Wheat Protein, Provitamin B5 (Panthenol).',
@@ -117,6 +121,8 @@ class ProductCatalog
                 ],
                 'how_to_use_en' => 'Apply through mid-lengths and ends of clean, damp hair. Comb through gently with fingers or wide-tooth comb. Leave for 2–3 minutes before rinsing with cool water.',
                 'how_to_use_km' => 'លាបលើប្រវែងកណ្តាល និងចុងសក់ដែលសើមស្អាត។ ប្រើម្រាមដៃសិតថ្នមៗ។ ទុកចោល ២-៣ នាទី រួចលាងទឹកត្រជាក់ចេញ។',
+                'description_en' => 'A weightless, silicone-free conditioning treatment powered by hydrolyzed oat protein, olive squalane, and cold-pressed argan oil. Smooths raised cuticles, detangles effortlessly, and shields hair against humidity and heat.',
+                'description_km' => 'ក្រែមបន្ទន់សក់គ្មានជាតិស៊ីលីខន ផ្សំពីប្រូតេអ៊ីនស្រូវសាលី ស្គ្វាលែនពីអូលីវ និងប្រេងអាហ្កានសុទ្ធ។ ជួយឱ្យសក់ងាយសិត បាត់ជំពាក់ ទន់រលោងដូចសូត្រ និងការពារសក់ពីសំណើមអាកាសធាតុ។',
                 'benefits_en' => 'Seals hair cuticles, prevents frizz in humid climates, and infuses silky softness without silicone buildup.',
                 'benefits_km' => 'បិទស្រទាប់សក់ ការពារសក់រួញក្រញាញ់ក្នុងអាកាសធាតុក្តៅសើម និងធ្វើឱ្យសក់ទន់រលោងដូចសូត្រដោយគ្មានសារធាតុស៊ីលីខនកកស្ទះ។',
                 'ingredients_en' => 'Hydrolyzed Oat Protein, Argania Spinosa (Argan) Kernel Oil, Olive-Derived Squalane, Cetearyl Alcohol, Neroli Flower Essential Oil, Vitamin E Tocopherol.',
@@ -156,6 +162,8 @@ class ProductCatalog
                 ],
                 'how_to_use_en' => 'Dispense into palms or natural sea sponge. Lather across damp body with circular, rhythmic strokes. Rinse with warm water.',
                 'how_to_use_km' => 'ច្របាច់លើបាតដៃ ឬអេប៉ុងងូតទឹក។ ម៉ាស្សាពពុះជារង្វង់លើរាងកាយសើម រួចលាងជម្រះដោយទឹកក្តៅឧណ្ហៗ។',
+                'description_en' => 'A pH-balanced botanical gel cleanser crafted with plant-derived coconut glucoside, soothing organic calendula, and calming neroli flower water. Cleanses thoroughly while keeping sensitive skin soft and comfortable.',
+                'description_km' => 'សាប៊ូងូតទឹករុក្ខជាតិដែលមានកម្រិត pH សមស្រប ផ្សំពីពពុះដូងធម្មជាតិ ផ្កាខាឡិនឌូឡា និងទឹកផ្កាក្រូចណេរ៉ូលី។ លាងសម្អាតបានស្អាតល្អដោយមិនធ្វើឱ្យស្បែកស្ងួតឡើយ។',
                 'benefits_en' => 'Sulfate-free cleansing formula respects the skin’s delicate lipid envelope, preventing dryness and post-shower tightness.',
                 'benefits_km' => 'រូបមន្តលាងសម្អាតគ្មានជាតិស៊ុលហ្វាត ជួយការពារស្រទាប់សំណើមធម្មជាតិ មិនធ្វើឱ្យស្បែកស្ងួត ឬតឹងក្រោយពេលងូតទឹករួច។',
                 'ingredients_en' => 'Coco-Glucoside, Organic Calendula Officinalis Flower Extract, Citrus Aurantium (Neroli) Flower Extract, Chamomile Water, Glycerin, Citric Acid.',
@@ -195,6 +203,8 @@ class ProductCatalog
                 ],
                 'how_to_use_en' => 'Use once or twice weekly in place of conditioner. Smooth generously from roots to ends on washed hair. Leave for 5–10 minutes before rinsing thoroughly.',
                 'how_to_use_km' => 'ប្រើ ១ ឬ ២ ដងក្នុងមួយសប្តាហ៍ជំនួសក្រែមបន្ទន់សក់។ លាបឱ្យសព្វពីគល់ដល់ចុងសក់ក្រោយកក់រួច ទុកចោល ៥-១០ នាទី រួចលាងទឹកចេញឱ្យស្អាត។',
+                'description_en' => 'An intensive weekly repair mask enriched with wild-harvested murumuru butter, botanical amino acids, and camellia seed extract. Penetrates damaged hair fibers to restore elasticity, softness, and healthy shine.',
+                'description_km' => 'ម៉ាស់ជួសជុលសក់ខូចកម្រិតជ្រៅ ផ្សំពីប័រមូរូមូរូ អាស៊ីតអាមីណូ និងប្រេងផ្កាកាមេលីយ៉ា។ ជួយស្តារសរសៃសក់ដែលខូចដោយកម្ដៅ ឱ្យរឹងមាំ ទន់ និងភ្លឺរលោងឡើងវិញ។',
                 'benefits_en' => 'Repairs structural protein damage from heat styling and UV exposure. Restores tensile strength, elasticity, and brilliant mirror shine.',
                 'benefits_km' => 'ជួសជុលការខូចខាតប្រូតេអ៊ីនសក់ពីកម្ដៅ និងកាំរស្មីព្រះអាទិត្យ។ ស្តារភាពរឹងមាំ យឺតបត់បែន និងផ្តល់ពន្លឺចែងចាំងដល់សរសៃសក់។',
                 'ingredients_en' => 'Astrocaryum Murumuru Seed Butter, Hydrolyzed Keratin Peptides, Camellia Japonica Seed Oil, Amino Acid Complex, Sweet Almond Oil.',
@@ -234,6 +244,8 @@ class ProductCatalog
                 ],
                 'how_to_use_en' => 'Lather into wet skin during morning showers to invigorate your senses. Inhale the crisp citrus aroma deeply as you cleanse.',
                 'how_to_use_km' => 'លាបម៉ាស្សាលើស្បែកសើមពេលងូតទឹកពេលព្រឹក ដើម្បីដាស់អារម្មណ៍ឱ្យស្រស់ស្រាយ។ ដកដង្ហើមស្រូបយកក្លិនក្រូចក្រអូបស្រាលពេលសម្អាតខ្លួន។',
+                'description_en' => 'An energizing morning shower gel infused with cold-pressed mandarin rind, purifying eucalyptus leaf oil, and mineral-rich bamboo water. Gently washes away impurities while waking up tired skin.',
+                'description_km' => 'ជែលងូតទឹកពេលព្រឹកជួយដាស់អារម្មណ៍ ផ្សំពីសំបកក្រូចឃ្វិច ប្រេងស្លឹកខ្យល់ និងទឹកទំពាំងឫស្សី។ សម្អាតធូលីកខ្វក់ និងផ្តល់ភាពស្រស់ថ្លាពេញមួយថ្ងៃ។',
                 'benefits_en' => 'Awakens body and mind while gently sweeping away daily pollution particles, leaving skin refreshed, toned, and energized.',
                 'benefits_km' => 'ដាស់អារម្មណ៍ និងរាងកាយឱ្យស្រស់ស្រាយ ជួយលាងជម្រះធូលីកខ្វក់ពីបរិស្ថាន ធ្វើឱ្យស្បែកមានសុខភាពល្អ និងមានថាមពល។',
                 'ingredients_en' => 'Bambusa Vulgaris (Bamboo) Shoot Extract, Citrus Reticulata (Mandarin) Peel Oil, Eucalyptus Globulus Leaf Oil, Betaine, Sea Salt Minerals.',
@@ -274,6 +286,8 @@ class ProductCatalog
                 'default_items' => ['liva-shampoo', 'liva-conditioner', 'liva-shower-gel', 'liva-body-lotion'],
                 'how_to_use_en' => 'Designed for effortless packing and on-the-go rituals. Includes 60ml shampoo, 60ml conditioner, 60ml body wash, and 60ml body lotion in an unbleached organic cotton wash bag.',
                 'how_to_use_km' => 'រចនាឡើងយ៉ាងងាយស្រួលសម្រាប់ដាក់តាមខ្លួនពេលធ្វើដំណើរ។ រួមមានសាប៊ូកក់សក់ ៦០មីលីលីត្រ, ក្រែមបន្ទន់សក់ ៦០មីលីលីត្រ, សាប៊ូងូតទឹក ៦០មីលីលីត្រ និងគ្រីមបំប៉នខ្លួន ៦០មីលីលីត្រ ក្នុងកាបូបក្រណាត់កប្បាសសរីរាង្គ។',
+                'description_en' => 'Four TSA-approved botanical miniatures packaged in a durable reusable organic canvas pouch. Perfect for flights, weekend escapes, or discovering LIVA’s complete body and hair collection.',
+                'description_km' => 'ឈុតផលិតផលខ្នាតតូច ៤ មុខសម្រាប់ធ្វើដំណើរ ភ្ជាប់មកជាមួយកាបូបក្រណាត់កប្បាសសរីរាង្គ។ ងាយស្រួលដាក់តាមខ្លួនពេលហោះហើរ ឬដើរកម្សាន្តចុងសប្តាហ៍។',
                 'benefits_en' => 'Maintain your complete daily self-care ritual anywhere in the world without compromising on clean botanical purity.',
                 'benefits_km' => 'រក្សាទម្លាប់ថែរក្សាសម្រស់ប្រចាំថ្ងៃរបស់អ្នកបានគ្រប់ទីកន្លែងជុំវិញពិភពលោក ដោយមិនបាត់បង់គុណភាពរុក្ខជាតិធម្មជាតិសុទ្ធសាធ។',
                 'ingredients_en' => 'Curated formulation of our award-winning personal care formulas in leak-proof travel bottles.',
@@ -314,6 +328,8 @@ class ProductCatalog
                 'default_items' => ['liva-body-lotion', 'liva-hair-mask'],
                 'how_to_use_en' => 'Morning: Press 3–4 drops of Hydrating Serum into cleansed face and neck. Evening: Warm a pea-sized amount of Restorative Balm between fingertips and gently press over face as the final sealing step.',
                 'how_to_use_km' => 'ពេលព្រឹក៖ លាបសេរ៉ូម ៣-៤ តំណក់លើផ្ទៃមុខ និងកស្អាត។ ពេលល្ងាច៖ យកក្រែមបំប៉នក្នុងបរិមាណសមល្មម កម្តៅលើចុងម្រាមដៃ រួចលាបម៉ាស្សាថ្នមៗលើផ្ទៃមុខជាជំហានចុងក្រោយ។',
+                'description_en' => 'Our signature day-and-night pairing engineered for complete cellular restoration. Customize your duo from any two or more LIVA formulations and automatically unlock 15% bundle savings.',
+                'description_km' => 'ឈុតពិសេសប្រចាំហាងសម្រាប់ថែរក្សាស្បែកទាំងពេលថ្ងៃ និងពេលយប់។ អ្នកអាចជ្រើសរើសផលិតផលចាប់ពី ២ មុខឡើងទៅក្នុងឈុតនេះ ដើម្បីទទួលបានការបញ្ចុះតម្លៃ ១៥%។',
                 'benefits_en' => 'Our flagship pairing provides continuous 24-hour cellular renewal, visibly plumping fine lines, restoring the lipid envelope, and delivering unmistakable natural luminosity.',
                 'benefits_km' => 'ឈុតស្នូលពិសេសរបស់យើងជួយជួសជុល និងស្តារកោសិកាស្បែកពេញ ២៤ ម៉ោង បន្តឹងស្បែកកាត់បន្ថយស្នាមជ្រីវជ្រួញ និងផ្តល់ពន្លឺភ្លឺថ្លាបែបធម្មជាតិ។',
                 'ingredients_en' => 'Full-spectrum bio-compatible botanicals, multi-molecular hyaluronic acid, phyto-ceramides, cold-pressed camellia seed elixir, and organic botanical extracts.',
@@ -355,6 +371,8 @@ class ProductCatalog
                 'default_items' => ['liva-shampoo', 'liva-conditioner'],
                 'how_to_use_en' => 'Use Balancing Shampoo to cleanse scalp and hair roots. Rinse and apply Silk Infusion Conditioner from mid-lengths to ends.',
                 'how_to_use_km' => 'កក់សក់ជាមួយសាប៊ូកក់សក់ធម្មជាតិ រួចលាងទឹកចេញ និងលាបក្រែមបន្ទន់សក់ពីពាក់កណ្តាលដល់ចុងសក់។',
+                'description_en' => 'A curated two-step botanical hair ritual pairing our Balancing Shampoo and Silk Infusion Conditioner. Designed to clarify the scalp while infusing weightless silkiness from root to tip.',
+                'description_km' => 'ឈុតថែរក្សាសក់ ២ ជំហានរួមបញ្ចូលគ្នារវាងសាប៊ូកក់សក់ និងក្រែមបន្ទន់សក់ធម្មជាតិ ជួយសម្អាតស្បែកក្បាល និងបំប៉នសរសៃសក់ឱ្យទន់រលោងភ្លឺថ្លា។',
                 'benefits_en' => 'Complete scalp clarifying and follicle nourishment system. Restores natural shine and eliminates frizz without heaviness.',
                 'benefits_km' => 'ប្រព័ន្ធថែរក្សាស្បែកក្បាល និងចិញ្ចឹមគល់សក់ពេញលេញ។ ធ្វើឱ្យសក់ទន់រលោង និងបំបាត់សក់ជំពាក់។',
                 'ingredients_en' => 'Rosemary, Bergamot, Oat Protein, Argan Kernel Oil, Squalane, Aloe Vera.',
@@ -396,6 +414,8 @@ class ProductCatalog
                 'default_items' => ['liva-shower-gel', 'liva-body-lotion'],
                 'how_to_use_en' => 'Cleanse body with Revitalizing Body Wash. Pat dry and massage Velvet Body Lotion all over body while skin is still damp.',
                 'how_to_use_km' => 'ងូតទឹកជាមួយសាប៊ូងូតទឹករុក្ខជាតិ រួចជូតខ្លួនឱ្យស្រាលៗ និងលាបគ្រីមផ្តល់សំណើមលើដងខ្លួនភ្លាមៗ។',
+                'description_en' => 'A restorative bath-and-body pairing combining our Gentle Body Wash with Velvet Nourishing Body Lotion. Cleanses softly and seals in 24-hour moisture with a soothing neroli and camellia trail.',
+                'description_km' => 'ឈុតងូតទឹក និងលាបខ្លួនរួមបញ្ចូលគ្នា ជួយសម្អាតស្បែកយ៉ាងទន់ភ្លន់ និងផ្តល់សំណើមជ្រៅពេញ ២៤ ម៉ោង ជាមួយក្លិនក្រអូបផ្កាក្រូច និងផ្កាកាមេលីយ៉ា។',
                 'benefits_en' => 'Transforms daily bath routine into a calming spa ritual. Softens, deeply hydrates, and leaves skin with a delicate neroli and camellia scent.',
                 'benefits_km' => 'ផ្តល់សំណើមជ្រៅពេញ ២៤ ម៉ោង ធ្វើឱ្យស្បែកទន់រលោង និងមានក្លិនក្រអូបផ្កាក្រូច និងផ្កាកាមេលីយ៉ា។',
                 'ingredients_en' => 'Cold-Pressed Camellia, Rice Ceramide, Coconut Glucoside, Neroli Essential Oil, Shea Butter.',
@@ -409,6 +429,7 @@ class ProductCatalog
     public static function find(string $id): ?array
     {
         $all = self::all();
+
         return $all[$id] ?? null;
     }
 
@@ -416,6 +437,160 @@ class ProductCatalog
     {
         $all = self::all();
         unset($all[$excludeId]);
+
         return array_slice($all, 0, $limit);
+    }
+
+    public static function newArrivals(): array
+    {
+        $all = self::all();
+        $ids = ['liva-body-lotion', 'liva-hair-mask', 'liva-shower-gel', 'liva-conditioner', 'liva-shampoo'];
+
+        return array_values(array_filter(array_map(fn (string $id) => $all[$id] ?? null, $ids)));
+    }
+
+    public static function promotions(): array
+    {
+        $all = self::all();
+        $promoMeta = [
+            'liva-ritual-duo' => ['promo_badge_en' => 'SAVE 20%', 'promo_badge_km' => 'បញ្ចុះតម្លៃ ២០%'],
+            'liva-travel-set' => ['promo_badge_en' => 'SAVE 21%', 'promo_badge_km' => 'បញ្ចុះតម្លៃ ២១%'],
+            'liva-body-wash' => ['promo_badge_en' => 'SPECIAL GIFT', 'promo_badge_km' => 'ថែមជូនកាដូ'],
+            'liva-shampoo' => ['promo_badge_en' => 'SAVE $8', 'promo_badge_km' => 'បញ្ចុះ $8'],
+            'liva-body-lotion' => ['promo_badge_en' => 'BUNDLE DEAL', 'promo_badge_km' => 'ឈុតពិសេស'],
+        ];
+
+        $items = [];
+        foreach ($promoMeta as $id => $meta) {
+            if (isset($all[$id])) {
+                $items[] = array_merge($all[$id], $meta);
+            }
+        }
+
+        return $items;
+    }
+
+    public static function topProducts(): array
+    {
+        $all = self::all();
+        $ids = ['liva-ritual-duo', 'liva-shampoo', 'liva-body-lotion', 'liva-travel-set', 'liva-body-wash'];
+
+        return array_values(array_filter(array_map(fn (string $id) => $all[$id] ?? null, $ids)));
+    }
+
+    public static function reviewsFor(string $productId): array
+    {
+        $product = self::find($productId);
+        $category = $product['category'] ?? 'body';
+
+        $reviewsByCategory = [
+            'hair' => [
+                [
+                    'author' => 'Sokha M.',
+                    'location' => 'Phnom Penh',
+                    'rating' => 5,
+                    'date' => '2 weeks ago',
+                    'verified' => true,
+                    'title_en' => 'Soft, bouncy hair without any heaviness',
+                    'title_km' => 'សក់ទន់រលោង ស្រាលមិនស្អិត',
+                    'comment_en' => 'My scalp feels fresh for days and my ends are noticeably smoother even in humid weather. The rosemary and bergamot scent feels like a spa.',
+                    'comment_km' => 'ស្បែកក្បាលស្រស់ស្រាយបានយូរ ហើយចុងសក់ទន់រលោងជាងមុនទោះអាកាសធាតុក្តៅសើម។ ក្លិនផ្កាកុលាបព្រៃ និងប៊ឺហ្គាម៉ុតក្រអូបដូចនៅស្ប៉ា។',
+                ],
+                [
+                    'author' => 'Dara V.',
+                    'location' => 'Siem Reap',
+                    'rating' => 5,
+                    'date' => '1 month ago',
+                    'verified' => true,
+                    'title_en' => 'Gentle on sensitive scalp',
+                    'title_km' => 'ទន់ភ្លន់សម្រាប់ស្បែកក្បាលងាយប្រតិកម្ម',
+                    'comment_en' => 'Finally a sulfate-free formula that actually lathers well and leaves hair detangled and shiny.',
+                    'comment_km' => 'រកឃើញរូបមន្តគ្មានស៊ុលហ្វាតដែលលាងស្អាត និងជួយឱ្យសក់ងាយសិត និងភ្លឺរលោងពិតៗ។',
+                ],
+                [
+                    'author' => 'Sreyneang K.',
+                    'location' => 'Battambang',
+                    'rating' => 4,
+                    'date' => '1 month ago',
+                    'verified' => true,
+                    'title_en' => 'Love the botanical fragrance',
+                    'title_km' => 'ស្រឡាញ់ក្លិនរុក្ខជាតិធម្មជាតិ',
+                    'comment_en' => 'Not overpowering at all, very calming in the shower and my hair looks healthier after two weeks.',
+                    'comment_km' => 'ក្លិនក្រអូបស្រាលមិនឈួល ជួយឱ្យអារម្មណ៍ស្ងប់ស្ងាត់ និងសក់មើលទៅមានសុខភាពល្អក្រោយប្រើ ២ សប្តាហ៍។',
+                ],
+            ],
+            'sets' => [
+                [
+                    'author' => 'Chanthou R.',
+                    'location' => 'Phnom Penh',
+                    'rating' => 5,
+                    'date' => '1 week ago',
+                    'verified' => true,
+                    'title_en' => 'Best value ritual set for daily care',
+                    'title_km' => 'ឈុតដ៏ស័ក្តិសម និងចំណេញបំផុត',
+                    'comment_en' => 'Being able to pick my own products in the bundle and save 15% is amazing. Packaging feels truly luxurious.',
+                    'comment_km' => 'អាចជ្រើសរើសផលិតផលដោយខ្លួនឯងក្នុងឈុត ហើយទទួលបានការបញ្ចុះតម្លៃ ១៥% ពិតជាពិសេសណាស់។ ការវេចខ្ចប់ប្រណិតខ្លាំង។',
+                ],
+                [
+                    'author' => 'Bopha L.',
+                    'location' => 'Phnom Penh',
+                    'rating' => 5,
+                    'date' => '3 weeks ago',
+                    'verified' => true,
+                    'title_en' => 'Bought as a gift and kept one for myself',
+                    'title_km' => 'ទិញធ្វើជាកាដូ ហើយទិញប្រើខ្លួនឯងថែមទៀត',
+                    'comment_en' => 'Everything pairs together seamlessly. Fast delivery and the formulas feel genuinely clean and soothing.',
+                    'comment_km' => 'ផលិតផលទាំងអស់ស៊ីគ្នាល្អណាស់ ដឹកជញ្ជូនលឿន ហើយប្រើទៅទន់ស្បែកស្រួលខ្លួនមែនទែន។',
+                ],
+                [
+                    'author' => 'Vanna T.',
+                    'location' => 'Kampot',
+                    'rating' => 5,
+                    'date' => '1 month ago',
+                    'verified' => true,
+                    'title_en' => 'My complete morning & night routine',
+                    'title_km' => 'ឈុតថែរក្សាពេលព្រឹក និងពេលយប់ពេញលេញ',
+                    'comment_en' => 'Consistent hydration and subtle botanical aroma. Definitely repurchasing the jumbo refill next time.',
+                    'comment_km' => 'ផ្តល់សំណើមជាប់បានយូរ និងមានក្លិនក្រអូបបែបធម្មជាតិ។ លើកក្រោយនឹងទិញឈុតធំបន្ថែមទៀត។',
+                ],
+            ],
+            'body' => [
+                [
+                    'author' => 'Nary P.',
+                    'location' => 'Phnom Penh',
+                    'rating' => 5,
+                    'date' => '1 week ago',
+                    'verified' => true,
+                    'title_en' => 'Velvet texture that absorbs immediately',
+                    'title_km' => 'សាច់គ្រីមទន់ ជ្រាបចូលស្បែកភ្លាមៗ',
+                    'comment_en' => 'Zero stickiness even on warm evenings. My skin stays hydrated from morning until night with a soft satin glow.',
+                    'comment_km' => 'មិនស្អិតសោះទោះអាកាសធាតុក្តៅ ស្បែកមានសំណើមតាំងពីព្រឹកដល់យប់ និងទន់រលោងភ្លឺថ្លា។',
+                ],
+                [
+                    'author' => 'Kalyan S.',
+                    'location' => 'Siem Reap',
+                    'rating' => 5,
+                    'date' => '2 weeks ago',
+                    'verified' => true,
+                    'title_en' => 'Calming scent and rich moisture',
+                    'title_km' => 'ក្លិនក្រអូបស្រាល និងផ្តល់សំណើមខ្ពស់',
+                    'comment_en' => 'Dry patches on my arms disappeared within a few days. Love that it is vegan and packaged in amber glass.',
+                    'comment_km' => 'ស្បែកស្ងួតនៅដៃបាត់អស់ក្នុងរយៈពេលប៉ុន្មានថ្ងៃ។ ចូលចិត្តត្រង់ថាវាជារូបមន្តធម្មជាតិ ១០០%។',
+                ],
+                [
+                    'author' => 'Malis H.',
+                    'location' => 'Phnom Penh',
+                    'rating' => 4,
+                    'date' => '1 month ago',
+                    'verified' => true,
+                    'title_en' => 'Gentle enough for everyday use',
+                    'title_km' => 'ទន់ភ្លន់ប្រើបានរាល់ថ្ងៃ',
+                    'comment_en' => 'Leaves skin comfortable right after showering without feeling tight or dry.',
+                    'comment_km' => 'ជួយឱ្យស្បែកទន់មានសំណើមភ្លាមៗក្រោយងូតទឹក មិនស្ងួតតឹងឡើយ។',
+                ],
+            ],
+        ];
+
+        return $reviewsByCategory[$category] ?? $reviewsByCategory['body'];
     }
 }

@@ -20,25 +20,24 @@
 
             <!-- Desktop Navigation Menu (Center) - Never wraps to 2 lines -->
             <nav class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-[13px] tracking-wider uppercase font-medium text-liva-charcoal shrink-0">
-                <a href="/" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navHome">
+                <a href="{{ route('home') }}" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 {{ request()->routeIs('home') ? 'text-liva-sage font-semibold underline underline-offset-4' : '' }}" data-i18n="navHome">
                     {{ __('skincare.nav_home') }}
                 </a>
 
-                <!-- All Products (Opens Full Catalog Modal) -->
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('all')" 
-                        class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 cursor-pointer font-semibold" 
-                        data-i18n="navAllProducts">
+                <!-- All Products (Dedicated Catalog Page) -->
+                <a href="{{ route('products.index') }}" 
+                   class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 font-semibold {{ request()->routeIs('products.index') ? 'text-liva-sage underline underline-offset-4' : '' }}" 
+                   data-i18n="navAllProducts">
                     {{ __('skincare.nav_all_products') ?? 'All Products' }}
-                </button>
+                </a>
                 
                 <!-- About -->
-                <a href="/#spotlight" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navAbout">
+                <a href="{{ route('about') }}" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 {{ request()->routeIs('about') ? 'text-liva-sage font-semibold underline underline-offset-4' : '' }}" data-i18n="navAbout">
                     {{ __('skincare.nav_about') ?? 'About' }}
                 </a>
 
                 <!-- Contact -->
-                <a href="/#footer" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1" data-i18n="navContact">
+                <a href="{{ route('contact') }}" class="whitespace-nowrap hover:text-liva-sage transition-colors duration-200 py-1 {{ request()->routeIs('contact') ? 'text-liva-sage font-semibold underline underline-offset-4' : '' }}" data-i18n="navContact">
                     {{ __('skincare.nav_contact') ?? 'Contact' }}
                 </a>
             </nav>
@@ -71,12 +70,11 @@
                 </div>
 
                 <!-- Mobile / Tablet Search Trigger Button -->
-                <button type="button" 
-                        onclick="window.livaApp.openAllProductsModal('all'); setTimeout(() => document.getElementById('modal-search-input')?.focus(), 250);"
-                        class="lg:hidden p-2 text-liva-charcoal hover:text-liva-dark hover:bg-liva-stone/70 rounded-full transition-colors cursor-pointer"
-                        title="Search Products">
+                <a href="{{ route('products.index', ['focus' => 'search']) }}" 
+                   class="lg:hidden p-2 text-liva-charcoal hover:text-liva-dark hover:bg-liva-stone/70 rounded-full transition-colors cursor-pointer"
+                   title="Search Products">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </button>
+                </a>
                 
                 <!-- Language Switcher (EN / ខ្មែរ) -->
                 <div class="flex items-center p-0.5 rounded-full bg-liva-stone/90 border border-liva-border shadow-2xs text-xs font-semibold">
@@ -146,20 +144,20 @@
                 <svg class="w-4 h-4 text-liva-muted absolute left-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
 
-            <a href="#hero" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navHome">
+            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navHome">
                 {{ __('skincare.nav_home') }}
             </a>
 
             <!-- All Products -->
-            <button type="button" 
-                    onclick="window.livaApp.openAllProductsModal('all'); document.getElementById('mobile-menu').classList.add('hidden')" 
-                    class="w-full text-left block px-3 py-2 rounded-lg text-sm font-semibold text-liva-charcoal hover:bg-liva-stone cursor-pointer" 
-                    data-i18n="navAllProducts">
+            <a href="{{ route('products.index') }}" 
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')" 
+               class="w-full text-left block px-3 py-2 rounded-lg text-sm font-semibold text-liva-charcoal hover:bg-liva-stone" 
+               data-i18n="navAllProducts">
                 {{ __('skincare.nav_all_products') ?? 'All Products' }}
-            </button>
+            </a>
             
             <!-- About -->
-            <a href="/#spotlight" 
+            <a href="{{ route('about') }}" 
                onclick="document.getElementById('mobile-menu').classList.add('hidden')"
                class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
                data-i18n="navAbout">
@@ -167,7 +165,7 @@
             </a>
 
             <!-- Contact -->
-            <a href="/#footer" 
+            <a href="{{ route('contact') }}" 
                onclick="document.getElementById('mobile-menu').classList.add('hidden')"
                class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
                data-i18n="navContact">

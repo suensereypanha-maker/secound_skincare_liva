@@ -51,12 +51,12 @@
             <p class="text-xs text-liva-muted max-w-xs mx-auto mb-6 leading-relaxed" data-i18n="wishlistEmptyDesc">
                 Tap the heart icon on any botanical formulation to save your favorites here.
             </p>
-            <button type="button" 
-                    onclick="window.livaApp.toggleFavorites(false); window.livaApp.openAllProductsModal('all');" 
-                    class="inline-flex px-6 py-2.5 rounded-full bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider hover:bg-liva-olive transition-colors cursor-pointer" 
-                    data-i18n="exploreCollection">
+            <a href="{{ route('products.index') }}"
+               onclick="window.livaApp.toggleFavorites(false);" 
+               class="inline-flex px-6 py-2.5 rounded-full bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider hover:bg-liva-olive transition-colors cursor-pointer" 
+               data-i18n="exploreCollection">
                 Explore Collection
-            </button>
+            </a>
         </div>
     </div>
 
