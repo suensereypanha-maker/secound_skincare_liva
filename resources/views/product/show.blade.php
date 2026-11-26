@@ -4,7 +4,9 @@
     $benefit = $isKm ? $product['benefit_km'] : $product['benefit_en'];
     $badge = $isKm ? $product['badge_km'] : $product['badge_en'];
     $howToUse = $isKm ? $product['how_to_use_km'] : $product['how_to_use_en'];
-    $descriptionText = $isKm ? ($product['description_km'] ?? $product['benefits_km']) : ($product['description_en'] ?? $product['benefits_en']);
+    $descriptionText = $isKm
+        ? $product['description_km'] ?? $product['benefits_km']
+        : $product['description_en'] ?? $product['benefits_en'];
     $benefitsText = $isKm ? $product['benefits_km'] : $product['benefits_en'];
     $ingredientsText = $isKm ? $product['ingredients_km'] : $product['ingredients_en'];
     $returnText = $isKm ? $product['return_policy_km'] : $product['return_policy_en'];
@@ -23,14 +25,8 @@
     $encodedShareTitle = urlencode($name . ' - LIVA Botanical Skincare');
 @endphp
 
-<x-layouts.app
-    :title="$name . ' | LIVA Botanical Skincare'"
-    :description="$descriptionText"
-    :ogTitle="$name . ' | LIVA Botanical Skincare'"
-    :ogDescription="$descriptionText"
-    :ogImage="url($product['image'])"
-    ogType="product"
->
+<x-layouts.app :title="$name . ' | LIVA Botanical Skincare'" :description="$descriptionText" :ogTitle="$name . ' | LIVA Botanical Skincare'" :ogDescription="$descriptionText" :ogImage="url($product['image'])"
+    ogType="product">
     <!-- Breadcrumbs Navigation -->
     <div class="bg-white/60 border-b border-liva-border/60 py-3.5 px-4 sm:px-6 lg:px-8 text-xs text-liva-muted">
         <div class="max-w-7xl mx-auto flex items-center gap-2">
@@ -58,10 +54,7 @@
                     <div
                         class="relative w-full aspect-square rounded-3xl overflow-hidden bg-[#F4F1EA] border border-liva-border shadow-md group">
                         <!-- Badge -->
-                        <span
-                            class="absolute top-4 left-4 z-10 text-[11px] tracking-wider uppercase font-semibold px-3 py-1 rounded-full bg-white/95 text-liva-olive backdrop-blur-md border border-white/80 shadow-xs">
-                            {{ $badge }}
-                        </span>
+                      
 
                         <!-- Main Image Element -->
                         <img id="main-product-gallery-img" src="{{ $product['gallery'][0] ?? $product['image'] }}"
@@ -134,10 +127,12 @@
                                 </span>
                             </div>
 
-                            <button type="button" onclick="scrollToProductReviews()" class="flex items-center gap-1.5 text-amber-500 text-xs shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
+                            <button type="button" onclick="scrollToProductReviews()"
+                                class="flex items-center gap-1.5 text-amber-500 text-xs shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
                                 <span>★★★★★</span>
                                 <span class="font-bold text-liva-dark text-xs">{{ $product['rating'] }}</span>
-                                <span class="text-liva-muted underline decoration-dotted underline-offset-2">(<span id="header-review-count">{{ $product['reviews_count'] }}</span>
+                                <span class="text-liva-muted underline decoration-dotted underline-offset-2">(<span
+                                        id="header-review-count">{{ $product['reviews_count'] }}</span>
                                     {{ __('skincare.reviews') ?? 'reviews' }})</span>
                             </button>
                         </div>
@@ -145,7 +140,7 @@
                         <!-- Title + FAVORITE Button Row -->
                         <div class="flex items-start justify-between gap-4">
                             <h1
-                                class="text-2xl sm:text-3xl lg:text-[34px] font-serif font-bold text-liva-dark tracking-tight leading-[1.2] flex-1">
+                                class="text-xl sm:text-2xl lg:text-[30px] font-serif font-bold text-liva-dark tracking-tight leading-[1.2] flex-1">
                                 {{ $name }}
                             </h1>
 
@@ -163,7 +158,7 @@
                         </div>
 
                         <!-- Benefit Subtitle -->
-                        <p class="text-xs sm:text-sm text-liva-charcoal/80 leading-relaxed flex items-center gap-2">
+                        <p class="text-[11px] sm:text-xs text-liva-charcoal/80 leading-relaxed flex items-center gap-2">
                             <span class="w-1.5 h-1.5 rounded-full bg-liva-olive/50 shrink-0"></span>
                             <span>{{ $benefit }}</span>
                         </p>
@@ -194,19 +189,9 @@
                                 <!-- Header & Counter & Slide Left/Right Controls -->
                                 <div
                                     class="flex flex-wrap items-center justify-between text-xs tracking-wider uppercase font-semibold gap-2 pb-0.5">
-                                    <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                                        <span
-                                            class="text-liva-dark font-bold">{{ $isKm ? 'ជ្រើសរើសមុខទំនិញក្នុងឈុត' : 'CHOOSE SET ITEMS' }}</span>
-                                        <span
-                                            class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">
-                                            {{ $isKm ? 'ជ្រើសរើសបានច្រើនមុខ (២+)' : 'MULTIPLE CHOICES (2+)' }}
-                                        </span>
-                                    </div>
+
                                     <div class="flex items-center gap-2 ml-auto">
-                                        <span id="set-items-count-badge"
-                                            class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 whitespace-nowrap">
-                                            2 Items Selected
-                                        </span>
+
                                         <!-- Slide Left Right Controls (Always Kept) -->
                                         <div class="flex items-center gap-1">
                                             <button type="button" id="set-slider-prev-btn"
@@ -316,57 +301,9 @@
                                             </div>
                                         @endforeach
                                     </div>
-
-                                    <!-- Floating Arrow Nav for Desktop Slide UX -->
-                                    <button type="button" onclick="slideSetItems('left')" id="set-slider-float-prev"
-                                        class="hidden md:flex absolute -left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-liva-dark hover:text-white text-liva-charcoal border border-liva-border shadow-md items-center justify-center transition-all duration-200 z-10 active:scale-95 disabled:opacity-0 disabled:pointer-events-none opacity-0 group-hover/setslider:opacity-100 cursor-pointer"
-                                        aria-label="Slide Left">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M15 19l-7-7 7-7" />
-                                        </svg>
-                                    </button>
-                                    <button type="button" onclick="slideSetItems('right')"
-                                        id="set-slider-float-next"
-                                        class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-liva-dark hover:text-white text-liva-charcoal border border-liva-border shadow-md items-center justify-center transition-all duration-200 z-10 active:scale-95 disabled:opacity-0 disabled:pointer-events-none opacity-0 group-hover/setslider:opacity-100 cursor-pointer"
-                                        aria-label="Slide Right">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </button>
                                 </div>
 
-                                <!-- Live Set Bundle Summary & Discount Box -->
-                                <div id="set-summary-banner"
-                                    class="p-3.5 rounded-2xl bg-emerald-50/90 border border-emerald-200 text-xs space-y-1.5 transition-all shadow-2xs">
-                                    <div class="flex items-center justify-between font-semibold">
-                                        <span id="set-summary-status-text"
-                                            class="text-emerald-950 flex items-center gap-1.5">
-                                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                                            <span>2 Products Selected in Set</span>
-                                        </span>
-                                        <span id="set-summary-discount-badge"
-                                            class="px-2 py-0.5 rounded-full bg-emerald-200/80 text-emerald-950 text-[10px] font-bold tracking-wide">
-                                            15% OFF BUNDLE
-                                        </span>
-                                    </div>
-                                    <div
-                                        class="flex items-baseline justify-between text-liva-muted text-[11px] pt-0.5">
-                                        <span id="set-summary-items-list"
-                                            class="truncate max-w-[240px] sm:max-w-xs text-emerald-900/80 font-medium">
-                                            ...
-                                        </span>
-                                        <div class="flex items-center gap-1.5 shrink-0">
-                                            <span id="set-summary-original-price"
-                                                class="line-through text-gray-400 text-xs">$70.00</span>
-                                            <span id="set-summary-final-price"
-                                                class="text-xs sm:text-sm font-bold text-emerald-950">$59.50</span>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         @else
                             <!-- ============================================== -->
@@ -428,7 +365,8 @@
                                         class="font-medium text-xs sm:text-sm tracking-wide truncate">
                                         {{ $isSet ? ($isKm ? 'ដាក់ឈុតនេះចូលកន្ត្រក' : 'Add Set to bag') : ($isKm ? 'ដាក់ចូលកន្ត្រក' : 'Add to bag') }}
                                     </span>
-                                    <div class="flex items-center gap-1.5 sm:gap-2 font-medium text-xs sm:text-sm shrink-0">
+                                    <div
+                                        class="flex items-center gap-1.5 sm:gap-2 font-medium text-xs sm:text-sm shrink-0">
                                         <span id="btn-display-price">${{ number_format($initialPrice, 2) }}</span>
                                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -445,14 +383,24 @@
                     <!-- Interactive Information Tabs: How to use, Description, Reviews, Ingredients -->
                     <div class="pt-2">
                         <!-- Tab Navigation Bar -->
-                        <div class="flex flex-wrap border-b border-liva-border gap-5 sm:gap-6 text-xs sm:text-sm font-medium">
-                            <button type="button" id="detail-tab-btn-how-to-use" onclick="switchDetailTab('how-to-use', this)" class="detail-tab-btn pb-3 border-b-2 border-liva-dark text-liva-dark font-semibold transition-all cursor-pointer">{{ $isKm ? 'របៀបប្រើប្រាស់' : 'How to use' }}</button>
-                            <button type="button" id="detail-tab-btn-description" onclick="switchDetailTab('description', this)" class="detail-tab-btn pb-3 border-b-2 border-transparent text-liva-muted hover:text-liva-dark transition-all cursor-pointer">{{ $isKm ? 'ការពិពណ៌នា' : 'Description' }}</button>
-                            <button type="button" id="detail-tab-btn-reviews" onclick="switchDetailTab('reviews', this)" class="detail-tab-btn pb-3 border-b-2 border-transparent text-liva-muted hover:text-liva-dark transition-all cursor-pointer inline-flex items-center gap-1.5">
+                        <div
+                            class="flex flex-wrap border-b border-liva-border gap-5 sm:gap-6 text-xs sm:text-sm font-medium">
+                            <button type="button" id="detail-tab-btn-how-to-use"
+                                onclick="switchDetailTab('how-to-use', this)"
+                                class="detail-tab-btn pb-3 border-b-2 border-liva-dark text-liva-dark font-semibold transition-all cursor-pointer">{{ $isKm ? 'របៀបប្រើប្រាស់' : 'How to use' }}</button>
+                            <button type="button" id="detail-tab-btn-description"
+                                onclick="switchDetailTab('description', this)"
+                                class="detail-tab-btn pb-3 border-b-2 border-transparent text-liva-muted hover:text-liva-dark transition-all cursor-pointer">{{ $isKm ? 'ការពិពណ៌នា' : 'Description' }}</button>
+                            <button type="button" id="detail-tab-btn-reviews"
+                                onclick="switchDetailTab('reviews', this)"
+                                class="detail-tab-btn pb-3 border-b-2 border-transparent text-liva-muted hover:text-liva-dark transition-all cursor-pointer inline-flex items-center gap-1.5">
                                 <span>{{ $isKm ? 'ការវាយតម្លៃ' : 'Reviews' }}</span>
-                                <span id="tab-review-count-badge" class="text-[10px] px-1.5 py-0.5 rounded-full bg-liva-stone text-liva-dark font-bold">{{ $product['reviews_count'] }}</span>
+                                <span id="tab-review-count-badge"
+                                    class="text-[10px] px-1.5 py-0.5 rounded-full bg-liva-stone text-liva-dark font-bold">{{ $product['reviews_count'] }}</span>
                             </button>
-                            <button type="button" id="detail-tab-btn-ingredients" onclick="switchDetailTab('ingredients', this)" class="detail-tab-btn pb-3 border-b-2 border-transparent text-liva-muted hover:text-liva-dark transition-all cursor-pointer">{{ $isKm ? 'គ្រឿងផ្សំ' : 'Ingredients' }}</button>
+                            <button type="button" id="detail-tab-btn-ingredients"
+                                onclick="switchDetailTab('ingredients', this)"
+                                class="detail-tab-btn pb-3 border-b-2 border-transparent text-liva-muted hover:text-liva-dark transition-all cursor-pointer">{{ $isKm ? 'គ្រឿងផ្សំ' : 'Ingredients' }}</button>
                         </div>
 
                         <!-- Tab Content Panes -->
@@ -466,83 +414,99 @@
                             <div id="tab-pane-description" class="detail-tab-pane hidden space-y-3">
                                 <p class="text-liva-charcoal">{{ $descriptionText }}</p>
                                 <div class="p-3 rounded-xl bg-white border border-liva-border/70 space-y-1">
-                                    <span class="text-[11px] font-bold uppercase tracking-wider text-liva-olive block">{{ $isKm ? 'អត្ថប្រយោជន៍សំខាន់ៗ' : 'Key Benefits' }}</span>
+                                    <span
+                                        class="text-[11px] font-bold uppercase tracking-wider text-liva-olive block">{{ $isKm ? 'អត្ថប្រយោជន៍សំខាន់ៗ' : 'Key Benefits' }}</span>
                                     <p class="text-xs text-liva-muted">{{ $benefitsText }}</p>
                                 </div>
                                 <p class="text-[11px] text-liva-muted/90">{{ $returnText }}</p>
                             </div>
                             <div id="tab-pane-reviews" class="detail-tab-pane hidden space-y-3">
-                                <div class="flex items-center justify-between gap-3 p-3 rounded-xl bg-white border border-liva-border/70">
+                                <div
+                                    class="flex items-center justify-between gap-3 p-3 rounded-xl bg-white border border-liva-border/70">
                                     <div class="flex items-center gap-2.5">
-                                        <span class="text-xl font-serif font-bold text-liva-dark">{{ $product['rating'] }}</span>
+                                        <span
+                                            class="text-xl font-serif font-bold text-liva-dark">{{ $product['rating'] }}</span>
                                         <div>
                                             <div class="text-amber-500 text-xs">★★★★★</div>
                                             <div class="text-[11px] text-liva-muted">
-                                                <span id="tab-pane-review-total">{{ $product['reviews_count'] }}</span> {{ $isKm ? 'ការវាយតម្លៃពីអតិថិជន' : 'verified customer reviews' }}
+                                                <span
+                                                    id="tab-pane-review-total">{{ $product['reviews_count'] }}</span>
+                                                {{ $isKm ? 'ការវាយតម្លៃពីអតិថិជន' : 'verified customer reviews' }}
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" onclick="scrollToProductReviews()" class="px-3.5 py-1.5 rounded-full bg-liva-dark hover:bg-liva-olive text-white text-[11px] font-semibold transition-colors cursor-pointer">
+                                    <button type="button" onclick="scrollToProductReviews()"
+                                        class="px-3.5 py-1.5 rounded-full bg-liva-dark hover:bg-liva-olive text-white text-[11px] font-semibold transition-colors cursor-pointer">
                                         {{ $isKm ? 'អាន & សរសេរការវាយតម្លៃ' : 'Read & Write Review' }}
                                     </button>
                                 </div>
-                                @if(!empty($reviews[0]))
-                                <div class="p-3.5 rounded-xl bg-white border border-liva-border/70 space-y-1">
-                                    <div class="flex items-center justify-between text-xs">
-                                        <span class="font-semibold text-liva-dark">{{ $reviews[0]['author'] }}</span>
-                                        <span class="text-amber-500">★★★★★</span>
+                                @if (!empty($reviews[0]))
+                                    <div class="p-3.5 rounded-xl bg-white border border-liva-border/70 space-y-1">
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span
+                                                class="font-semibold text-liva-dark">{{ $reviews[0]['author'] }}</span>
+                                            <span class="text-amber-500">★★★★★</span>
+                                        </div>
+                                        <p class="text-xs font-medium text-liva-dark">
+                                            {{ $isKm ? $reviews[0]['title_km'] : $reviews[0]['title_en'] }}</p>
+                                        <p class="text-xs text-liva-muted">
+                                            {{ $isKm ? $reviews[0]['comment_km'] : $reviews[0]['comment_en'] }}</p>
                                     </div>
-                                    <p class="text-xs font-medium text-liva-dark">{{ $isKm ? $reviews[0]['title_km'] : $reviews[0]['title_en'] }}</p>
-                                    <p class="text-xs text-liva-muted">{{ $isKm ? $reviews[0]['comment_km'] : $reviews[0]['comment_en'] }}</p>
-                                </div>
                                 @endif
                             </div>
                             <div id="tab-pane-ingredients" class="detail-tab-pane hidden space-y-2">
-                                <p class="font-mono text-xs text-liva-charcoal leading-relaxed">{{ $ingredientsText }}</p>
-                                <p class="text-[11px] text-liva-muted pt-1">100% Vegan · Gluten-Free · Cruelty-Free · Sustainable Glass Bottle.</p>
+                                <p class="font-mono text-xs text-liva-charcoal leading-relaxed">{{ $ingredientsText }}
+                                </p>
+                                <p class="text-[11px] text-liva-muted pt-1">100% Vegan · Gluten-Free · Cruelty-Free ·
+                                    Sustainable Glass Bottle.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Share Product Bar: Facebook, Telegram, Instagram -->
-                    <div class="pt-3 border-t border-liva-border/70 flex flex-wrap items-center justify-between gap-3" id="share-product-bar">
-                        <span class="text-xs font-semibold uppercase tracking-wider text-liva-muted flex items-center gap-1.5">
-                            <svg class="w-3.5 h-3.5 text-liva-olive" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                    <div class="pt-3 border-t border-liva-border/70 flex flex-wrap items-center justify-between gap-3"
+                        id="share-product-bar">
+                        <span
+                            class="text-xs font-semibold uppercase tracking-wider text-liva-muted flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-liva-olive" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                            </svg>
                             <span>{{ $isKm ? 'ចែករំលែកផលិតផល' : 'Share this product' }}</span>
                         </span>
 
                         <div class="flex flex-wrap items-center gap-2">
                             <!-- Share on Facebook -->
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedShareUrl }}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               aria-label="Share on Facebook"
-                               class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#1877F2] text-liva-dark hover:text-white border border-liva-border hover:border-[#1877F2] text-xs font-semibold transition-all shadow-2xs">
+                                target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"
+                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#1877F2] text-liva-dark hover:text-white border border-liva-border hover:border-[#1877F2] text-xs font-semibold transition-all shadow-2xs">
                                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd"
+                                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Facebook</span>
                             </a>
 
                             <!-- Share on Telegram -->
                             <a href="https://t.me/share/url?url={{ $encodedShareUrl }}&text={{ $encodedShareTitle }}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               aria-label="Share on Telegram"
-                               class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#229ED9] text-liva-dark hover:text-white border border-liva-border hover:border-[#229ED9] text-xs font-semibold transition-all shadow-2xs">
+                                target="_blank" rel="noopener noreferrer" aria-label="Share on Telegram"
+                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#229ED9] text-liva-dark hover:text-white border border-liva-border hover:border-[#229ED9] text-xs font-semibold transition-all shadow-2xs">
                                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                    <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.693c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
+                                    <path
+                                        d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.693c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z" />
                                 </svg>
                                 <span>Telegram</span>
                             </a>
 
                             <!-- Share on Instagram -->
-                            <button type="button"
-                                    onclick="shareProductOnInstagram()"
-                                    aria-label="Share on Instagram"
-                                    class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] text-liva-dark hover:text-white border border-liva-border hover:border-transparent text-xs font-semibold transition-all shadow-2xs cursor-pointer">
+                            <button type="button" onclick="shareProductOnInstagram()"
+                                aria-label="Share on Instagram"
+                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] text-liva-dark hover:text-white border border-liva-border hover:border-transparent text-xs font-semibold transition-all shadow-2xs cursor-pointer">
                                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                    <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.8A3.95 3.95 0 003.8 7.75v8.5a3.95 3.95 0 003.95 3.95h8.5a3.95 3.95 0 003.95-3.95v-8.5a3.95 3.95 0 00-3.95-3.95h-8.5zm8.95 1.35a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.8A3.2 3.2 0 1012 15.2 3.2 3.2 0 0012 8.8z"/>
+                                    <path
+                                        d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.8A3.95 3.95 0 003.8 7.75v8.5a3.95 3.95 0 003.95 3.95h8.5a3.95 3.95 0 003.95-3.95v-8.5a3.95 3.95 0 00-3.95-3.95h-8.5zm8.95 1.35a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.8A3.2 3.2 0 1012 15.2 3.2 3.2 0 0012 8.8z" />
                                 </svg>
                                 <span>Instagram</span>
                             </button>
@@ -561,9 +525,11 @@
     <section id="product-reviews-section" class="py-14 md:py-18 bg-[#FAF7F2] border-t border-liva-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <!-- Header -->
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-liva-border/80">
+            <div
+                class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-liva-border/80">
                 <div>
-                    <div class="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-liva-olive mb-1.5">
+                    <div
+                        class="inline-flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-liva-olive mb-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-liva-olive"></span>
                         <span>{{ $isKm ? 'មតិយោបល់ពីអតិថិជនពិត' : 'VERIFIED CUSTOMER FEEDBACK' }}</span>
                     </div>
@@ -572,10 +538,12 @@
                     </h2>
                 </div>
 
-                <button type="button"
-                        onclick="toggleReviewForm()"
-                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-liva-dark hover:bg-liva-olive text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-xs cursor-pointer self-start sm:self-auto">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <button type="button" onclick="toggleReviewForm()"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-liva-dark hover:bg-liva-olive text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-xs cursor-pointer self-start sm:self-auto">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
                     <span>{{ $isKm ? 'សរសេរការវាយតម្លៃ' : 'Write a Review' }}</span>
                 </button>
             </div>
@@ -585,50 +553,65 @@
                 <!-- Left: Overall Rating Summary Card -->
                 <div class="lg:col-span-4 bg-white rounded-3xl border border-liva-border/80 p-6 space-y-5 shadow-xs">
                     <div class="flex items-center gap-4">
-                        <div class="text-4xl sm:text-5xl font-serif font-bold text-liva-dark">{{ $product['rating'] }}</div>
+                        <div class="text-4xl sm:text-5xl font-serif font-bold text-liva-dark">{{ $product['rating'] }}
+                        </div>
                         <div>
                             <div class="text-amber-500 text-sm tracking-wider">★★★★★</div>
                             <p class="text-xs text-liva-muted mt-1">
                                 {{ $isKm ? 'ផ្អែកលើការវាយតម្លៃ' : 'Based on' }}
-                                <span id="section-review-count" class="font-semibold text-liva-dark">{{ $product['reviews_count'] }}</span>
+                                <span id="section-review-count"
+                                    class="font-semibold text-liva-dark">{{ $product['reviews_count'] }}</span>
                                 {{ $isKm ? 'នាក់' : 'reviews' }}
                             </p>
                         </div>
                     </div>
 
                     <div class="space-y-2 pt-2 border-t border-liva-border/60 text-xs">
-                        @foreach([['5 ★', '86%'], ['4 ★', '11%'], ['3 ★', '2%'], ['2 ★', '1%'], ['1 ★', '0%']] as [$starLabel, $pct])
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-8 text-liva-charcoal font-medium shrink-0">{{ $starLabel }}</span>
-                            <div class="flex-1 h-2 rounded-full bg-liva-stone overflow-hidden">
-                                <div class="h-full rounded-full bg-amber-400" style="width: {{ $pct }}"></div>
+                        @foreach ([['5 ★', '86%'], ['4 ★', '11%'], ['3 ★', '2%'], ['2 ★', '1%'], ['1 ★', '0%']] as [$starLabel, $pct])
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-8 text-liva-charcoal font-medium shrink-0">{{ $starLabel }}</span>
+                                <div class="flex-1 h-2 rounded-full bg-liva-stone overflow-hidden">
+                                    <div class="h-full rounded-full bg-amber-400" style="width: {{ $pct }}">
+                                    </div>
+                                </div>
+                                <span class="w-8 text-right text-liva-muted shrink-0">{{ $pct }}</span>
                             </div>
-                            <span class="w-8 text-right text-liva-muted shrink-0">{{ $pct }}</span>
-                        </div>
                         @endforeach
                     </div>
 
                     <!-- Write a Review Form (Toggleable) -->
-                    <form id="write-review-form" onsubmit="submitProductReview(event)" class="hidden pt-4 border-t border-liva-border/70 space-y-3">
-                        <h3 class="text-sm font-serif font-bold text-liva-dark">{{ $isKm ? 'បញ្ចេញមតិរបស់អ្នក' : 'Share Your Experience' }}</h3>
+                    <form id="write-review-form" onsubmit="submitProductReview(event)"
+                        class="hidden pt-4 border-t border-liva-border/70 space-y-3">
+                        <h3 class="text-sm font-serif font-bold text-liva-dark">
+                            {{ $isKm ? 'បញ្ចេញមតិរបស់អ្នក' : 'Share Your Experience' }}</h3>
                         <div>
-                            <label class="block text-[11px] font-semibold text-liva-muted mb-1">{{ $isKm ? 'ពិន្ទុផ្កាយ' : 'Your Rating' }}</label>
+                            <label
+                                class="block text-[11px] font-semibold text-liva-muted mb-1">{{ $isKm ? 'ពិន្ទុផ្កាយ' : 'Your Rating' }}</label>
                             <div class="flex items-center gap-1" id="review-star-picker">
-                                @for($star = 1; $star <= 5; $star++)
-                                <button type="button" onclick="setReviewRating({{ $star }})" data-star="{{ $star }}" class="review-star-btn text-xl text-amber-400 cursor-pointer transition-transform hover:scale-110">★</button>
+                                @for ($star = 1; $star <= 5; $star++)
+                                    <button type="button" onclick="setReviewRating({{ $star }})"
+                                        data-star="{{ $star }}"
+                                        class="review-star-btn text-xl text-amber-400 cursor-pointer transition-transform hover:scale-110">★</button>
                                 @endfor
                             </div>
                         </div>
                         <div>
-                            <input type="text" id="review-author-input" required placeholder="{{ $isKm ? 'ឈ្មោះរបស់អ្នក' : 'Your name' }}" class="w-full px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-liva-border text-xs text-liva-dark focus:outline-hidden focus:border-liva-olive">
+                            <input type="text" id="review-author-input" required
+                                placeholder="{{ $isKm ? 'ឈ្មោះរបស់អ្នក' : 'Your name' }}"
+                                class="w-full px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-liva-border text-xs text-liva-dark focus:outline-hidden focus:border-liva-olive">
                         </div>
                         <div>
-                            <input type="text" id="review-title-input" required placeholder="{{ $isKm ? 'ចំណងជើងខ្លី' : 'Review headline' }}" class="w-full px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-liva-border text-xs text-liva-dark focus:outline-hidden focus:border-liva-olive">
+                            <input type="text" id="review-title-input" required
+                                placeholder="{{ $isKm ? 'ចំណងជើងខ្លី' : 'Review headline' }}"
+                                class="w-full px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-liva-border text-xs text-liva-dark focus:outline-hidden focus:border-liva-olive">
                         </div>
                         <div>
-                            <textarea id="review-comment-input" rows="3" required placeholder="{{ $isKm ? 'សរសេរមតិយោបល់របស់អ្នកនៅទីនេះ...' : 'Tell others what you liked about this formula...' }}" class="w-full px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-liva-border text-xs text-liva-dark focus:outline-hidden focus:border-liva-olive"></textarea>
+                            <textarea id="review-comment-input" rows="3" required
+                                placeholder="{{ $isKm ? 'សរសេរមតិយោបល់របស់អ្នកនៅទីនេះ...' : 'Tell others what you liked about this formula...' }}"
+                                class="w-full px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-liva-border text-xs text-liva-dark focus:outline-hidden focus:border-liva-olive"></textarea>
                         </div>
-                        <button type="submit" class="w-full py-2.5 rounded-full bg-liva-olive hover:bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer">
+                        <button type="submit"
+                            class="w-full py-2.5 rounded-full bg-liva-olive hover:bg-liva-dark text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer">
                             {{ $isKm ? 'បញ្ជូនការវាយតម្លៃ' : 'Submit Review' }}
                         </button>
                     </form>
@@ -636,32 +619,39 @@
 
                 <!-- Right: Reviews Cards List -->
                 <div class="lg:col-span-8 space-y-4" id="product-reviews-list">
-                    @foreach($reviews as $rev)
-                    <article class="bg-white rounded-2xl border border-liva-border/80 p-5 sm:p-6 space-y-2.5 shadow-2xs">
-                        <div class="flex flex-wrap items-center justify-between gap-2">
-                            <div class="flex items-center gap-2.5">
-                                <div class="w-9 h-9 rounded-full bg-liva-stone text-liva-dark font-serif font-bold text-sm flex items-center justify-center">
-                                    {{ mb_substr($rev['author'], 0, 1) }}
-                                </div>
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-sm font-semibold text-liva-dark">{{ $rev['author'] }}</span>
-                                        @if(!empty($rev['verified']))
-                                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
-                                            {{ $isKm ? '✓ អតិថិជនពិត' : '✓ Verified Buyer' }}
-                                        </span>
-                                        @endif
+                    @foreach ($reviews as $rev)
+                        <article
+                            class="bg-white rounded-2xl border border-liva-border/80 p-5 sm:p-6 space-y-2.5 shadow-2xs">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div
+                                        class="w-9 h-9 rounded-full bg-liva-stone text-liva-dark font-serif font-bold text-sm flex items-center justify-center">
+                                        {{ mb_substr($rev['author'], 0, 1) }}
                                     </div>
-                                    <span class="text-[11px] text-liva-muted">{{ $rev['location'] }} · {{ $rev['date'] }}</span>
+                                    <div>
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="text-sm font-semibold text-liva-dark">{{ $rev['author'] }}</span>
+                                            @if (!empty($rev['verified']))
+                                                <span
+                                                    class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
+                                                    {{ $isKm ? '✓ អតិថិជនពិត' : '✓ Verified Buyer' }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <span class="text-[11px] text-liva-muted">{{ $rev['location'] }} ·
+                                            {{ $rev['date'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="text-amber-500 text-xs tracking-wider">
+                                    {{ str_repeat('★', $rev['rating']) }}{{ str_repeat('☆', max(0, 5 - $rev['rating'])) }}
                                 </div>
                             </div>
-                            <div class="text-amber-500 text-xs tracking-wider">
-                                {{ str_repeat('★', $rev['rating']) }}{{ str_repeat('☆', max(0, 5 - $rev['rating'])) }}
-                            </div>
-                        </div>
-                        <h3 class="text-sm font-semibold text-liva-dark">{{ $isKm ? $rev['title_km'] : $rev['title_en'] }}</h3>
-                        <p class="text-xs sm:text-sm text-liva-muted leading-relaxed">{{ $isKm ? $rev['comment_km'] : $rev['comment_en'] }}</p>
-                    </article>
+                            <h3 class="text-sm font-semibold text-liva-dark">
+                                {{ $isKm ? $rev['title_km'] : $rev['title_en'] }}</h3>
+                            <p class="text-xs sm:text-sm text-liva-muted leading-relaxed">
+                                {{ $isKm ? $rev['comment_km'] : $rev['comment_en'] }}</p>
+                        </article>
                     @endforeach
                 </div>
             </div>
@@ -689,7 +679,7 @@
                 <div class="flex items-center gap-1.5">
                     <button type="button"
                         onclick="document.getElementById('slider-related-products').scrollBy({left: -320, behavior: 'smooth'})"
-                        class="w-9 h-9 rounded-full bg-[#FAF8F5] hover:bg-liva-olive hover:text-white text-liva-charcoal border border-liva-border flex items-center justify-center transition-all shadow-2xs active:scale-95"
+                        class="w-9 h-9 rounded-full bg-transparent hover:text-liva-olive text-liva-charcoal flex items-center justify-center transition-all active:scale-95"
                         aria-label="Previous">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -698,7 +688,7 @@
                     </button>
                     <button type="button"
                         onclick="document.getElementById('slider-related-products').scrollBy({left: 320, behavior: 'smooth'})"
-                        class="w-9 h-9 rounded-full bg-[#FAF8F5] hover:bg-liva-olive hover:text-white text-liva-charcoal border border-liva-border flex items-center justify-center transition-all shadow-2xs active:scale-95"
+                        class="w-9 h-9 rounded-full bg-transparent hover:text-liva-olive text-liva-charcoal flex items-center justify-center transition-all active:scale-95"
                         aria-label="Next">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -718,7 +708,7 @@
             <!-- "More products ->" Button -->
             <div class="text-center pt-8">
                 <a href="{{ route('products.index') }}"
-                    class="inline-flex items-center gap-2 px-6 py-2.5 border border-liva-border hover:border-liva-dark text-liva-dark text-xs uppercase font-bold tracking-wider rounded-xl hover:bg-white transition-all shadow-2xs">
+                    class="inline-flex items-center gap-2 px-6 py-2.5  text-liva-dark text-xs uppercase font-bold tracking-wider rounded-xl  transition-all">
                     <span>{{ $isKm ? 'មើលផលិតផលទាំងអស់' : 'More products' }}</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -820,13 +810,9 @@
 
             const prevBtn = document.getElementById('set-slider-prev-btn');
             const nextBtn = document.getElementById('set-slider-next-btn');
-            const floatPrev = document.getElementById('set-slider-float-prev');
-            const floatNext = document.getElementById('set-slider-float-next');
 
             if (prevBtn) prevBtn.disabled = isAtStart;
             if (nextBtn) nextBtn.disabled = isAtEnd;
-            if (floatPrev) floatPrev.disabled = isAtStart;
-            if (floatNext) floatNext.disabled = isAtEnd;
         }
 
         function initSetItemsSlider() {
@@ -1307,7 +1293,8 @@
             const listEl = document.getElementById('product-reviews-list');
             const totalCount = baseReviewsCount + stored.length;
 
-            ['header-review-count', 'tab-review-count-badge', 'tab-pane-review-total', 'section-review-count'].forEach((id) => {
+            ['header-review-count', 'tab-review-count-badge', 'tab-pane-review-total', 'section-review-count'].forEach((
+                id) => {
                 const el = document.getElementById(id);
                 if (el) el.textContent = totalCount;
             });
@@ -1318,7 +1305,8 @@
 
             stored.slice().reverse().forEach((rev) => {
                 const article = document.createElement('article');
-                article.className = 'user-submitted-review bg-white rounded-2xl border border-liva-olive/40 p-5 sm:p-6 space-y-2.5 shadow-2xs';
+                article.className =
+                    'user-submitted-review bg-white rounded-2xl border border-liva-olive/40 p-5 sm:p-6 space-y-2.5 shadow-2xs';
                 const stars = '★'.repeat(rev.rating) + '☆'.repeat(Math.max(0, 5 - rev.rating));
                 const initial = (rev.author || 'G').trim().charAt(0).toUpperCase();
                 article.innerHTML = `
@@ -1375,7 +1363,8 @@
             renderStoredProductReviews();
 
             if (window.livaApp) {
-                window.livaApp.showToast(isKm ? 'អរគុណសម្រាប់ការវាយតម្លៃរបស់អ្នក!' : 'Thank you! Your review has been published.');
+                window.livaApp.showToast(isKm ? 'អរគុណសម្រាប់ការវាយតម្លៃរបស់អ្នក!' :
+                    'Thank you! Your review has been published.');
             }
         }
 

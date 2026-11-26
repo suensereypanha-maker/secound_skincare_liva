@@ -63,17 +63,10 @@
             @endif
         </a>
 
-        <!-- Top-Left Badge -->
-        <span class="js-card-badge absolute top-2 left-2 sm:top-3 sm:left-3 z-10 text-[9px] sm:text-[10px] tracking-wider uppercase font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full {{ $showPromoBadge ? 'bg-amber-600 text-white' : 'bg-white/95 text-liva-olive' }} backdrop-blur-md border border-white/80 shadow-xs pointer-events-none max-w-[68%] truncate"
-              data-en="{{ $badgeEn }}"
-              data-km="{{ $badgeKm }}">
-            {{ $badge }}
-        </span>
-
         <!-- Top-Right Favorite Button -->
         <button type="button"
                 onclick="event.stopPropagation(); event.preventDefault(); window.livaApp?.toggleFavorite('{{ $product['id'] }}')"
-                class="js-favorite-btn absolute top-2 right-2 sm:top-3 sm:right-3 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
+                class="js-favorite-btn absolute top-2 right-2 sm:top-3 sm:right-3 z-20 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 text-liva-muted hover:text-rose-500 cursor-pointer"
                 aria-label="Toggle favorite">
             <svg class="js-favorite-icon w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 transition-transform duration-200 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>

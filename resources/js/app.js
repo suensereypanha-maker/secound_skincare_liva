@@ -156,7 +156,7 @@ class LivaApp {
             const name = isKm ? product.nameKm : product.nameEn;
 
             return `
-            <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-liva-border shadow-2xs group hover:border-liva-olive/50 transition-all">
+            <div class="flex items-center gap-3.5 py-2 group transition-all">
                 <a href="${getBasePath()}/product/${product.id}/" class="w-16 h-16 rounded-xl overflow-hidden bg-[#F4F1EA] shrink-0 border border-liva-border/60 block">
                     <img src="${product.image}" alt="${name}" class="w-full h-full object-cover" />
                 </a>
@@ -1279,15 +1279,10 @@ class LivaApp {
                     ` : ''}
                 </a>
 
-                <!-- Top-Left Badge -->
-                <span class="absolute top-3 left-3 z-10 text-[10px] tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full ${isPromo ? 'bg-amber-600 text-white' : 'bg-white/95 text-liva-olive'} backdrop-blur-md border border-white/80 shadow-xs pointer-events-none">
-                    ${badge}
-                </span>
-
                 <!-- Top-Right Add to Favorite Button (Heart) -->
                 <button type="button"
                         onclick="event.stopPropagation(); event.preventDefault(); window.livaApp.toggleFavorite('${product.id}')"
-                        class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs border border-white/70 transition-all duration-300 hover:scale-110 active:scale-95 ${isFav ? 'text-rose-500 bg-white' : 'text-liva-muted hover:text-rose-500'}"
+                        class="absolute top-3 right-3 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${isFav ? 'text-rose-500' : 'text-liva-muted hover:text-rose-500'}"
                         title="${isFav ? t.removeFromFavorites : t.addToFavorites}"
                         aria-label="Toggle favorite">
                     <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-200 ${isFav ? 'fill-rose-500 text-rose-500 scale-110' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2">
@@ -1371,13 +1366,13 @@ class LivaApp {
             if (favBtn && favIcon) {
                 favBtn.title = isFav ? t.removeFromFavorites : t.addToFavorites;
                 if (isFav) {
-                    favBtn.classList.add('text-rose-500', 'bg-white');
-                    favBtn.classList.remove('text-liva-muted', 'bg-white/90');
+                    favBtn.classList.add('text-rose-500');
+                    favBtn.classList.remove('text-liva-muted');
                     favIcon.classList.add('fill-rose-500', 'text-rose-500', 'scale-110');
                     favIcon.classList.remove('fill-none');
                 } else {
-                    favBtn.classList.remove('text-rose-500', 'bg-white');
-                    favBtn.classList.add('text-liva-muted', 'bg-white/90');
+                    favBtn.classList.remove('text-rose-500');
+                    favBtn.classList.add('text-liva-muted');
                     favIcon.classList.remove('fill-rose-500', 'text-rose-500', 'scale-110');
                     favIcon.classList.add('fill-none');
                 }

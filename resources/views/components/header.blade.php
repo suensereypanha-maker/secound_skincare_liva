@@ -132,45 +132,47 @@
         </div>
 
         <!-- Mobile Navigation Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-liva-border/80 py-4 px-3 space-y-2 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-xl">
-            <!-- Mobile Search Input -->
-            <div class="relative w-full pb-1">
-                <input type="text" 
-                       id="mobile-nav-search-input"
-                       onkeydown="if(event.key==='Enter') { window.livaApp.submitNavSearch(this.value); document.getElementById('mobile-menu').classList.add('hidden'); }"
-                       placeholder="Search products, serums, shampoo..."
-                       data-i18n-placeholder="navSearchPlaceholder"
-                       class="w-full pl-9 pr-4 py-2 rounded-full bg-liva-stone/80 border border-liva-border text-xs text-liva-dark placeholder-liva-muted focus:outline-hidden focus:border-liva-olive focus:bg-white shadow-2xs">
-                <svg class="w-4 h-4 text-liva-muted absolute left-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </div>
+    </div>
 
-            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navHome">
-                {{ __('skincare.nav_home') }}
-            </a>
-
-            <!-- All Products -->
-            <a href="{{ route('products.index') }}" 
-               onclick="document.getElementById('mobile-menu').classList.add('hidden')" 
-               class="w-full text-left block px-3 py-2 rounded-lg text-sm font-semibold text-liva-charcoal hover:bg-liva-stone" 
-               data-i18n="navAllProducts">
-                {{ __('skincare.nav_all_products') ?? 'All Products' }}
-            </a>
-            
-            <!-- About -->
-            <a href="{{ route('about') }}" 
-               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
-               class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
-               data-i18n="navAbout">
-                {{ __('skincare.nav_about') ?? 'About' }}
-            </a>
-
-            <!-- Contact -->
-            <a href="{{ route('contact') }}" 
-               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
-               class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
-               data-i18n="navContact">
-                {{ __('skincare.nav_contact') ?? 'Contact' }}
-            </a>
+    <!-- Mobile Menu Dropdown (Full Width) -->
+    <div id="mobile-menu" class="hidden lg:hidden w-full border-t border-liva-border/80 py-4 px-4 sm:px-6 space-y-2 bg-white/95 backdrop-blur-md shadow-xl">
+        <!-- Mobile Search Input -->
+        <div class="relative w-full pb-1">
+            <input type="text" 
+                   id="mobile-nav-search-input"
+                   onkeydown="if(event.key==='Enter') { window.livaApp.submitNavSearch(this.value); document.getElementById('mobile-menu').classList.add('hidden'); }"
+                   placeholder="Search products, serums, shampoo..."
+                   data-i18n-placeholder="navSearchPlaceholder"
+                   class="w-full pl-9 pr-4 py-2 rounded-full bg-liva-stone/80 border border-liva-border text-xs text-liva-dark placeholder-liva-muted focus:outline-hidden focus:border-liva-olive focus:bg-white shadow-2xs">
+            <svg class="w-4 h-4 text-liva-muted absolute left-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
+
+        <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" data-i18n="navHome">
+            {{ __('skincare.nav_home') }}
+        </a>
+
+        <!-- All Products -->
+        <a href="{{ route('products.index') }}" 
+           onclick="document.getElementById('mobile-menu').classList.add('hidden')" 
+           class="w-full text-left block px-3 py-2 rounded-lg text-sm font-semibold text-liva-charcoal hover:bg-liva-stone" 
+           data-i18n="navAllProducts">
+            {{ __('skincare.nav_all_products') ?? 'All Products' }}
+        </a>
+        
+        <!-- About -->
+        <a href="{{ route('about') }}" 
+           onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+           class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
+           data-i18n="navAbout">
+            {{ __('skincare.nav_about') ?? 'About' }}
+        </a>
+
+        <!-- Contact -->
+        <a href="{{ route('contact') }}" 
+           onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+           class="block px-3 py-2 rounded-lg text-sm font-medium text-liva-charcoal hover:bg-liva-stone" 
+           data-i18n="navContact">
+            {{ __('skincare.nav_contact') ?? 'Contact' }}
+        </a>
     </div>
 </header>
