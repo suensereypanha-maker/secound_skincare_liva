@@ -4,6 +4,13 @@ use App\Services\ProductCatalog;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+putenv('SESSION_DRIVER=array');
+putenv('CACHE_STORE=array');
+$_ENV['SESSION_DRIVER'] = 'array';
+$_ENV['CACHE_STORE'] = 'array';
+$_SERVER['SESSION_DRIVER'] = 'array';
+$_SERVER['CACHE_STORE'] = 'array';
+
 require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
@@ -25,34 +32,34 @@ function transformForGitHubPages(string $html, string $base): string
     $html = preg_replace('/<script id="browser-logger-active">[\s\S]*?<\/script>/', '', $html);
 
     // Fix build assets (both localhost absolute and root relative)
-    $html = str_replace('http://localhost/build/', $base.'/build/', $html);
+    $html = preg_replace('/https?:\/\/localhost(?::\d+)?\/build\//', $base.'/build/', $html);
     $html = str_replace('"/build/', '"'.$base.'/build/', $html);
     $html = str_replace("'/build/", "'".$base.'/build/', $html);
 
     // Fix image assets
-    $html = str_replace('http://localhost/img/', $base.'/img/', $html);
+    $html = preg_replace('/https?:\/\/localhost(?::\d+)?\/img\//', $base.'/img/', $html);
     $html = str_replace('"/img/', '"'.$base.'/img/', $html);
     $html = str_replace("'/img/", "'".$base.'/img/', $html);
 
     // Fix products catalog links (preserve optional query string)
-    $html = preg_replace('/href="(?:https?:\/\/localhost)?\/products(\?[^"]*)?"/', 'href="'.$base.'/products/$1"', $html);
-    $html = preg_replace("/href='(?:https?:\/\/localhost)?\/products(\?[^']*)?'/", "href='".$base."/products/$1'", $html);
+    $html = preg_replace('/href="(?:https?:\/\/localhost(?::\d+)?)?\/products(\?[^"]*)?"/', 'href="'.$base.'/products/$1"', $html);
+    $html = preg_replace("/href='(?:https?:\/\/localhost(?::\d+)?)?\/products(\?[^']*)?'/", "href='".$base."/products/$1'", $html);
 
     // Fix about & contact links
-    $html = preg_replace('/href="(?:https?:\/\/localhost)?\/about\/?"/', 'href="'.$base.'/about/"', $html);
-    $html = preg_replace('/href="(?:https?:\/\/localhost)?\/contact\/?"/', 'href="'.$base.'/contact/"', $html);
+    $html = preg_replace('/href="(?:https?:\/\/localhost(?::\d+)?)?\/about\/?"/', 'href="'.$base.'/about/"', $html);
+    $html = preg_replace('/href="(?:https?:\/\/localhost(?::\d+)?)?\/contact\/?"/', 'href="'.$base.'/contact/"', $html);
 
     // Fix product detail links
-    $html = preg_replace('/href="(?:https?:\/\/localhost)?\/product\/([^"#\?\/]+)\/?"/', 'href="'.$base.'/product/$1/"', $html);
-    $html = preg_replace("/href='(?:https?:\/\/localhost)?\/product\/([^'#\?\/]+)\/?'/", "href='".$base."/product/$1/'", $html);
+    $html = preg_replace('/href="(?:https?:\/\/localhost(?::\d+)?)?\/product\/([^"#\?\/]+)\/?"/', 'href="'.$base.'/product/$1/"', $html);
+    $html = preg_replace("/href='(?:https?:\/\/localhost(?::\d+)?)?\/product\/([^'#\?\/]+)\/?'/", "href='".$base."/product/$1/'", $html);
 
     // Fix collection and anchor links starting with /#
-    $html = str_replace(['href="http://localhost/#', 'href="/#'], 'href="'.$base.'/#', $html);
-    $html = str_replace(["href='http://localhost/#", "href='/#"], "href='".$base.'/#', $html);
+    $html = preg_replace('/href="(?:https?:\/\/localhost(?::\d+)?)?\/#/', 'href="'.$base.'/#', $html);
+    $html = preg_replace("/href='(?:https?:\/\/localhost(?::\d+)?)?\/#/", "href='".$base.'/#', $html);
 
     // Fix root links
-    $html = str_replace(['href="http://localhost"', 'href="http://localhost/"', 'href="/"'], 'href="'.$base.'/"', $html);
-    $html = str_replace(["href='http://localhost'", "href='http://localhost/'", "href='/'"], "href='".$base."/'", $html);
+    $html = preg_replace('/href="(?:https?:\/\/localhost(?::\d+)?\/?|\/)"/', 'href="'.$base.'/"', $html);
+    $html = preg_replace("/href='(?:https?:\/\/localhost(?::\d+)?\/?|\/)'/", "href='".$base."/'", $html);
 
     return $html;
 }
@@ -66,6 +73,11 @@ function exportRoute(Kernel $kernel, string $uri, string $targetFile, string $ba
 
     $request = Request::create($uri, 'GET');
     $response = $kernel->handle($request);
+    if ($response->getStatusCode() !== 200) {
+        fwrite(STDERR, "Failed exporting {$uri}: HTTP {$response->getStatusCode()}\n");
+        exit(1);
+    }
+
     $html = transformForGitHubPages($response->getContent(), $base);
     file_put_contents($targetFile, $html);
 }
