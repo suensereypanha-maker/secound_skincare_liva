@@ -138,7 +138,12 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-4">
+                    <div id="static-contact-success" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm font-medium flex items-center gap-2.5">
+                        <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span id="static-contact-success-text"></span>
+                    </div>
+
+                    <form id="liva-contact-form" action="{{ route('contact.submit') }}" method="POST" class="space-y-4">
                         @csrf
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
@@ -213,4 +218,34 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('liva-contact-form');
+            if (!form) return;
+
+            form.addEventListener('submit', (e) => {
+                // On static hosts (like GitHub Pages), handle form submission gracefully without POST 405
+                if (window.location.hostname.endsWith('github.io')) {
+                    e.preventDefault();
+                    const name = document.getElementById('contact-name')?.value.trim() || 'Guest';
+                    const isKm = window.livaApp ? window.livaApp.currentLang === 'km' : {{ $isKm ? 'true' : 'false' }};
+                    const msg = isKm
+                        ? `អរគុណ ${name}! សាររបស់អ្នកត្រូវបានកត់ត្រា។ សូមទាក់ទងមកយើងតាម Telegram (@livaskincare) សម្រាប់ការឆ្លើយតបរហ័សបំផុត។`
+                        : `Thank you, ${name}! Your message has been noted. For immediate assistance on static preview, feel free to chat with us on Telegram (@livaskincare).`;
+
+                    const box = document.getElementById('static-contact-success');
+                    const txt = document.getElementById('static-contact-success-text');
+                    if (box && txt) {
+                        txt.textContent = msg;
+                        box.classList.remove('hidden');
+                    }
+                    form.reset();
+                    if (window.livaApp) {
+                        window.livaApp.showToast(msg);
+                    }
+                }
+            });
+        });
+    </script>
 </x-layouts.app>
